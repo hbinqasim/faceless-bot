@@ -1,0 +1,17 @@
+{
+  "channel": "gta6",
+  "channel_name": "GTA 6 Daily Breakdown",
+  "visual_style": "Miami crime drama, documentary-like",
+  "aspect_ratio": "9:16",
+  "camera": "ARRI Alexa 65",
+  "lens": "Anamorphic",
+  "fps": 24,
+  "lighting": "Neon reflections, dramatic shadows, three-point cinema",
+  "weather": "Humid tropical, occasional rain, overcast skies",
+  "color_grade": "Orange-teal contrast, deep shadows, vibrant highlights",
+  "rendering_style": "Photorealistic",
+  "quality": "4K Ultra HD",
+  "atmosphere": "Gritty, tense, investigative documentary",
+  "environment": "Urban Miami streets, Vice City, Leonida State",
+  "negative_prompt": "no text, no logo, no watermark, no official UI, no copyrighted branding, no real celebrities, no exact screenshots, no GTA logo"
+}

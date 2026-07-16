@@ -1,0 +1,37 @@
+{
+  "enabled": true,
+  "service_name": "graphics",
+  "channel": "gta6",
+  "input_video": "channels/gta6/videos/final/latest_video.mp4",
+  "script_path": "channels/gta6/scripts/latest_script.txt",
+  "output_video": "channels/gta6/videos/final/latest_video_graphics.mp4",
+  "font_size": 104,
+  "highlight_color": [
+    255,
+    204,
+    0
+  ],
+  "text_color": [
+    255,
+    255,
+    255
+  ],
+  "stroke_color": [
+    0,
+    0,
+    0
+  ],
+  "stroke_width": 10,
+  "shadow_offset": 7,
+  "box_opacity": 120,
+  "caption_start_offset_seconds": -0.18,
+  "caption_gap_seconds": 0.03,
+  "y_position_ratio": 0.66,
+  "max_box_width": 960,
+  "audio_path": "channels/gta6/audio/voice.mp3",
+  "whisper_model": "base",
+  "caption_mode": "word_timed",
+  "max_words_per_caption": 4,
+  "max_caption_gap_seconds": 0.55,
+  "highlight_current_word": true
+}

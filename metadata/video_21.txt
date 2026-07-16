@@ -1,0 +1,15 @@
+VIDEO ID: 21
+TOPIC: confidence
+TITLE: The Secret Enemy of Success
+
+DESCRIPTION:
+Discover the hidden obstacle that's holding you back from achieving your goals and learn how to overcome it with discipline.
+
+HASHTAGS:
+#ConfidenceIsNotEnough #MotivationIsOverrated #DisciplineWins #SuccessHabits #GoalAchievement #ProductivityTips #PersonalGrowthJourney #SelfImprovementStrategies
+
+FILE:
+output/2026-06-26_15-01-57_confidence.mp4
+
+CREATED:
+2026-06-26T15:04:11.524869

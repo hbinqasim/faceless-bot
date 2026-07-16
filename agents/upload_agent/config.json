@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "agent_name": "upload_agent",
+  "channel": "gta6",
+  "client_secret_file": "client_secret.json",
+  "token_file": "youtube_token_game_n_goal.pickle",
+  "video_path": "channels/gta6/videos/final/latest_video_graphics.mp4",
+  "thumbnail_path": "channels/gta6/thumbnails/latest_thumbnail.jpg",
+  "metadata_path": "channels/gta6/metadata/latest_metadata.json",
+  "upload_manifest_path": "channels/gta6/upload/upload_manifest.json",
+  "privacy_status": "private",
+  "category_id": "20",
+  "made_for_kids": false,
+  "schedule_upload": true,
+  "first_video_delay_minutes": 30,
+  "hours_between_videos": 10,
+  "timezone": "Asia/Karachi"
+}

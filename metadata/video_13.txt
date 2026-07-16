@@ -1,0 +1,15 @@
+VIDEO ID: 13
+TOPIC: entrepreneurship
+TITLE: "Comfort Kills Entrepreneurship"
+
+DESCRIPTION:
+"Don't let fear and comfort hold you back from achieving your entrepreneurial dreams. Learn how to break free and succeed."
+
+HASHTAGS:
+#EntrepreneurshipTips #BusinessGrowthHacks #ProductivityHacks #FearLessLiving #DisciplineOverPerfection #StartupLife #SmallBusinessSuccess #MotivationForEntrepreneurs
+
+FILE:
+output/2026-06-25_16-16-48_entrepreneurship.mp4
+
+CREATED:
+2026-06-25T16:18:48.267933

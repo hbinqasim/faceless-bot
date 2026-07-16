@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "service_name": "narration",
+  "channel": "gta6",
+  "input_script_path": "channels/gta6/scripts/latest_script.txt",
+  "output_folder": "channels/gta6/audio",
+  "voice": "en-US-GuyNeural",
+  "output_file": "voice.mp3"
+}

@@ -1,0 +1,258 @@
+"""Config-driven fact checker for Vice Studio."""
+
+from __future__ import annotations
+
+import json
+import re
+from datetime import datetime
+from pathlib import Path
+from typing import Any
+from urllib.parse import urlparse
+
+
+ROOT_DIR = Path(__file__).resolve().parents[2]
+CONFIG_PATH = Path(__file__).resolve().parent / "config.json"
+
+
+def load_config() -> dict[str, Any]:
+    if not CONFIG_PATH.exists():
+        raise FileNotFoundError(f"Fact checker config not found: {CONFIG_PATH}")
+
+    data = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+
+    if not isinstance(data, dict):
+        raise ValueError("Fact checker config must be a JSON object.")
+
+    return data
+
+
+def resolve_path(path_value: str) -> Path:
+    path = Path(path_value)
+    if path.is_absolute():
+        return path
+    return ROOT_DIR / path
+
+
+def load_topic(config: dict[str, Any]) -> dict[str, Any]:
+    input_path = resolve_path(str(config.get("input_path", "")))
+
+    if not input_path.exists():
+        raise FileNotFoundError(f"Research topic not found: {input_path}")
+
+    data = json.loads(input_path.read_text(encoding="utf-8"))
+
+    if not isinstance(data, dict):
+        raise ValueError("Research topic must be a JSON object.")
+
+    return data
+
+
+def source_confidence(topic: dict[str, Any], config: dict[str, Any]) -> float:
+    url = str(topic.get("url", ""))
+    host = urlparse(url).netloc.lower().replace("www.", "")
+
+    official_domains = [
+        str(domain).lower().replace("www.", "")
+        for domain in config.get("official_domains", [])
+    ]
+
+    if any(host == domain or host.endswith(f".{domain}") for domain in official_domains):
+        return float(config.get("official_source_confidence", 0.95))
+
+    authority = 0.0
+    sources = topic.get("sources", [])
+
+    if isinstance(sources, list) and sources:
+        first_source = sources[0]
+        if isinstance(first_source, dict):
+            authority = float(first_source.get("authority", 0.0))
+
+    if not authority:
+        authority = float(topic.get("confidence", 0.5))
+
+    return max(0.0, min(authority, 1.0))
+
+
+def clean_fact(text: str) -> str:
+    text = re.sub(r"\s+", " ", text or "").strip()
+    text = re.sub(r"([a-z])([A-Z])", r"\1 \2", text)
+    text = re.sub(r"([a-z])of\b", r"\1 of", text)
+    text = re.sub(r"([a-z])in\b", r"\1 in", text)
+    text = re.sub(r"([a-z])to\b", r"\1 to", text)
+    text = re.sub(r"([a-z])have\b", r"\1 have", text)
+    text = re.sub(r"([a-z])launch\b", r"\1 launch", text)
+    text = re.sub(r"([a-z])release\b", r"\1 release", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def is_bad_fact(fact: str, config: dict[str, Any]) -> bool:
+    lower = fact.lower()
+
+    for fragment in config.get("bad_fact_fragments", []):
+        if str(fragment).lower() in lower:
+            return True
+
+    for pattern in config.get("bad_fact_regexes", []):
+        try:
+            if re.search(str(pattern), lower, flags=re.IGNORECASE):
+                return True
+        except re.error:
+            continue
+
+    word_count = len(fact.split())
+
+    if word_count < int(config.get("min_fact_words", 5)):
+        return True
+
+    if word_count > int(config.get("max_fact_words", 36)):
+        return True
+
+    return False
+
+
+def fact_category(fact: str, topic: dict[str, Any], config: dict[str, Any]) -> str:
+    lower = fact.lower()
+
+    rules = config.get("fact_category_rules", {})
+
+    if isinstance(rules, dict):
+        for category, terms in rules.items():
+            if any(str(term).lower() in lower for term in terms):
+                return str(category)
+
+    topic_type = str(topic.get("topic_type", "")).strip()
+
+    if topic_type:
+        return topic_type
+
+    return str(config.get("default_fact_category", "unclassified"))
+
+
+def fact_confidence(
+    fact: str,
+    category: str,
+    base_confidence: float,
+    topic: dict[str, Any],
+    config: dict[str, Any],
+) -> float:
+    confidence = base_confidence
+
+    category_adjustments = config.get("category_confidence_adjustments", {})
+    if isinstance(category_adjustments, dict):
+        confidence += float(category_adjustments.get(category, 0.0))
+
+    lower = fact.lower()
+
+    for term in config.get("confidence_positive_terms", []):
+        if str(term).lower() in lower:
+            confidence += float(config.get("positive_confidence_boost", 0.05))
+            break
+
+    for term in config.get("confidence_caution_terms", []):
+        if str(term).lower() in lower:
+            confidence -= float(config.get("caution_confidence_penalty", 0.15))
+            break
+
+    if str(topic.get("topic_type", "")) == "leak_or_rumor":
+        confidence -= float(config.get("rumor_topic_penalty", 0.1))
+
+    return round(max(0.0, min(confidence, 1.0)), 2)
+
+
+def verify_facts(topic: dict[str, Any], config: dict[str, Any]) -> list[dict[str, Any]]:
+    raw_facts = topic.get("facts")
+
+    if not isinstance(raw_facts, list) or not raw_facts:
+        raw_facts = topic.get("key_facts", [])
+
+    if not isinstance(raw_facts, list):
+        raw_facts = []
+
+    base_confidence = source_confidence(topic, config)
+    verified: list[dict[str, Any]] = []
+    seen: set[str] = set()
+
+    for raw_fact in raw_facts:
+        fact = clean_fact(str(raw_fact))
+
+        if not fact:
+            continue
+
+        key = fact.lower()
+
+        if key in seen:
+            continue
+
+        seen.add(key)
+
+        if is_bad_fact(fact, config):
+            continue
+
+        category = fact_category(fact, topic, config)
+        confidence = fact_confidence(fact, category, base_confidence, topic, config)
+
+        if confidence < float(config.get("minimum_confidence", 0.35)):
+            continue
+
+        verified.append(
+            {
+                "fact": fact,
+                "category": category,
+                "confidence": confidence,
+                "source": topic.get("source", ""),
+                "source_url": topic.get("url", ""),
+            }
+        )
+
+        if len(verified) >= int(config.get("max_verified_facts", 6)):
+            break
+
+    return verified
+
+
+def build_verified_topic(topic: dict[str, Any], config: dict[str, Any]) -> dict[str, Any]:
+    verified_facts = verify_facts(topic, config)
+
+    fact_texts = [item["fact"] for item in verified_facts]
+
+    status = "verified" if verified_facts else "needs_review"
+
+    return {
+        **topic,
+        "verification_status": status,
+        "verified_at": datetime.now().isoformat(timespec="seconds"),
+        "verified_facts": verified_facts,
+        "facts": fact_texts,
+        "key_facts": fact_texts,
+        "fact_checker_notes": {
+            "input_fact_count": len(topic.get("facts", topic.get("key_facts", []))),
+            "verified_fact_count": len(verified_facts),
+            "minimum_confidence": config.get("minimum_confidence", 0.35)
+        }
+    }
+
+
+def save_verified_topic(topic: dict[str, Any], config: dict[str, Any]) -> None:
+    output_path = resolve_path(str(config.get("output_path", "")))
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(json.dumps(topic, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def run() -> None:
+    config = load_config()
+
+    if not config.get("enabled", True):
+        print("Fact checker disabled.")
+        return
+
+    topic = load_topic(config)
+    verified_topic = build_verified_topic(topic, config)
+    save_verified_topic(verified_topic, config)
+
+    print("Fact check complete.")
+    print("Status:", verified_topic["verification_status"])
+    print("Verified facts:", len(verified_topic["verified_facts"]))
+
+
+if __name__ == "__main__":
+    run()

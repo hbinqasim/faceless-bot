@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "agent_name": "storyboard_agent",
+  "channel": "gta6",
+  "niche": "GTA 6",
+  "model": "gemini-2.5-flash",
+  "temperature": 0.3,
+  "max_tokens": 700,
+  "scene_count": 6,
+  "script_path": "channels/gta6/scripts/latest_script.txt",
+  "output_path": "channels/gta6/storyboards/latest_storyboard.txt",
+  "output_json_path": "channels/gta6/storyboards/latest_storyboard.json",
+  "llm_provider": "gemini"
+}

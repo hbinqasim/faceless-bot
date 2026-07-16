@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "agent_name": "script_agent",
+  "channel": "gta6",
+  "niche": "GTA 6",
+  "model": "gemini-2.5-flash",
+  "temperature": 0.35,
+  "max_tokens": 500,
+  "min_lines": 5,
+  "max_lines": 7,
+  "max_words_per_line": 12,
+  "max_generation_attempts": 3,
+  "knowledge_path": "channels/gta6/research/latest_topic.json",
+  "output_path": "channels/gta6/scripts/latest_script.txt",
+  "cta": "Follow for more GTA 6 breakdowns.",
+  "llm_provider": "gemini",
+  "use_title_as_hook": true,
+  "title_hook_max_words": 9,
+  "minimum_script_quality_score": 0.0
+}

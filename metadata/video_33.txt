@@ -1,0 +1,15 @@
+VIDEO ID: 33
+TOPIC: sales
+TITLE: Unmasking Success Secrets
+
+DESCRIPTION:
+Discover the surprising truths behind achieving success and why most people struggle to take action.
+
+HASHTAGS:
+#SalesMastery #GrowthHacking #ProductivityTips #SuccessSecrets #MindsetShift #EntrepreneurshipAdvice #SmallBusinessMarketing #PersonalDevelopment
+
+FILE:
+output/2026-06-27_22-39-28_sales.mp4
+
+CREATED:
+2026-06-27T22:41:21.241221

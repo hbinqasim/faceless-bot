@@ -1,0 +1,31 @@
+{
+  "channel": "gta6",
+  "characters": [
+    {
+      "name": "Jason",
+      "age": 35,
+      "build": "Athletic, muscular",
+      "height": "6'0\"",
+      "hair": "Short dark brown, clean",
+      "facial_hair": "Stubble or light beard",
+      "clothing": "Casual urban street wear, leather jackets, dark colors, brand-neutral basics",
+      "accessories": "Silver watch, simple chain necklace",
+      "personality": "Determined, street-smart, ambitious, loyal",
+      "appearance_notes": "Serious demeanor, confident posture, weathered hands suggesting street experience",
+      "consistency_notes": "Always maintain athletic build and urban style. Dark hair and stubble should be consistent. Serious, focused expression. Mid-30s appearance. Dress in practical street wear, no designer logos."
+    },
+    {
+      "name": "Lucia",
+      "age": 28,
+      "build": "Athletic, toned",
+      "height": "5'7\"",
+      "hair": "Long dark hair, flowing or styled up",
+      "facial_hair": "None",
+      "clothing": "Urban fashion-forward, tactical elements, form-fitting tops, practical pants, crop tops, leather accents",
+      "accessories": "Sunglasses, multiple rings, wrist bracelet",
+      "personality": "Sharp, confident, resourceful, fearless",
+      "appearance_notes": "Strong presence, confident stance, piercing gaze, athletic frame",
+      "consistency_notes": "Always maintain athletic build and dark hair. Fashion-forward urban style with tactical elements. Confident, direct presence. Recognize by facial features and fashion sense. Independent and powerful appearance."
+    }
+  ]
+}

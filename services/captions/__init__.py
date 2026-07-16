@@ -1,0 +1,1 @@
+"""Vice Studio caption service."""

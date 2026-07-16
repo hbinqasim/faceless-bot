@@ -1,0 +1,15 @@
+VIDEO ID: 47
+TOPIC: productivity
+TITLE: The Hidden Thief of Productivity
+
+DESCRIPTION:
+Discover why waiting for motivation is a recipe for disaster and learn the simple strategy to overcome it.
+
+HASHTAGS:
+#ProductivityHacks #MotivationMistake #DisciplineOverFeelings #SmallActionsBigResults #GetStuffDone #PersonalGrowth #TimeManagementTips #StayFocused
+
+FILE:
+output/2026-07-04_17-33-43_productivity.mp4
+
+CREATED:
+2026-07-04T17:35:46.876180

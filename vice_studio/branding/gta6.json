@@ -1,0 +1,43 @@
+{
+  "channel_name": "GTA 6 Daily Breakdown",
+  "channel_tagline": "Uncover the secrets of Vice City",
+  "voice_style": "Authoritative, investigative, street-savvy, conversational",
+  "narration_style": "Documentary-like, matter-of-fact, direct address to viewer, immersive",
+  "tone": "Serious but engaging, knowledgeable expert sharing insights",
+  "thumbnail_style": "Bold sans-serif text overlays, neon colors (orange/cyan), character close-ups, dramatic facial expressions, high contrast",
+  "intro_style": "Fast cuts (0.1-0.3s each), dramatic cinematic music, neon graphics, 2-3 second hook establishing topic",
+  "outro_style": "CTA emphasis with urgency, subscribe reminder with benefit statement, tease next video with curiosity hook",
+  "CTA": "Follow for more GTA 6 breakdowns.",
+  "CTA_extended": "Don't miss tomorrow's breakdown. Subscribe now.",
+  "color_palette": [
+    "#FF6600",
+    "#0099FF",
+    "#FFFFFF",
+    "#000000",
+    "#FF1493",
+    "#00FFFF"
+  ],
+  "color_names": {
+    "primary_orange": "#FF6600",
+    "secondary_cyan": "#0099FF",
+    "accent_pink": "#FF1493",
+    "neutral_white": "#FFFFFF",
+    "neutral_black": "#000000"
+  },
+  "logo_usage": "Channel logo in bottom right corner (5-10% of frame width), visible but non-intrusive",
+  "typography": "Bold sans-serif (Arial, Helvetica, Montserrat), high contrast with background, all caps for impact, minimum 24pt on mobile",
+  "text_animation": "Quick fade-in, bold entry with slight scale, exit with quick fade or slide",
+  "font_pairing": {
+    "headlines": "Montserrat Bold",
+    "body": "Open Sans Regular",
+    "impact": "Bebas Neue"
+  },
+  "music_style": "Cinematic, dramatic, electronic beats mixed with orchestral, tension-building",
+  "editing_pace": "Fast-paced for Shorts/Reels (avg 1-2 second cuts)",
+  "transition_style": "Hard cuts, whip pans, light flashes",
+  "platform_priorities": [
+    "YouTube Shorts (15-60 seconds)",
+    "TikTok Reels (15-60 seconds)",
+    "Instagram Reels (15-90 seconds)"
+  ]
+}

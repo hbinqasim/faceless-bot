@@ -1,0 +1,17 @@
+{
+  "channel": "ai",
+  "channel_name": "AI & Technology Insights",
+  "visual_style": "Futuristic tech, data visualization, minimalist",
+  "aspect_ratio": "9:16",
+  "camera": "Virtual cinema",
+  "lens": "Digital 35mm equivalent",
+  "fps": 30,
+  "lighting": "LED panels, neon accents, clean studio lighting",
+  "weather": "Indoor controlled environment",
+  "color_grade": "Cool blues, electric purples, data-visualization tints",
+  "rendering_style": "Photorealistic with digital elements",
+  "quality": "4K Ultra HD",
+  "atmosphere": "Cutting-edge, professional, educational",
+  "environment": "Tech laboratories, server rooms, digital spaces",
+  "negative_prompt": "no copyrighted company logos, no proprietary algorithm visualizations without credit"
+}

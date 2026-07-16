@@ -1,0 +1,15 @@
+VIDEO ID: 22
+TOPIC: business
+TITLE: Comfort is Killing My Business
+
+DESCRIPTION:
+Discover the harsh reality of entrepreneurship and how focusing on hard work, not talent or luck, can help you succeed.
+
+HASHTAGS:
+#EntrepreneurshipAdvice #BusinessStruggles #SmallBusinessTips #GrowthMindset #SuccessHacks #HardWorkPays #OvercomingObstacles #StartUpLife
+
+FILE:
+output/2026-06-26_15-05-06_business.mp4
+
+CREATED:
+2026-06-26T15:06:52.834088

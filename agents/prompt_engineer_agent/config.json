@@ -1,0 +1,43 @@
+{
+  "enabled": true,
+  "agent_name": "prompt_engineer_agent",
+  "channel": "gta6",
+  "niche": "GTA 6",
+  "visual_plan_path": "channels/gta6/storyboards/latest_visual_plan.json",
+  "output_path": "channels/gta6/images/latest_final_prompts.txt",
+  "output_json_path": "channels/gta6/images/latest_final_prompts.json",
+  "max_scenes": 6,
+  "quality_terms": [
+    "photorealistic documentary frame",
+    "realistic photography",
+    "high dynamic range",
+    "natural imperfections",
+    "detailed real-world materials",
+    "atmospheric depth",
+    "cinematic vertical 9:16"
+  ],
+  "negative_prompt": [
+    "readable text",
+    "letters",
+    "words",
+    "captions",
+    "subtitles",
+    "logos",
+    "watermark",
+    "user interface",
+    "screen text",
+    "blurry",
+    "low quality",
+    "distorted",
+    "deformed",
+    "bad anatomy",
+    "extra limbs",
+    "people",
+    "pedestrians",
+    "cars",
+    "vehicles",
+    "street signs",
+    "neon signs"
+  ],
+  "media_queries_output_path": "channels/gta6/images/latest_media_queries.json"
+}

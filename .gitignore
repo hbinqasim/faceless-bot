@@ -1,0 +1,26 @@
+# Environment
+.env
+venv/
+__pycache__/
+*.pyc
+
+# Secrets
+client_secret.json
+youtube_token*.pickle
+*.pem
+*.key
+
+# Database
+*.db
+
+# Generated files
+output/
+logs/
+cache/
+temp/
+channels/
+
+*.mp4
+
+# macOS
+.DS_Store

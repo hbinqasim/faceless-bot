@@ -1,0 +1,36 @@
+{
+  "enabled": true,
+  "service_name": "llm",
+
+  "provider_order": [
+    "gemini",
+    "groq",
+    "openrouter",
+    "ollama"
+  ],
+
+  "gemini": {
+    "enabled": true,
+    "model": "gemini-2.5-flash"
+  },
+
+  "groq": {
+    "enabled": false,
+    "model": "llama-3.3-70b-versatile"
+  },
+
+  "openrouter": {
+    "enabled": false,
+    "model": "meta-llama/llama-3.3-70b-instruct:free"
+  },
+
+  "ollama": {
+    "enabled": true,
+    "base_url": "http://localhost:11434",
+    "model": "llama3.1:8b"
+  },
+
+  "temperature": 0.4,
+  "max_tokens": 500,
+  "timeout_seconds": 60
+}

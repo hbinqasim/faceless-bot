@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "service_name": "video_composer",
+  "channel": "gta6",
+  "input_folder": "channels/gta6/videos/scenes",
+  "output_folder": "channels/gta6/videos/final",
+  "audio_path": "channels/gta6/audio/voice.mp3",
+  "use_voiceover": true,
+  "fps": 30,
+  "codec": "libx264",
+  "audio_codec": "aac",
+  "transition_seconds": 0.25
+}

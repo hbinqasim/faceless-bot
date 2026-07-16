@@ -1,0 +1,302 @@
+"""Generic structure-only storyboard agent for Vice Studio."""
+
+from __future__ import annotations
+
+import datetime
+import json
+import re
+from pathlib import Path
+from typing import Any
+
+from services.llm.service import generate as generate_text
+
+
+
+ROOT_DIR = Path(__file__).resolve().parents[2]
+CONFIG_PATH = Path(__file__).resolve().parent / "config.json"
+OLLAMA_URL = "http://localhost:11434/api/generate"
+
+
+def load_config() -> dict[str, Any]:
+    return json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+
+
+def resolve_path(path_value: str) -> Path:
+    path = Path(path_value)
+    return path if path.is_absolute() else ROOT_DIR / path
+
+
+def load_script(config: dict[str, Any]) -> str:
+    path = resolve_path(str(config["script_path"]))
+    return path.read_text(encoding="utf-8").strip()
+
+
+def build_prompt(script: str, config: dict[str, Any]) -> str:
+    scene_count = int(config.get("scene_count", 6))
+    niche = str(config.get("niche", "this topic"))
+
+    return f"""
+You are a structure-only storyboard planner.
+
+Create exactly {scene_count} scenes for a vertical short video.
+
+Return ONLY valid JSON.
+No markdown.
+No explanation.
+
+Each scene object must have:
+- scene_number
+- script_line
+- purpose
+- subject
+- emotion
+- shot_type
+- visual_metaphor
+
+Rules:
+- Do not write cinematic image prompts.
+- Do not mention logos, screens, headlines, captions, UI, readable text, or brands.
+- Do not describe exact footage.
+- Keep each field short and generic.
+- The storyboard must work for any niche.
+
+Niche:
+{niche}
+
+Script:
+{script}
+
+Return this JSON shape:
+{{
+  "scenes": [
+    {{
+      "scene_number": 1,
+      "script_line": "...",
+      "purpose": "hook",
+      "subject": "...",
+      "emotion": "...",
+      "shot_type": "...",
+      "visual_metaphor": "..."
+    }}
+  ]
+}}
+""".strip()
+
+
+def call_ollama(prompt: str, config: dict[str, Any]) -> str:
+    return generate_text(prompt, config)
+
+
+def extract_json(raw: str) -> dict[str, Any]:
+    raw = raw.strip()
+
+    try:
+        data = json.loads(raw)
+    except json.JSONDecodeError:
+        match = re.search(r"\{.*\}", raw, flags=re.DOTALL)
+        if not match:
+            raise
+        data = json.loads(match.group(0))
+
+    if not isinstance(data, dict):
+        raise ValueError("Storyboard output must be a JSON object.")
+
+    return data
+
+
+def clean_scene_text(value: Any) -> str:
+    text = re.sub(r"\s+", " ", str(value or "")).strip()
+    return text[:160]
+
+
+def validate_storyboard(data: dict[str, Any], config: dict[str, Any]) -> dict[str, Any]:
+    scene_count = int(config.get("scene_count", 6))
+    scenes = data.get("scenes")
+
+    if not isinstance(scenes, list):
+        raise ValueError("Storyboard JSON must contain scenes list.")
+
+    cleaned_scenes: list[dict[str, Any]] = []
+
+    for index, scene in enumerate(scenes[:scene_count], start=1):
+        if not isinstance(scene, dict):
+            continue
+
+        cleaned = {
+            "scene_number": index,
+            "script_line": clean_scene_text(scene.get("script_line")),
+            "purpose": clean_scene_text(scene.get("purpose")),
+            "subject": clean_scene_text(scene.get("subject")),
+            "emotion": clean_scene_text(scene.get("emotion")),
+            "shot_type": clean_scene_text(scene.get("shot_type")),
+            "visual_metaphor": clean_scene_text(scene.get("visual_metaphor")),
+        }
+
+        if is_valid_scene(cleaned):
+            cleaned_scenes.append(cleaned)
+
+    if len(cleaned_scenes) < scene_count:
+        raise ValueError("Not enough valid storyboard scenes.")
+
+    return {
+        "agent_name": config.get("agent_name", "storyboard_agent"),
+        "channel": config.get("channel"),
+        "niche": config.get("niche"),
+        "generated_at": datetime.datetime.now().isoformat(timespec="seconds"),
+        "format": "structure_only_storyboard",
+        "scenes": cleaned_scenes,
+    }
+
+
+def is_valid_scene(scene: dict[str, str]) -> bool:
+    required = ["script_line", "purpose", "subject", "emotion", "shot_type", "visual_metaphor"]
+
+    for key in required:
+        if len(scene.get(key, "").split()) < 1:
+            return False
+
+    forbidden = [
+        "logo",
+        "headline",
+        "caption",
+        "subtitle",
+        "screen",
+        "ui",
+        "watermark",
+        "official footage",
+        "readable text",
+    ]
+
+    combined = " ".join(scene.values()).lower()
+    return not any(word in combined for word in forbidden)
+
+
+def fallback_storyboard(script: str, config: dict[str, Any]) -> dict[str, Any]:
+    lines = [line.strip() for line in script.splitlines() if line.strip()]
+    lines = [line for line in lines if not line.lower().startswith("follow for more")]
+
+    scene_count = int(config.get("scene_count", 6))
+    while len(lines) < scene_count:
+        lines.append("The story continues to develop.")
+
+    purposes = ["hook", "context", "tension", "evidence", "uncertainty", "payoff"]
+
+    scenes = []
+    for index in range(scene_count):
+        scenes.append({
+            "scene_number": index + 1,
+            "script_line": lines[index],
+            "purpose": purposes[index] if index < len(purposes) else "support",
+            "subject": derive_subject(lines[index]),
+            "emotion": derive_emotion(purposes[index] if index < len(purposes) else "support"),
+            "shot_type": derive_shot_type(index),
+            "visual_metaphor": derive_metaphor(lines[index]),
+        })
+
+    return {
+        "agent_name": config.get("agent_name", "storyboard_agent"),
+        "channel": config.get("channel"),
+        "niche": config.get("niche"),
+        "generated_at": datetime.datetime.now().isoformat(timespec="seconds"),
+        "format": "structure_only_storyboard",
+        "scenes": scenes,
+    }
+
+
+
+def derive_subject(line: str) -> str:
+    words = re.findall(r"[A-Za-z0-9]+", line)
+    important = [word for word in words if len(word) > 3]
+    if not important:
+        return "central story object"
+    return " ".join(important[:4]).lower()
+
+
+def derive_emotion(purpose: str) -> str:
+    mapping = {
+        "hook": "curiosity",
+        "context": "anticipation",
+        "tension": "uncertainty",
+        "evidence": "focus",
+        "uncertainty": "doubt",
+        "payoff": "momentum",
+    }
+    return mapping.get(purpose, "curiosity")
+
+
+def derive_shot_type(index: int) -> str:
+    shots = [
+        "extreme close-up",
+        "wide establishing shot",
+        "medium tracking shot",
+        "macro detail shot",
+        "low angle shot",
+        "cinematic closing shot",
+    ]
+    return shots[index % len(shots)]
+
+
+def derive_metaphor(line: str) -> str:
+    cleaned = re.sub(r"[^A-Za-z0-9 ]+", "", line).strip().lower()
+    words = [word for word in cleaned.split() if len(word) > 4]
+    if not words:
+        return "uncertainty becoming visible"
+    return f"{' '.join(words[:3])} becoming visible"
+
+def save_outputs(storyboard: dict[str, Any], config: dict[str, Any]) -> None:
+    output_json_path = resolve_path(str(config["output_json_path"]))
+    output_txt_path = resolve_path(str(config["output_path"]))
+
+    channel = str(config.get("channel", "default"))
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    archive_json_path = ROOT_DIR / "channels" / channel / "storyboards" / f"{timestamp}_storyboard.json"
+
+    output_json_path.parent.mkdir(parents=True, exist_ok=True)
+    output_txt_path.parent.mkdir(parents=True, exist_ok=True)
+    archive_json_path.parent.mkdir(parents=True, exist_ok=True)
+
+    output_json_path.write_text(json.dumps(storyboard, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    archive_json_path.write_text(json.dumps(storyboard, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    lines = []
+    for scene in storyboard["scenes"]:
+        lines.append(
+            f"Scene {scene['scene_number']}: "
+            f"{scene['purpose']} | {scene['subject']} | "
+            f"{scene['emotion']} | {scene['shot_type']} | "
+            f"{scene['visual_metaphor']}"
+        )
+
+    output_txt_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def run() -> None:
+    config = load_config()
+
+    if not config.get("enabled", True):
+        print("Storyboard agent disabled.")
+        return
+
+    script = load_script(config)
+    prompt = build_prompt(script, config)
+
+    try:
+        raw = call_ollama(prompt, config)
+        data = extract_json(raw)
+        storyboard = validate_storyboard(data, config)
+    except Exception:
+        storyboard = fallback_storyboard(script, config)
+
+    save_outputs(storyboard, config)
+
+    for scene in storyboard["scenes"]:
+        print(
+            f"Scene {scene['scene_number']}: "
+            f"{scene['purpose']} | {scene['subject']} | "
+            f"{scene['emotion']} | {scene['shot_type']} | "
+            f"{scene['visual_metaphor']}"
+        )
+
+
+if __name__ == "__main__":
+    run()

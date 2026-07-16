@@ -1,0 +1,17 @@
+{
+  "channel": "marvel",
+  "channel_name": "Marvel Universe Lore",
+  "visual_style": "Superhero cinematic, epic fantasy",
+  "aspect_ratio": "9:16",
+  "camera": "ARRI Alexa LF",
+  "lens": "Anamorphic 40mm-120mm",
+  "fps": 24,
+  "lighting": "Dramatic superhero lighting, volumetric effects",
+  "weather": "Variable, often dramatic/stormy",
+  "color_grade": "Rich jewel tones, powered-up color accents",
+  "rendering_style": "Photorealistic CGI blend",
+  "quality": "4K Cinematic",
+  "atmosphere": "Epic, heroic, intense supernatural",
+  "environment": "City skylines, alien worlds, mystical realms",
+  "negative_prompt": "no direct trademarked Marvel branding, no exact character art copies, no official promotional materials"
+}

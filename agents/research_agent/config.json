@@ -1,0 +1,320 @@
+{
+  "enabled": true,
+  "agent_name": "research_agent",
+  "channel": "gta6",
+  "niche": "GTA 6",
+  "lookback_days": 7,
+  "max_links_per_source": 12,
+  "min_text_length": 300,
+  "output_dir": "channels/gta6/research",
+  "used_topics_path": "channels/gta6/research/used_topics.json",
+  "similarity_block_threshold": 0.82,
+  "recent_topic_limit": 100,
+  "min_fact_chars": 45,
+  "max_fact_chars": 240,
+  "max_fact_words": 36,
+  "max_facts": 5,
+  "max_dash_sections": 2,
+  "max_entities": 12,
+  "max_keywords": 20,
+  "relevance_terms": [
+    "gta 6",
+    "gta vi",
+    "grand theft auto vi",
+    "grand theft auto 6",
+    "rockstar"
+  ],
+  "entities": [
+    "Rockstar Games",
+    "Rockstar",
+    "Take-Two Interactive",
+    "Take-Two",
+    "GTA 6",
+    "GTA VI",
+    "Grand Theft Auto VI",
+    "Grand Theft Auto 6",
+    "Vice City",
+    "Leonida",
+    "Jason",
+    "Lucia",
+    "PlayStation",
+    "Xbox"
+  ],
+  "official_domains": [
+    "rockstargames.com",
+    "take2games.com"
+  ],
+  "official_topic_type": "official",
+  "default_topic_type": "news_update",
+  "topic_type_rules": {
+    "official": [],
+    "commercial_update": [
+      "preorder",
+      "preorders",
+      "pre-order",
+      "pre-orders",
+      "retail",
+      "retailer",
+      "standard edition",
+      "ultimate edition",
+      "price",
+      "subscription",
+      "disc",
+      "physical"
+    ],
+    "media_update": [
+      "trailer",
+      "screenshot",
+      "screenshots",
+      "gameplay",
+      "revealed"
+    ],
+    "leak_or_rumor": [
+      "leak",
+      "leaked",
+      "rumor",
+      "rumour",
+      "reportedly"
+    ],
+    "community_discovery": [
+      "fan",
+      "community",
+      "interactive",
+      "map"
+    ],
+    "analysis_or_speculation": [
+      "expect",
+      "could",
+      "may",
+      "might",
+      "prediction",
+      "analysis",
+      "precedent"
+    ]
+  },
+  "score_weights": {
+    "freshness": 0.35,
+    "authority": 0.25,
+    "engagement": 0.25,
+    "uniqueness": 0.15
+  },
+  "engagement_keywords": [
+    "confirmed",
+    "revealed",
+    "leaked",
+    "breaking",
+    "official",
+    "new",
+    "update",
+    "trailer",
+    "release",
+    "record",
+    "sales",
+    "launch",
+    "delay",
+    "screenshots",
+    "gameplay"
+  ],
+  "curiosity_terms": [
+    "no plans",
+    "record",
+    "confirmed",
+    "revealed",
+    "leaked",
+    "delay",
+    "price",
+    "map",
+    "trailer",
+    "disc",
+    "physical",
+    "preorder",
+    "pre-order",
+    "screenshot",
+    "gameplay"
+  ],
+  "base_confidence": 0.5,
+  "authority_confidence_weight": 0.3,
+  "official_confidence_boost": 0.2,
+  "positive_confidence_boost": 0.1,
+  "caution_confidence_penalty": 0.15,
+  "confidence_positive_terms": [
+    "confirmed",
+    "official",
+    "announced"
+  ],
+  "confidence_caution_terms": [
+    "rumor",
+    "rumour",
+    "leak",
+    "leaked",
+    "reportedly"
+  ],
+  "editorial_base_score_weight": 0.6,
+  "editorial_confidence_weight": 0.25,
+  "editorial_curiosity_weight": 0.15,
+  "curiosity_score_hit_cap": 8,
+  "bad_fact_fragments": [
+    "advertisement",
+    "amazon reveals",
+    "are you planning",
+    "arguably the most anticipated",
+    "auto-renew",
+    "cancel reply",
+    "check your nails",
+    "classic rockstar titles",
+    "comments",
+    "cookie",
+    "discord server",
+    "drop a comment",
+    "fine print",
+    "for the longest time",
+    "furthers the notion",
+    "home news",
+    "it's finally time",
+    "join the official",
+    "keep it civil",
+    "leave your thoughts",
+    "newsletter",
+    "personality types",
+    "planning to purchase",
+    "platforms playstation",
+    "privacy policy",
+    "product page",
+    "raising excitement levels",
+    "related:",
+    "reply ",
+    "screenshots 2026 upcoming",
+    "search menu",
+    "sign up",
+    "solid assumption",
+    "subscribe",
+    "supports that",
+    "terms of service",
+    "tomodachi life",
+    "upcoming game release dates",
+    "we can imagine",
+    "we've thought",
+    "we\u2019ve thought",
+    "what's coming",
+    "what\u2019s coming",
+    "which edition"
+  ],
+  "sources": [
+    {
+      "name": "Google News GTA 6 Fresh",
+      "authority": 0.7,
+      "seeds": [
+        "https://news.google.com/rss/search?q=GTA%206%20when:7d&hl=en-US&gl=US&ceid=US:en",
+        "https://news.google.com/rss/search?q=Grand%20Theft%20Auto%20VI%20when:7d&hl=en-US&gl=US&ceid=US:en",
+        "https://news.google.com/rss/search?q=Rockstar%20GTA%206%20when:7d&hl=en-US&gl=US&ceid=US:en"
+      ],
+      "domains": [
+        "news.google.com"
+      ]
+    },
+    {
+      "name": "Google News GTA 6 Rumors",
+      "authority": 0.55,
+      "seeds": [
+        "https://news.google.com/rss/search?q=GTA%206%20rumor%20when:7d&hl=en-US&gl=US&ceid=US:en",
+        "https://news.google.com/rss/search?q=GTA%206%20leak%20when:7d&hl=en-US&gl=US&ceid=US:en",
+        "https://news.google.com/rss/search?q=GTA%206%20reportedly%20when:7d&hl=en-US&gl=US&ceid=US:en"
+      ],
+      "domains": [
+        "news.google.com"
+      ]
+    },
+    {
+      "name": "Google News GTA 6 Reddit",
+      "authority": 0.5,
+      "seeds": [
+        "https://news.google.com/rss/search?q=GTA%206%20reddit%20when:7d&hl=en-US&gl=US&ceid=US:en",
+        "https://news.google.com/rss/search?q=GTA%206%20community%20when:7d&hl=en-US&gl=US&ceid=US:en",
+        "https://news.google.com/rss/search?q=GTA%206%20fans%20when:7d&hl=en-US&gl=US&ceid=US:en"
+      ],
+      "domains": [
+        "news.google.com"
+      ]
+    },
+    {
+      "name": "Rockstar Games Newswire",
+      "authority": 1.0,
+      "seeds": [
+        "https://www.rockstargames.com/newswire"
+      ],
+      "domains": [
+        "rockstargames.com"
+      ]
+    },
+    {
+      "name": "Take-Two Interactive Press Releases",
+      "authority": 0.95,
+      "seeds": [
+        "https://www.take2games.com/ir/press-releases"
+      ],
+      "domains": [
+        "take2games.com"
+      ]
+    },
+    {
+      "name": "Insider Gaming",
+      "authority": 0.65,
+      "seeds": [
+        "https://insider-gaming.com/?s=GTA+6"
+      ],
+      "domains": [
+        "insider-gaming.com"
+      ]
+    },
+    {
+      "name": "RockstarINTEL",
+      "authority": 0.7,
+      "seeds": [
+        "https://rockstarintel.com/feed"
+      ],
+      "domains": [
+        "rockstarintel.com"
+      ]
+    },
+    {
+      "name": "GTA BOOM",
+      "authority": 0.63,
+      "seeds": [
+        "https://www.gtaboom.com/feed/"
+      ],
+      "domains": [
+        "gtaboom.com"
+      ]
+    },
+    {
+      "name": "Video Games Chronicle",
+      "authority": 0.72,
+      "seeds": [
+        "https://www.videogameschronicle.com/?s=GTA+6"
+      ],
+      "domains": [
+        "videogameschronicle.com"
+      ]
+    }
+  ],
+  "bad_fact_regexes": [
+    "\\bfor the longest time\\b",
+    "\\bsolid assumption\\b",
+    "\\bwe can\\b",
+    "\\bwe have thought\\b",
+    "\\bwe've thought\\b",
+    "\\bwe\u2019ve thought\\b",
+    "^related:",
+    "^reply\\s+.+\\b\\d{4}\\b",
+    "arguably .* of all time",
+    "cancel reply",
+    "check your .*",
+    "drop a comment",
+    "join .* discord",
+    "keep it civil",
+    "leave your thoughts",
+    "reveals .* product page",
+    "which .* are you planning"
+  ],
+  "allow_reuse_when_no_fresh_topics": false
+}

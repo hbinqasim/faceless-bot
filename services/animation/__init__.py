@@ -1,0 +1,1 @@
+"""Vice Studio animation service."""

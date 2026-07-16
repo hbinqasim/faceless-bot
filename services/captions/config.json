@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "service_name": "captions",
+  "channel": "gta6",
+  "input_video": "channels/gta6/videos/final/latest_video.mp4",
+  "script_path": "channels/gta6/scripts/latest_script.txt",
+  "output_video": "channels/gta6/videos/final/latest_video_captioned.mp4",
+  "font_size": 86,
+  "caption_y": 1498,
+  "caption_y_ratio": 0.78,
+  "max_caption_width": 940,
+  "safe_margin": 96,
+  "stroke_width": 8,
+  "shadow_offset": 5,
+  "shadow_opacity": 0.42
+}

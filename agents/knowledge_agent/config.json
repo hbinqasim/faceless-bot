@@ -1,0 +1,12 @@
+{
+  "enabled": true,
+  "agent_name": "knowledge_agent",
+  "channel": "gta6",
+  "niche": "GTA 6",
+  "input_path": "channels/gta6/research/verified_topic.json",
+  "output_json_path": "channels/gta6/research/knowledge.json",
+  "output_path": "channels/gta6/research/knowledge_brief.md",
+  "min_confidence": 0.45,
+  "max_facts": 6,
+  "minimum_facts_required": 1
+}

@@ -1,0 +1,88 @@
+"""Run the full Vice Studio GTA 6 production pipeline."""
+
+from __future__ import annotations
+
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+FINAL_VIDEO_PATH = PROJECT_ROOT / "channels" / "gta6" / "videos" / "final" / "latest_video_graphics.mp4"
+
+PIPELINE_STEPS = [
+    ("Research Agent", "agents/research_agent/agent.py"),
+    ("Fact Checker", "agents/fact_checker/agent.py"),
+    ("Knowledge Agent", "agents/knowledge_agent/agent.py"),
+    ("Script Agent", "agents/script_agent/agent.py"),
+    ("Storyboard Agent", "agents/storyboard_agent/agent.py"),
+    ("Cinematographer Agent", "agents/cinematographer_agent/agent.py"),
+    ("Prompt Engineer Agent", "agents/prompt_engineer_agent/agent.py"),
+    ("Image Generation Service", "services/image_generation/service.py"),
+    ("Animation Service", "services/animation/service.py"),
+    ("Narration Service", "services/narration/service.py"),
+    ("Video Composer Service", "services/video_composer/service.py"),
+    ("Graphics Service", "services/graphics/service.py"),
+]
+
+FALLBACK_STEPS = [
+    ("Captions Service", "services/captions/service.py"),
+]
+
+
+def cleanup_stale_generated_files() -> None:
+    """Remove generated scene artifacts that should never be reused."""
+    patterns = [
+        PROJECT_ROOT / "channels" / "gta6" / "images" / "generated" / "scene_*.png",
+        PROJECT_ROOT / "channels" / "gta6" / "images" / "generated" / "scene_*.jpg",
+        PROJECT_ROOT / "channels" / "gta6" / "videos" / "scenes" / "scene_*.mp4",
+    ]
+    deleted_count = 0
+    for pattern in patterns:
+        for path in pattern.parent.glob(pattern.name):
+            path.unlink()
+            deleted_count += 1
+
+    print(f"Deleted stale generated files: {deleted_count}")
+
+
+def run() -> None:
+    """Run every GTA 6 pipeline step in order, with captions as fallback."""
+    start_time = time.perf_counter()
+    cleanup_stale_generated_files()
+
+    try:
+        for index, (name, relative_path) in enumerate(PIPELINE_STEPS, start=1):
+            print(f"\n[{index}/{len(PIPELINE_STEPS)}] {name}")
+            subprocess.run(
+                [sys.executable, str(PROJECT_ROOT / relative_path)],
+                cwd=PROJECT_ROOT,
+                check=True,
+            )
+    except subprocess.CalledProcessError as error:
+        elapsed = time.perf_counter() - start_time
+        print(f"\nPipeline stopped after failure in step: {error.cmd}")
+        print(f"Total execution time: {elapsed:.2f} seconds")
+        print("Falling back to captions service.")
+
+        try:
+            for index, (name, relative_path) in enumerate(FALLBACK_STEPS, start=1):
+                print(f"\n[{index}/{len(FALLBACK_STEPS)}] {name}")
+                subprocess.run(
+                    [sys.executable, str(PROJECT_ROOT / relative_path)],
+                    cwd=PROJECT_ROOT,
+                    check=True,
+                )
+        except subprocess.CalledProcessError as fallback_error:
+            print(f"Fallback failed in step: {fallback_error.cmd}")
+            raise SystemExit(fallback_error.returncode) from fallback_error
+
+    elapsed = time.perf_counter() - start_time
+    print("\nPipeline completed successfully.")
+    print(f"Total execution time: {elapsed:.2f} seconds")
+    print(f"Final video path: {FINAL_VIDEO_PATH}")
+
+
+if __name__ == "__main__":
+    run()

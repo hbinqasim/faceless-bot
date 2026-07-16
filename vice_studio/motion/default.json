@@ -1,0 +1,67 @@
+{
+  "presets": {
+    "slow_push": {
+      "movement_type": "Forward push",
+      "zoom": "Subtle forward (12-18mm over 4 seconds)",
+      "rotation": "Minimal (stabilized)",
+      "movement": "Forward push into subject or scene",
+      "easing": "Ease-in-out for smooth acceleration/deceleration",
+      "duration": "3-5 seconds",
+      "use_case": "Building tension, revealing details, emotional connection"
+    },
+    "dolly": {
+      "movement_type": "Horizontal dolly",
+      "zoom": "No zoom, pure lateral movement",
+      "rotation": "Slight pan to follow subject",
+      "movement": "Smooth lateral tracking left or right",
+      "easing": "Ease-in-out for organic feel",
+      "duration": "4-8 seconds",
+      "use_case": "Revealing environments, showing location context"
+    },
+    "orbit": {
+      "movement_type": "Orbital camera motion",
+      "zoom": "Static distance, circling subject",
+      "rotation": "360 or partial orbit around subject",
+      "movement": "Circular motion around central focal point",
+      "easing": "Constant smooth speed or ease-in-out",
+      "duration": "5-10 seconds",
+      "use_case": "Showcasing architecture, establishing environment majesty"
+    },
+    "drone_fly": {
+      "movement_type": "Drone aerial movement",
+      "zoom": "Slight pull-out as camera ascends",
+      "rotation": "Tilt and yaw for environmental reveal",
+      "movement": "Ascent, descent, or lateral tracking from above",
+      "easing": "Smooth acceleration from start",
+      "duration": "4-8 seconds",
+      "use_case": "Establishing scope, showing cityscape, grand reveals"
+    },
+    "zoom": {
+      "movement_type": "Lens zoom (optical)",
+      "zoom": "Continuous focal length change",
+      "rotation": "Locked static camera position",
+      "movement": "No camera movement, only focal length change",
+      "easing": "Ease-in-out for smooth zoom curve",
+      "duration": "2-4 seconds",
+      "use_case": "Isolating details, building intensity through magnification"
+    },
+    "handheld": {
+      "movement_type": "Handheld camera, subtle camera shake",
+      "zoom": "Minimal, focus locked",
+      "rotation": "Organic micro-movements, intentional imperfection",
+      "movement": "Slight bounce, weight shifts simulating human camera operator",
+      "easing": "Organic, natural micro-movements",
+      "duration": "2-6 seconds",
+      "use_case": "Immersion, documentary feel, tension and urgency"
+    },
+    "whip_pan": {
+      "movement_type": "Rapid transition pan",
+      "zoom": "Slight blur during transition",
+      "rotation": "Fast horizontal rotation between subjects",
+      "movement": "Rapid directional pan revealing new subject",
+      "easing": "Quick acceleration and deceleration",
+      "duration": "0.3-0.8 seconds",
+      "use_case": "Transition between scenes, dynamic reaction, maintaining energy"
+    }
+  }
+}

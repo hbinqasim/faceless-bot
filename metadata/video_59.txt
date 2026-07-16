@@ -1,0 +1,15 @@
+VIDEO ID: 59
+TOPIC: marketing
+TITLE: Small Steps to Big Success
+
+DESCRIPTION:
+Discover the secret to achieving success in small, actionable steps. Learn why discipline and hard work are more important than talent or magic solutions.
+
+HASHTAGS:
+#MarketingTips #SuccessHabits #DisciplineOverTalent #GrowthMindset #SmallStepsBigResults #ProductivityHacks #BusinessSuccess #PersonalDevelopment
+
+FILE:
+output/2026-07-13_19-22-16_marketing.mp4
+
+CREATED:
+2026-07-13T19:24:23.276858

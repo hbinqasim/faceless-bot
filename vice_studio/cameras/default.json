@@ -1,0 +1,67 @@
+{
+  "presets": {
+    "establishing": {
+      "shot_type": "Wide establishing shot",
+      "camera": "ARRI Alexa 65",
+      "lens": "40-120mm anamorphic",
+      "framing": "Full city skyline, landscape, or environment - dominant compositional element",
+      "movement": "Slow pan, orbit, or static",
+      "duration": "3-5 seconds",
+      "stabilization": "Tripod or steady crane"
+    },
+    "drone": {
+      "shot_type": "Aerial / drone perspective",
+      "camera": "DJI Inspire or cinema drone equivalent",
+      "lens": "Fixed 24mm (35mm equivalent)",
+      "framing": "Bird's eye view, sweeping landscape",
+      "movement": "Smooth ascent, descent, or lateral tracking",
+      "duration": "4-6 seconds",
+      "stabilization": "Gimbal stabilization built-in"
+    },
+    "dialogue": {
+      "shot_type": "Medium shot, over-the-shoulder, close-up",
+      "camera": "ARRI Alexa 65",
+      "lens": "50-85mm anamorphic",
+      "framing": "Subject from waist to head or close-up face",
+      "movement": "Subtle focus pull, minimal camera movement",
+      "duration": "5-10 seconds per cut",
+      "stabilization": "Locked tripod or dolly"
+    },
+    "action": {
+      "shot_type": "Wide action, dynamic framing",
+      "camera": "ARRI Alexa 65 or Phantom high-speed",
+      "lens": "35-50mm anamorphic",
+      "framing": "Subject in motion with context, tracking movement",
+      "movement": "Tracking shot, pan follow, handheld dynamic",
+      "duration": "2-4 seconds",
+      "stabilization": "Steadicam, gimbal, or controlled handheld"
+    },
+    "tracking": {
+      "shot_type": "Tracking shot, follow cam",
+      "camera": "ARRI Alexa 65",
+      "lens": "40mm anamorphic",
+      "framing": "Subject in frame as camera moves with or around subject",
+      "movement": "Smooth lateral or forward tracking",
+      "duration": "3-6 seconds",
+      "stabilization": "Steadicam, dolly, or slider"
+    },
+    "cinematic": {
+      "shot_type": "Cinematic master shot",
+      "camera": "ARRI Alexa 65",
+      "lens": "65-100mm anamorphic",
+      "framing": "Compressed perspective, subject isolated from background",
+      "movement": "Smooth push-in or creeping movement",
+      "duration": "4-8 seconds",
+      "stabilization": "Precision dolly or crane"
+    },
+    "closeup": {
+      "shot_type": "Extreme close-up, detail shot",
+      "camera": "ARRI Alexa 65 with macro",
+      "lens": "100mm macro or telephoto",
+      "framing": "Texture detail, facial feature, object detail",
+      "movement": "Locked or very subtle focus shift",
+      "duration": "1-3 seconds",
+      "stabilization": "Locked tripod, mirror rig"
+    }
+  }
+}

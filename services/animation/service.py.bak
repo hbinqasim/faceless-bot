@@ -1,0 +1,250 @@
+"""Create animated scene clips from generated scene images."""
+
+from __future__ import annotations
+
+import json
+import re
+from datetime import datetime
+from pathlib import Path
+from typing import Any
+
+from moviepy import ColorClip, CompositeVideoClip, ImageClip
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+CONFIG_PATH = Path(__file__).resolve().with_name("config.json")
+SCENE_IMAGE_PATTERN = re.compile(r"^scene_(\d+)\.png$", re.IGNORECASE)
+DEFAULT_SCENE_MOTIONS = {
+    "1": "slow_push",
+    "2": "pan_right",
+    "3": "slow_zoom_in",
+    "4": "pan_left",
+    "5": "handheld_subtle",
+    "6": "fast_push",
+}
+
+
+def load_config() -> dict[str, Any]:
+    """Load animation service configuration."""
+    with CONFIG_PATH.open("r", encoding="utf-8") as file:
+        return json.load(file)
+
+
+def find_images(config: dict[str, Any] | None = None) -> list[Path]:
+    """Find generated scene PNGs in scene number order."""
+    active_config = config or load_config()
+    input_folder = _resolve_project_path(active_config["input_folder"])
+    if not input_folder.exists():
+        return []
+
+    images = [
+        path
+        for path in input_folder.iterdir()
+        if path.is_file() and SCENE_IMAGE_PATTERN.match(path.name)
+    ]
+    return sorted(images, key=_scene_sort_key)
+
+
+def animate_image(
+    image_path: str | Path,
+    output_path: str | Path,
+    config: dict[str, Any],
+) -> dict[str, Any]:
+    """Animate a single image into a short MP4 clip."""
+    duration = float(config.get("duration_seconds", 3))
+    fps = int(config.get("fps", 30))
+    width = int(config.get("width", 1080))
+    height = int(config.get("height", 1920))
+
+    source_path = Path(image_path)
+    video_path = Path(output_path)
+    video_path.parent.mkdir(parents=True, exist_ok=True)
+    scene_number = _scene_sort_key(source_path)
+    motion = _motion_for_scene(scene_number, config)
+    motion_settings = _motion_settings(motion)
+
+    image_clip = ImageClip(str(source_path)).with_duration(duration)
+    base_scale = _safe_base_scale(
+        image_clip.w,
+        image_clip.h,
+        width,
+        height,
+        motion_settings["x_pan"],
+        motion_settings["y_pan"],
+    )
+
+    def scale_at(time: float) -> float:
+        progress = min(max(time / duration, 0.0), 1.0)
+        return base_scale * (1.0 + motion_settings["zoom"] * progress)
+
+    def position_at(time: float) -> tuple[float, float]:
+        progress = min(max(time / duration, 0.0), 1.0)
+        scale = scale_at(time)
+        scaled_width = image_clip.w * scale
+        scaled_height = image_clip.h * scale
+        center_x = (width - scaled_width) / 2
+        center_y = (height - scaled_height) / 2
+        x = center_x + _interpolate_offset(motion_settings["x_pan"], progress)
+        y = center_y + _interpolate_offset(motion_settings["y_pan"], progress)
+        return _clamp_position(x, y, scaled_width, scaled_height, width, height)
+
+    moving_clip = image_clip.resized(scale_at).with_position(position_at)
+    background = ColorClip(size=(width, height), color=(3, 6, 12)).with_duration(duration)
+    composed = CompositeVideoClip([background, moving_clip], size=(width, height))
+    composed = composed.with_duration(duration).with_fps(fps)
+
+    try:
+        composed.write_videofile(
+            str(video_path),
+            fps=fps,
+            codec="libx264",
+            audio=False,
+            preset="medium",
+            ffmpeg_params=["-movflags", "+faststart"],
+            logger=None,
+            pixel_format="yuv420p",
+        )
+    finally:
+        composed.close()
+        background.close()
+        moving_clip.close()
+        image_clip.close()
+
+    return {
+        "input_image": str(source_path),
+        "output_video": str(video_path),
+        "duration": duration,
+        "scene_number": scene_number,
+        "motion_type": motion,
+    }
+
+
+def save_manifest(items: list[dict[str, Any]]) -> Path:
+    """Save the animation manifest."""
+    config = load_config()
+    output_folder = _resolve_project_path(config["output_folder"])
+    output_folder.mkdir(parents=True, exist_ok=True)
+    manifest_path = output_folder / "animation_manifest.json"
+    manifest = {
+        "service_name": config.get("service_name"),
+        "channel": config.get("channel"),
+        "input_folder": config.get("input_folder"),
+        "output_folder": config.get("output_folder"),
+        "duration_seconds": config.get("duration_seconds"),
+        "fps": config.get("fps"),
+        "width": config.get("width"),
+        "height": config.get("height"),
+        "motion": config.get("motion"),
+        "scene_motions": config.get("scene_motions", DEFAULT_SCENE_MOTIONS),
+        "generated_at": datetime.now().isoformat(timespec="seconds"),
+        "clips_generated": len(items),
+        "items": items,
+    }
+    manifest_path.write_text(
+        json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    return manifest_path
+
+
+def run() -> dict[str, Any]:
+    """Run the animation service."""
+    config = load_config()
+    if not config.get("enabled", True):
+        raise RuntimeError("Animation service is disabled in config.json.")
+
+    images = find_images(config)
+    output_folder = _resolve_project_path(config["output_folder"])
+    output_folder.mkdir(parents=True, exist_ok=True)
+
+    items: list[dict[str, Any]] = []
+    for image_path in images:
+        output_path = output_folder / f"{image_path.stem}.mp4"
+        items.append(animate_image(image_path, output_path, config))
+
+    manifest_path = save_manifest(items)
+
+    print(f"Images found: {len(images)}")
+    print(f"Clips generated: {len(items)}")
+    print(f"Output folder: {output_folder}")
+    print(f"Manifest path: {manifest_path}")
+
+    return {
+        "images_found": len(images),
+        "clips_generated": len(items),
+        "output_folder": str(output_folder),
+        "manifest_path": str(manifest_path),
+    }
+
+
+def _resolve_project_path(path: str | Path) -> Path:
+    candidate = Path(path)
+    if candidate.is_absolute():
+        return candidate
+
+    return PROJECT_ROOT / candidate
+
+
+def _scene_sort_key(path: Path) -> int:
+    match = SCENE_IMAGE_PATTERN.match(path.name)
+    if not match:
+        return 0
+
+    return int(match.group(1))
+
+
+def _motion_for_scene(scene_number: int, config: dict[str, Any]) -> str:
+    scene_motions = config.get("scene_motions", DEFAULT_SCENE_MOTIONS)
+    return scene_motions.get(str(scene_number), config.get("default_motion", "slow_push"))
+
+
+def _motion_settings(motion: str) -> dict[str, float]:
+    settings = {
+        "slow_push": {"zoom": 0.045, "x_pan": 10.0, "y_pan": -24.0},
+        "pan_right": {"zoom": 0.025, "x_pan": 48.0, "y_pan": -8.0},
+        "slow_zoom_in": {"zoom": 0.055, "x_pan": 0.0, "y_pan": -18.0},
+        "pan_left": {"zoom": 0.025, "x_pan": -48.0, "y_pan": -8.0},
+        "handheld_subtle": {"zoom": 0.035, "x_pan": 22.0, "y_pan": -18.0},
+        "fast_push": {"zoom": 0.075, "x_pan": 8.0, "y_pan": -30.0},
+    }
+    return settings.get(motion, settings["slow_push"])
+
+
+def _safe_base_scale(
+    image_width: int,
+    image_height: int,
+    output_width: int,
+    output_height: int,
+    x_pan: float,
+    y_pan: float,
+) -> float:
+    x_margin = abs(x_pan) + 8
+    y_margin = abs(y_pan) + 8
+    return max(
+        (output_width + x_margin) / image_width,
+        (output_height + y_margin) / image_height,
+    )
+
+
+def _interpolate_offset(distance: float, progress: float) -> float:
+    return (distance / 2) - (distance * progress)
+
+
+def _clamp_position(
+    x: float,
+    y: float,
+    scaled_width: float,
+    scaled_height: float,
+    output_width: int,
+    output_height: int,
+) -> tuple[float, float]:
+    min_x = output_width - scaled_width
+    min_y = output_height - scaled_height
+    return (
+        max(min_x, min(0.0, x)),
+        max(min_y, min(0.0, y)),
+    )
+
+
+if __name__ == "__main__":
+    run()

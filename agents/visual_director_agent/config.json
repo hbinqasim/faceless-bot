@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "agent_name": "visual_director_agent",
+  "channel": "gta6",
+  "niche": "GTA 6",
+  "storyboard_json_path": "channels/gta6/storyboards/latest_storyboard.json",
+  "output_json_path": "channels/gta6/storyboards/latest_visual_plan.json",
+  "max_scenes": 6,
+  "llm_provider": "gemini",
+  "model": "gemini-2.5-flash",
+  "temperature": 0.45,
+  "max_tokens": 1600,
+  "knowledge_path": "channels/gta6/research/knowledge.json"
+}

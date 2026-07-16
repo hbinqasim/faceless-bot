@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "service_name": "music",
+  "channel": "gta6",
+  "llm_provider": "gemini",
+  "model": "gemini-2.5-flash",
+  "temperature": 0.25,
+  "max_tokens": 120,
+  "script_path": "channels/gta6/scripts/latest_script.txt",
+  "knowledge_path": "channels/gta6/research/knowledge.json",
+  "output_folder": "channels/gta6/music",
+  "output_audio_path": "channels/gta6/music/current_music.mp3",
+  "per_page": 10,
+  "timeout_seconds": 60
+}

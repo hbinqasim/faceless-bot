@@ -1,0 +1,17 @@
+{
+  "channel": "hockey",
+  "channel_name": "Hockey Breakdown Central",
+  "visual_style": "Fast-paced action sports, play-by-play analysis",
+  "aspect_ratio": "9:16",
+  "camera": "Phantom Flex 4K",
+  "lens": "18-85mm zoom",
+  "fps": 120,
+  "lighting": "Arena lighting, high-speed capture compatible",
+  "weather": "Indoor controlled, occasionally outdoor rinks",
+  "color_grade": "Cool blues and whites, team accents",
+  "rendering_style": "High-speed photorealistic",
+  "quality": "4K Ultra HD",
+  "atmosphere": "Intense, rapid, competitive",
+  "environment": "Hockey arenas, ice surface, boards",
+  "negative_prompt": "no unauthorized player close-ups, no trademarked team logos as watermarks"
+}

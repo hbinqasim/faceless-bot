@@ -1,0 +1,26 @@
+{
+  "enabled": true,
+  "agent_name": "metadata_agent",
+  "channel": "gta6",
+  "niche": "GTA 6",
+  "latest_topic_path": "channels/gta6/research/latest_topic.json",
+  "script_path": "channels/gta6/scripts/latest_script.txt",
+  "output_path": "channels/gta6/metadata/latest_metadata.json",
+  "default_category": "Gaming",
+  "default_language": "en",
+  "hashtags": [
+    "#gta6",
+    "#gaming",
+    "#rockstar",
+    "#grandtheftauto",
+    "#shorts"
+  ],
+  "tags": [
+    "GTA 6",
+    "Grand Theft Auto VI",
+    "Rockstar Games",
+    "Vice City",
+    "Gaming News",
+    "GTA 6 News"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "enabled": true,
+  "agent_name": "visual_director_agent",
+  "channel": "gta6",
+  "niche": "GTA 6",
+  "storyboard_json_path": "channels/gta6/storyboards/latest_storyboard.json",
+  "output_json_path": "channels/gta6/storyboards/latest_visual_plan.json",
+  "max_scenes": 6,
+  "visual_world": "cinematic open-world crime drama, premium game-news atmosphere, neon city, rain reflections, luxury retail mood",
+  "camera_style": "documentary trailer frame, realistic photography, strong depth, natural imperfections",
+  "lighting_style": "golden hour mixed with neon reflections, humid haze, dramatic shadows",
+  "composition_style": "foreground subject, layered midground, detailed background, vertical 9:16",
+  "visual_anchors": [
+    {
+      "foreground": "unmarked premium game case with no readable cover text",
+      "midground": "rain-soaked retail display counter with subtle reflections",
+      "background": "neon city street outside a glass storefront"
+    },
+    {
+      "foreground": "sealed collector box with blank label area",
+      "midground": "luxury electronics store shelf",
+      "background": "soft crowd silhouettes and warm retail lighting"
+    },
+    {
+      "foreground": "empty premium retail display shelf",
+      "midground": "glass reflections and product placeholders",
+      "background": "moody neon-lit store interior"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+"""Generic visual director agent for Vice Studio."""
+
+from __future__ import annotations
+
+import datetime
+import json
+from pathlib import Path
+from typing import Any
+
+
+ROOT_DIR = Path(__file__).resolve().parents[2]
+CONFIG_PATH = Path(__file__).resolve().parent / "config.json"
+
+
+def load_config() -> dict[str, Any]:
+    return json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+
+
+def resolve_path(path_value: str) -> Path:
+    path = Path(path_value)
+    return path if path.is_absolute() else ROOT_DIR / path
+
+
+def load_storyboard(config: dict[str, Any]) -> dict[str, Any]:
+    path = resolve_path(str(config["storyboard_json_path"]))
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def build_visual_scene(scene: dict[str, Any], config: dict[str, Any]) -> dict[str, Any]:
+    anchor = choose_visual_anchor(scene, config)
+
+    return {
+        "scene_number": scene["scene_number"],
+        "script_line": scene.get("script_line", ""),
+        "purpose": scene.get("purpose", ""),
+        "emotion": scene.get("emotion", ""),
+        "shot_type": scene.get("shot_type", ""),
+        "visual_subject": anchor["foreground"],
+        "visual_world": config.get("visual_world", ""),
+        "camera_style": config.get("camera_style", ""),
+        "lighting_style": config.get("lighting_style", ""),
+        "composition_style": config.get("composition_style", ""),
+        "foreground": anchor["foreground"],
+        "midground": anchor["midground"],
+        "background": anchor["background"],
+        "texture_notes": "real surfaces, imperfect details, believable reflections, no clean AI plastic look"
+    }
+
+
+def choose_visual_anchor(scene: dict[str, Any], config: dict[str, Any]) -> dict[str, str]:
+    anchors = config.get("visual_anchors", [])
+
+    if not isinstance(anchors, list) or not anchors:
+        subject = str(scene.get("subject", "central visual object"))
+        return {
+            "foreground": subject,
+            "midground": "environment supporting the story context",
+            "background": "cinematic world with atmosphere and depth",
+        }
+
+    scene_number = int(scene.get("scene_number", 1))
+    anchor = anchors[(scene_number - 1) % len(anchors)]
+
+    if not isinstance(anchor, dict):
+        return {
+            "foreground": str(anchor),
+            "midground": "environment supporting the story context",
+            "background": "cinematic world with atmosphere and depth",
+        }
+
+    return {
+        "foreground": str(anchor.get("foreground", "central visual object")),
+        "midground": str(anchor.get("midground", "supporting environment")),
+        "background": str(anchor.get("background", "cinematic background")),
+    }
+
+
+def run() -> None:
+    config = load_config()
+
+    if not config.get("enabled", True):
+        print("Visual director disabled.")
+        return
+
+    storyboard = load_storyboard(config)
+    scenes = storyboard.get("scenes", [])
+    max_scenes = int(config.get("max_scenes", len(scenes)))
+
+    visual_scenes = [
+        build_visual_scene(scene, config)
+        for scene in scenes[:max_scenes]
+    ]
+
+    output = {
+        "agent_name": config.get("agent_name"),
+        "channel": config.get("channel"),
+        "niche": config.get("niche"),
+        "generated_at": datetime.datetime.now().isoformat(timespec="seconds"),
+        "scene_count": len(visual_scenes),
+        "scenes": visual_scenes
+    }
+
+    output_path = resolve_path(str(config["output_json_path"]))
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(json.dumps(output, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    print("Visual plan generated.")
+    print("Scenes:", len(visual_scenes))
+    print("Output:", output_path)
+
+
+if __name__ == "__main__":
+    run()

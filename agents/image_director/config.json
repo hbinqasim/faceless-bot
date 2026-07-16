@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "agent_name": "image_director",
+  "channel": "gta6",
+  "model": "llama3.1:8b",
+  "input_path": "channels/gta6/storyboards/latest_storyboard.txt",
+  "output_path": "channels/gta6/images/latest_image_prompts.txt",
+  "style_suffix": "vertical 9:16 composition, cinematic open-world crime drama aesthetic, Miami-inspired neon atmosphere, ultra detailed, dramatic lighting, realistic textures, no text, no logo, no watermark"
+}

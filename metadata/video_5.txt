@@ -1,0 +1,15 @@
+VIDEO ID: 5
+TOPIC: self improvement
+TITLE: The Truth About Success
+
+DESCRIPTION:
+Discover the harsh realities of achieving success and how it relates to your daily life.
+
+HASHTAGS:
+#SelfImprovement #ProductivityHacks #MotivationMonday #SuccessTips #PersonalGrowth #DisciplineOverFeelings #NoExcuses #HardWorkPaysOff
+
+FILE:
+output/2026-06-23_04-04-13_self_improvement.mp4
+
+CREATED:
+2026-06-23T04:05:49.241622

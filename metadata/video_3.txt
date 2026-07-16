@@ -1,0 +1,15 @@
+VIDEO ID: 3
+TOPIC: money
+TITLE: Breaking the Financial Lie
+
+DESCRIPTION:
+Discover the harsh truth about money and how small changes can lead to a life of financial freedom.
+
+HASHTAGS:
+#FinancialFreedom #MoneyMatters #DebtRelief #PersonalFinance #WealthBuilding #FinancialStress #BreakTheCycle #SmallChangesBigImpact
+
+FILE:
+output/2026-06-23_03-20-03_money.mp4
+
+CREATED:
+2026-06-23T03:21:12.601529

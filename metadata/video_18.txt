@@ -1,0 +1,15 @@
+VIDEO ID: 18
+TOPIC: confidence
+TITLE: "Confidence is a myth"
+
+DESCRIPTION:
+"The truth about motivation and confidence: it only lasts so long. Here's why discipline is what truly matters."
+
+HASHTAGS:
+#GrowthHacks #MotivationVsDiscipline #ProductivityTips #SuccessMindset #SelfImprovementJourney #ConfidenceIsOverrated #SmallStepsBigImpact #PersonalDevelopment
+
+FILE:
+output/2026-06-26_14-52-02_confidence.mp4
+
+CREATED:
+2026-06-26T14:54:26.158596

@@ -1,0 +1,15 @@
+VIDEO ID: 57
+TOPIC: marketing
+TITLE: The #1 Marketing Mistake
+
+DESCRIPTION:
+Why your marketing efforts are failing and how to fix it.
+
+HASHTAGS:
+#MarketingFails #GrowthHacking #InfluencerMarketing #DigitalMarketingTips #MarketingStrategies #BusinessGrowth #OnlineMarketingMistakes #MarketingLessonsLearned
+
+FILE:
+output/2026-07-13_19-16-48_marketing.mp4
+
+CREATED:
+2026-07-13T19:19:00.732293

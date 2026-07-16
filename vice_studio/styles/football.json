@@ -1,0 +1,17 @@
+{
+  "channel": "football",
+  "channel_name": "Football Deep Dives",
+  "visual_style": "Sports broadcast, tactical analysis",
+  "aspect_ratio": "9:16",
+  "camera": "RED Komodo",
+  "lens": "Standard 24-70mm",
+  "fps": 60,
+  "lighting": "Stadium lighting, bright daylight, high contrast",
+  "weather": "Clear to overcast, variable conditions",
+  "color_grade": "Green-gold, vibrant team colors",
+  "rendering_style": "Photorealistic with tactical overlays",
+  "quality": "4K Ultra HD",
+  "atmosphere": "Dynamic, energetic, professional sports",
+  "environment": "Football stadiums, field, crowd context",
+  "negative_prompt": "no copyrighted team logos in close-up, no player faces without permission, no official game footage"
+}
