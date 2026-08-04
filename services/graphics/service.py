@@ -13,14 +13,15 @@ from typing import Any
 from faster_whisper import WhisperModel
 from PIL import Image, ImageDraw, ImageFont
 from moviepy import CompositeVideoClip, ImageClip, VideoFileClip
+from vice_studio.config_loader import load_component_config
 
 
 ROOT = Path(__file__).resolve().parents[2]
+CONFIG_PATH = ROOT / "services/graphics/config.json"
 
 
 def load_config() -> dict[str, Any]:
-    with open(ROOT / "services/graphics/config.json", "r", encoding="utf-8") as file:
-        return json.load(file)
+    return load_component_config(CONFIG_PATH)
 
 
 def resolve_path(path_value: str | Path) -> Path:

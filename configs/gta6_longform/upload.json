@@ -1,0 +1,8 @@
+{
+  "extends": "../../agents/upload_agent/config.json",
+  "channel": "gta6_longform",
+  "video_path": "channels/gta6_longform/videos/final/latest_video_graphics.mp4",
+  "thumbnail_path": "channels/gta6_longform/thumbnails/latest_thumbnail.jpg",
+  "metadata_path": "channels/gta6_longform/metadata/latest_metadata.json",
+  "upload_manifest_path": "channels/gta6_longform/upload/upload_manifest.json"
+}

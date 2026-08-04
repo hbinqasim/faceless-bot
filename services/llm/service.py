@@ -27,7 +27,7 @@ def load_config() -> dict[str, Any]:
 
 
 def generate(prompt: str, config: dict[str, Any] | None = None) -> str:
-    active_config = config or load_config()
+    active_config = resolve_generation_config(config)
 
     if not active_config.get("enabled", True):
         raise LLMError("LLM service is disabled.")
@@ -71,6 +71,32 @@ def generate(prompt: str, config: dict[str, Any] | None = None) -> str:
             errors.append(f"{provider_name}: {error}")
 
     raise LLMError("All LLM providers failed:\n" + "\n".join(errors))
+
+
+def resolve_generation_config(overrides: dict[str, Any] | None) -> dict[str, Any]:
+    """Merge lightweight agent settings into the shared provider configuration."""
+    if not overrides:
+        return load_config()
+    if overrides.get("provider_order"):
+        return overrides
+
+    config = load_config()
+    for key in ("enabled", "temperature", "max_tokens", "timeout_seconds"):
+        if key in overrides:
+            config[key] = overrides[key]
+
+    preferred = str(overrides.get("llm_provider", "")).strip().lower()
+    if preferred and preferred in config.get("provider_order", []):
+        config["provider_order"] = [
+            preferred,
+            *[name for name in config["provider_order"] if name != preferred],
+        ]
+
+    model = str(overrides.get("model", "")).strip()
+    if model and preferred and isinstance(config.get(preferred), dict):
+        config[preferred] = {**config[preferred], "model": model}
+
+    return config
 
 
 def generate_gemini(

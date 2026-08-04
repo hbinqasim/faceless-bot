@@ -1,0 +1,38 @@
+{
+  "extends": "../../agents/prompt_engineer_agent/config.json",
+  "channel": "gta6_longform",
+  "aspect_ratio": "landscape 16:9",
+  "max_scenes": 20,
+  "visual_plan_path": "channels/gta6_longform/storyboards/latest_visual_plan.json",
+  "output_path": "channels/gta6_longform/media/latest_stock_prompts.txt",
+  "output_json_path": "channels/gta6_longform/media/latest_stock_prompts.json",
+  "media_queries_output_path": "channels/gta6_longform/media/latest_media_queries.json",
+  "stock_query_fallback": "video gaming controller",
+  "stock_query_rules": [
+    {
+      "match": ["cctv", "camera", "security room"],
+      "query": "gaming security camera"
+    },
+    {
+      "match": ["guard", "armor", "noose", "heist"],
+      "query": "video game action"
+    },
+    {
+      "match": ["minimap", "map", "blip"],
+      "query": "gaming map screen"
+    },
+    {
+      "match": ["respawn", "player", "gameplay"],
+      "query": "gamer playing video game"
+    },
+    {
+      "match": ["patch", "update", "bug", "fix", "issue"],
+      "query": "gaming controller gameplay"
+    },
+    {
+      "match": ["creator", "development", "develop"],
+      "query": "game developer computer"
+    }
+  ],
+  "quality_terms": ["dynamic gaming stock footage", "cinematic movement", "landscape 16:9"]
+}

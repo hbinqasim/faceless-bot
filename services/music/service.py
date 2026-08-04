@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import json
 import os
+import random
 import re
+import time
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -13,6 +15,7 @@ import requests
 from dotenv import load_dotenv
 
 from services.llm.service import generate as generate_text
+from vice_studio.config_loader import load_component_config
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -26,7 +29,7 @@ def resolve_path(path_value: str | Path) -> Path:
 
 
 def load_config() -> dict[str, Any]:
-    return json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+    return load_component_config(CONFIG_PATH)
 
 
 def read_text_file(path_value: str) -> str:
@@ -115,40 +118,46 @@ def search_jamendo_music(query: str, config: dict[str, Any]) -> dict[str, Any]:
     if not client_id:
         raise RuntimeError("JAMENDO_CLIENT_ID is missing in .env")
 
-    params = {
-        "client_id": client_id,
-        "format": "json",
-        "limit": int(config.get("per_page", 10)),
-        "search": query,
-        "include": "musicinfo",
-        "audioformat": "mp32",
-        "order": "relevance",
-    }
-
-    response = requests.get(
-        JAMENDO_TRACKS_URL,
-        params=params,
-        timeout=int(config.get("timeout_seconds", 60)),
-    )
-
-    if not response.ok:
-        raise RuntimeError(
-            f"Jamendo music request failed: {response.status_code} {response.text[:500]}"
+    fallback_queries = [
+        str(item).strip()
+        for item in config.get(
+            "fallback_queries",
+            ["cinematic suspense", "gaming electronic", "dramatic ambient"],
         )
+        if str(item).strip()
+    ]
 
-    data = response.json()
-    results = data.get("results", [])
+    for active_query in dict.fromkeys([query, *fallback_queries]):
+        params = {
+            "client_id": client_id,
+            "format": "json",
+            "limit": int(config.get("per_page", 10)),
+            "search": active_query,
+            "include": "musicinfo",
+            "audioformat": "mp32",
+            "order": "relevance",
+        }
+        response = requests.get(
+            JAMENDO_TRACKS_URL,
+            params=params,
+            timeout=int(config.get("timeout_seconds", 60)),
+        )
+        if not response.ok:
+            raise RuntimeError(
+                f"Jamendo music request failed: {response.status_code} {response.text[:500]}"
+            )
 
-    if not results:
-        raise RuntimeError(f"No Jamendo music found for query: {query}")
-
-    for item in results:
-        if item.get("audiodownload_allowed") and item.get("audiodownload"):
-            return item
-
-    for item in results:
-        if item.get("audio"):
-            return item
+        results = response.json().get("results", [])
+        downloadable = [
+            item
+            for item in results
+            if item.get("audiodownload_allowed") and item.get("audiodownload")
+        ]
+        playable = downloadable or [item for item in results if item.get("audio")]
+        if playable:
+            selected = random.SystemRandom().choice(playable)
+            selected["_selected_query"] = active_query
+            return selected
 
     raise RuntimeError(f"No playable Jamendo track found for query: {query}")
 
@@ -166,13 +175,29 @@ def download_track(hit: dict[str, Any], output_path: Path, config: dict[str, Any
     if not audio_url:
         raise RuntimeError(f"Pixabay music hit has no audio URL: {hit}")
 
-    response = requests.get(str(audio_url), timeout=int(config.get("timeout_seconds", 60)))
+    max_attempts = max(1, int(config.get("download_max_attempts", 3)))
+    for attempt in range(1, max_attempts + 1):
+        try:
+            response = requests.get(
+                str(audio_url), timeout=int(config.get("timeout_seconds", 60))
+            )
+            if response.ok:
+                output_path.parent.mkdir(parents=True, exist_ok=True)
+                output_path.write_bytes(response.content)
+                return
+            error = RuntimeError(
+                f"Music download failed: {response.status_code} {response.text[:300]}"
+            )
+        except requests.RequestException as request_error:
+            error = request_error
 
-    if not response.ok:
-        raise RuntimeError(f"Music download failed: {response.status_code} {response.text[:300]}")
+        if attempt < max_attempts:
+            time.sleep(float(config.get("download_retry_backoff_seconds", 2)) * attempt)
 
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_bytes(response.content)
+    if output_path.exists() and config.get("reuse_existing_on_failure", True):
+        print(f"Warning: new music download failed; reusing existing track: {error}")
+        return
+    raise RuntimeError(f"Music download failed after {max_attempts} attempts: {error}")
 
 
 def save_manifest(payload: dict[str, Any], config: dict[str, Any]) -> Path:
@@ -193,6 +218,7 @@ def run() -> dict[str, Any]:
     knowledge = read_json_file(str(config["knowledge_path"]))
     query = build_music_query(script, knowledge, config)
     hit = search_jamendo_music(query, config)
+    query = str(hit.pop("_selected_query", query))
 
     output_path = resolve_path(config["output_audio_path"])
     download_track(hit, output_path, config)

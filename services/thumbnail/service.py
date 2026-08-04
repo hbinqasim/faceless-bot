@@ -12,8 +12,10 @@ from urllib.parse import quote
 
 import requests
 from PIL import Image, ImageDraw, ImageFont
+from moviepy import VideoFileClip
 
 from services.llm.service import generate as generate_text
+from vice_studio.config_loader import load_component_config
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -26,7 +28,7 @@ def resolve_path(path_value: str | Path) -> Path:
 
 
 def load_config() -> dict[str, Any]:
-    return json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+    return load_component_config(CONFIG_PATH)
 
 
 def read_text(path_value: str) -> str:
@@ -266,8 +268,10 @@ def fallback_hook_text(knowledge: dict[str, Any]) -> str:
         return "THE $100 EDITION?!"
     if "$80" in combined:
         return "$80 SHOCK"
-    if "AI" in combined:
+    if re.search(r"\bAI\b", combined):
         return "AI CONTROL?"
+    if "HEIST" in combined or "PATCH" in combined:
+        return "HEIST FIXED?"
     if "TRAILER" in combined:
         return "NEW TRAILER?"
     if "RELEASE" in combined:
@@ -392,6 +396,9 @@ def generate_image(prompt: str, config: dict[str, Any]) -> Path:
     output_path = resolve_path(config["output_image_path"])
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
+    if str(config.get("provider", "pollinations")).lower() == "video_frame":
+        return generate_video_frame_thumbnail(output_path, config)
+
     base_url = str(config.get("pollinations_base_url", "https://image.pollinations.ai/prompt")).rstrip("/")
     model = str(config.get("pollinations_model", "flux"))
     width = int(config.get("width", 1280))
@@ -418,6 +425,35 @@ def generate_image(prompt: str, config: dict[str, Any]) -> Path:
     return output_path
 
 
+def generate_video_frame_thumbnail(output_path: Path, config: dict[str, Any]) -> Path:
+    """Create a thumbnail background from the current video's own stock footage."""
+    source_path = resolve_path(str(config["source_video_path"]))
+    if not source_path.exists():
+        raise FileNotFoundError(f"Thumbnail source video not found: {source_path}")
+
+    width = int(config.get("width", 1280))
+    height = int(config.get("height", 720))
+    with VideoFileClip(str(source_path)) as video:
+        duration = float(video.duration or 0)
+        frame_ratio = min(max(float(config.get("frame_position_ratio", 0.2)), 0.0), 1.0)
+        frame_time = max(0.0, min(duration * frame_ratio, max(duration - 0.05, 0.0)))
+        image = Image.fromarray(video.get_frame(frame_time)).convert("RGB")
+
+    source_ratio = image.width / image.height
+    target_ratio = width / height
+    if source_ratio > target_ratio:
+        crop_width = int(image.height * target_ratio)
+        left = (image.width - crop_width) // 2
+        image = image.crop((left, 0, left + crop_width, image.height))
+    else:
+        crop_height = int(image.width / target_ratio)
+        top = (image.height - crop_height) // 2
+        image = image.crop((0, top, image.width, top + crop_height))
+
+    image.resize((width, height), Image.Resampling.LANCZOS).save(output_path, quality=95)
+    return output_path
+
+
 def save_manifest(prompt: str, image_path: Path, config: dict[str, Any]) -> Path:
     output_folder = resolve_path(config["output_folder"])
     output_folder.mkdir(parents=True, exist_ok=True)
@@ -435,7 +471,7 @@ def save_manifest(prompt: str, image_path: Path, config: dict[str, Any]) -> Path
         "image_path": str(image_path),
         "width": config.get("width"),
         "height": config.get("height"),
-        "provider": "pollinations",
+        "provider": config.get("provider", "pollinations"),
         "model": config.get("pollinations_model"),
         "design": globals().get("_LAST_THUMBNAIL_DESIGN", {}),
     }

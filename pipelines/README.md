@@ -1,14 +1,35 @@
 # Vice Studio GTA 6 Pipeline
 
-This folder contains a single runner for the GTA 6 production pipeline.
+This folder contains separate runners for the GTA 6 Shorts and long-form pipelines.
 
-## Runner
+## Shorts runner
 
 ```bash
 /Users/hbinqasim/Projects/faceless-bot/venv/bin/python pipelines/gta6_pipeline.py
 ```
 
 The runner uses `sys.executable`, so it executes every step with the same Python interpreter used to start the pipeline.
+
+## Long-form runner
+
+```bash
+/Users/hbinqasim/Projects/faceless-bot/venv/bin/python pipelines/gta6_longform_pipeline.py
+```
+
+The long-form runner reuses the current agents with isolated configs under
+`configs/gta6_longform/`. It produces a 16:9 video between 2 and 3 minutes,
+downloads randomized horizontal Pixabay footage, avoids recently used Pixabay
+IDs, builds a thumbnail from the video's own footage, and uploads it through
+the existing YouTube account configuration.
+
+To render without uploading:
+
+```bash
+/Users/hbinqasim/Projects/faceless-bot/venv/bin/python pipelines/gta6_longform_pipeline.py --no-upload
+```
+
+Long-form outputs are kept under `channels/gta6_longform/`, so the existing
+`channels/gta6/` Shorts artifacts and configs are not overwritten.
 
 ## Order
 

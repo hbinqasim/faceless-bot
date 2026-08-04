@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 import edge_tts
+from vice_studio.config_loader import load_component_config
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -16,8 +17,7 @@ CONFIG_PATH = Path(__file__).resolve().with_name("config.json")
 
 def load_config() -> dict[str, Any]:
     """Load narration service configuration."""
-    with CONFIG_PATH.open("r", encoding="utf-8") as file:
-        return json.load(file)
+    return load_component_config(CONFIG_PATH)
 
 
 def load_script(config: dict[str, Any] | None = None) -> str:
@@ -27,12 +27,17 @@ def load_script(config: dict[str, Any] | None = None) -> str:
     return script_path.read_text(encoding="utf-8")
 
 
-async def generate_voice(script: str, output_path: str | Path, voice: str) -> Path:
+async def generate_voice(
+    script: str,
+    output_path: str | Path,
+    voice: str,
+    rate: str = "+0%",
+) -> Path:
     """Generate voiceover audio with edge-tts."""
     audio_path = Path(output_path)
     audio_path.parent.mkdir(parents=True, exist_ok=True)
 
-    communicate = edge_tts.Communicate(script, voice)
+    communicate = edge_tts.Communicate(script, voice, rate=rate)
     await communicate.save(str(audio_path))
     return audio_path
 
@@ -55,6 +60,7 @@ def save_manifest(
         "input_script_path": str(input_script_path),
         "output_audio_path": str(audio_path),
         "voice": config.get("voice"),
+        "rate": config.get("rate", "+0%"),
         "created_at": datetime.now().isoformat(timespec="seconds"),
         "script_line_count": len(script.splitlines()),
         "script": script,
@@ -77,13 +83,15 @@ async def run() -> dict[str, Any]:
     output_folder.mkdir(parents=True, exist_ok=True)
     output_audio_path = output_folder / config.get("output_file", "voice.mp3")
     voice = config.get("voice", "en-US-GuyNeural")
+    rate = str(config.get("rate", "+0%"))
 
-    await generate_voice(script, output_audio_path, voice)
+    await generate_voice(script, output_audio_path, voice, rate)
     manifest_path = save_manifest(config, script, output_audio_path)
 
     print(f"Script path: {_resolve_project_path(config['input_script_path'])}")
     print(f"Script lines: {len(script.splitlines())}")
     print(f"Voice: {voice}")
+    print(f"Rate: {rate}")
     print(f"Output audio path: {output_audio_path}")
     print(f"Manifest path: {manifest_path}")
 

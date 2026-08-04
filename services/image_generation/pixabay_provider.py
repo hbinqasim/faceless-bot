@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import json
 import os
+import random
+import time
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlencode
@@ -30,6 +32,35 @@ class PixabayProvider(ProviderBase):
         self.orientation = str(config.get("pixabay_orientation", "vertical"))
         self.per_page = int(config.get("pixabay_per_page", 10))
         self.timeout = int(config.get("pixabay_timeout_seconds", 60))
+        self.max_request_attempts = max(
+            1, int(config.get("pixabay_max_request_attempts", 4))
+        )
+        self.retry_backoff_seconds = max(
+            0.0, float(config.get("pixabay_retry_backoff_seconds", 2.0))
+        )
+        self.order = str(config.get("pixabay_order", "popular"))
+        self.random_pages = max(1, int(config.get("pixabay_random_pages", 1)))
+        self.required_tag_terms = {
+            str(item).strip().lower()
+            for item in config.get("pixabay_required_tag_terms", [])
+            if str(item).strip()
+        }
+        self.video_qualities = [
+            str(item)
+            for item in config.get(
+                "pixabay_video_qualities", ["large", "medium", "small", "tiny"]
+            )
+        ]
+        self.fallback_queries = [
+            str(item).strip()
+            for item in config.get("pixabay_fallback_queries", [])
+            if str(item).strip()
+        ]
+        history_value = str(config.get("pixabay_history_path", "")).strip()
+        self.history_path = self._resolve_project_path(history_value) if history_value else None
+        self.history_limit = max(1, int(config.get("pixabay_history_limit", 500)))
+        self.used_ids = self._load_used_ids()
+        self.random = random.SystemRandom()
         self.query_fields = list(
             config.get(
                 "pixabay_query_fields",
@@ -47,18 +78,19 @@ class PixabayProvider(ProviderBase):
         search_query = self._build_search_query(prompt, payload)
 
         if self.media_type == "image":
-            hit = self._search_images(search_query)
+            hit, search_query = self._search_images(search_query)
             media_url = hit["largeImageURL"]
             media_path = Path(output_path).with_suffix(".jpg")
         else:
-            hit = self._search_videos(search_query)
-            media_url = self._best_video_url(hit)
+            hit, search_query = self._search_videos(search_query)
+            media_url = self._best_video_url(hit, self.video_qualities)
             media_path = Path(output_path).with_suffix(".mp4")
 
         media_path.parent.mkdir(parents=True, exist_ok=True)
         metadata_path = self._metadata_path_for(media_path)
 
         self._download(media_url, media_path)
+        self._remember_hit(hit)
 
         payload.update(
             {
@@ -85,53 +117,123 @@ class PixabayProvider(ProviderBase):
             "status": "downloaded",
         }
 
-    def _search_videos(self, query: str) -> dict[str, Any]:
+    def _search_videos(self, query: str) -> tuple[dict[str, Any], str]:
         url = "https://pixabay.com/api/videos/"
-        params = {
-            "key": self.api_key,
-            "q": query,
-            "per_page": self.per_page,
-            "orientation": self.orientation,
-            "safesearch": "true",
-        }
-        data = self._get_json(url, params)
-        hits = data.get("hits", [])
-        if not hits:
-            raise RuntimeError(f"No Pixabay videos found for: {query}")
-        return hits[0]
+        return self._search(url, query, {"orientation": self.orientation})
 
-    def _search_images(self, query: str) -> dict[str, Any]:
+    def _search_images(self, query: str) -> tuple[dict[str, Any], str]:
         url = "https://pixabay.com/api/"
-        params = {
-            "key": self.api_key,
-            "q": query,
-            "per_page": self.per_page,
-            "orientation": self.orientation,
-            "safesearch": "true",
-            "image_type": "photo",
-        }
-        data = self._get_json(url, params)
-        hits = data.get("hits", [])
-        if not hits:
-            raise RuntimeError(f"No Pixabay images found for: {query}")
-        return hits[0]
+        return self._search(
+            url,
+            query,
+            {"orientation": self.orientation, "image_type": "photo"},
+        )
+
+    def _search(
+        self, url: str, query: str, extra_params: dict[str, Any]
+    ) -> tuple[dict[str, Any], str]:
+        queries = list(dict.fromkeys([query, *self.fallback_queries]))
+        for active_query in queries:
+            pages = list(range(1, self.random_pages + 1))
+            self.random.shuffle(pages)
+            for page in pages:
+                params = {
+                    "key": self.api_key,
+                    "q": active_query,
+                    "per_page": self.per_page,
+                    "page": page,
+                    "order": self.order,
+                    "safesearch": "true",
+                    **extra_params,
+                }
+                data = self._get_json(url, params)
+                hits = [item for item in data.get("hits", []) if isinstance(item, dict)]
+                hits = [hit for hit in hits if self._has_required_tags(hit)]
+                if not hits:
+                    continue
+
+                unused_hits = [hit for hit in hits if str(hit.get("id")) not in self.used_ids]
+                return self.random.choice(unused_hits or hits), active_query
+
+        raise RuntimeError(f"No Pixabay {self.media_type} results found for: {query}")
+
+    def _has_required_tags(self, hit: dict[str, Any]) -> bool:
+        if not self.required_tag_terms:
+            return True
+        tags = str(hit.get("tags", "")).lower()
+        return any(term in tags for term in self.required_tag_terms)
 
     def _get_json(self, url: str, params: dict[str, Any]) -> dict[str, Any]:
-        response = requests.get(f"{url}?{urlencode(params)}", timeout=self.timeout)
-        if not response.ok:
-            raise RuntimeError(f"Pixabay request failed: {response.status_code} {response.text}")
-        return response.json()
+        request_url = f"{url}?{urlencode(params)}"
+        errors: list[str] = []
+        for attempt in range(1, self.max_request_attempts + 1):
+            try:
+                response = requests.get(request_url, timeout=self.timeout)
+                if response.ok:
+                    return response.json()
+                errors.append(f"HTTP {response.status_code}: {response.text[:300]}")
+                if response.status_code not in {429, 500, 502, 503, 504}:
+                    break
+                retry_after = self._retry_after_seconds(response)
+            except (requests.RequestException, ValueError) as error:
+                errors.append(str(error))
+                retry_after = None
+
+            if attempt < self.max_request_attempts:
+                self._wait_before_retry(attempt, retry_after)
+
+        raise RuntimeError(
+            f"Pixabay request failed after {len(errors)} attempt(s): {errors[-1]}"
+        )
 
     def _download(self, url: str, output_path: Path) -> None:
-        response = requests.get(url, timeout=self.timeout)
-        if not response.ok:
-            raise RuntimeError(f"Pixabay download failed: {response.status_code}")
-        output_path.write_bytes(response.content)
+        errors: list[str] = []
+        for attempt in range(1, self.max_request_attempts + 1):
+            try:
+                response = requests.get(url, timeout=self.timeout)
+                if response.ok:
+                    output_path.write_bytes(response.content)
+                    return
+                errors.append(f"HTTP {response.status_code}")
+                if response.status_code not in {429, 500, 502, 503, 504}:
+                    break
+                retry_after = self._retry_after_seconds(response)
+            except requests.RequestException as error:
+                errors.append(str(error))
+                retry_after = None
+
+            if attempt < self.max_request_attempts:
+                self._wait_before_retry(attempt, retry_after)
+
+        raise RuntimeError(
+            f"Pixabay download failed after {len(errors)} attempt(s): {errors[-1]}"
+        )
+
+    def _wait_before_retry(self, attempt: int, retry_after: float | None) -> None:
+        delay = (
+            retry_after
+            if retry_after is not None
+            else self.retry_backoff_seconds * (2 ** (attempt - 1))
+        )
+        if delay > 0:
+            time.sleep(delay)
 
     @staticmethod
-    def _best_video_url(hit: dict[str, Any]) -> str:
+    def _retry_after_seconds(response: requests.Response) -> float | None:
+        value = str(response.headers.get("Retry-After", "")).strip()
+        if not value:
+            return None
+        try:
+            return max(0.0, float(value))
+        except ValueError:
+            return None
+
+    @staticmethod
+    def _best_video_url(
+        hit: dict[str, Any], qualities: list[str] | None = None
+    ) -> str:
         videos = hit.get("videos", {})
-        for quality in ("large", "medium", "small", "tiny"):
+        for quality in qualities or ["large", "medium", "small", "tiny"]:
             item = videos.get(quality)
             if item and item.get("url"):
                 return item["url"]
@@ -157,6 +259,36 @@ class PixabayProvider(ProviderBase):
         if len(cleaned) > 95:
             cleaned = cleaned[:95].rsplit(" ", 1)[0].strip()
         return cleaned or "cinematic background"
+
+    def _load_used_ids(self) -> set[str]:
+        if self.history_path is None or not self.history_path.exists():
+            return set()
+        try:
+            data = json.loads(self.history_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            return set()
+        items = data.get("used_hit_ids", []) if isinstance(data, dict) else []
+        return {str(item) for item in items}
+
+    def _remember_hit(self, hit: dict[str, Any]) -> None:
+        hit_id = str(hit.get("id", "")).strip()
+        if not hit_id:
+            return
+        self.used_ids.add(hit_id)
+        if self.history_path is None:
+            return
+
+        self.history_path.parent.mkdir(parents=True, exist_ok=True)
+        recent_ids = list(self.used_ids)[-self.history_limit :]
+        self.history_path.write_text(
+            json.dumps({"used_hit_ids": recent_ids}, indent=2) + "\n",
+            encoding="utf-8",
+        )
+
+    @staticmethod
+    def _resolve_project_path(path_value: str) -> Path:
+        path = Path(path_value)
+        return path if path.is_absolute() else Path(__file__).resolve().parents[2] / path
 
     @staticmethod
     def _metadata_path_for(media_path: Path) -> Path:

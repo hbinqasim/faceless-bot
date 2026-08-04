@@ -1,0 +1,8 @@
+{
+  "extends": "../../services/narration/config.json",
+  "channel": "gta6_longform",
+  "input_script_path": "channels/gta6_longform/scripts/latest_script.txt",
+  "output_folder": "channels/gta6_longform/audio",
+  "output_file": "voice.mp3",
+  "rate": "-30%"
+}

@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from moviepy import AudioFileClip, CompositeAudioClip, ImageClip, VideoFileClip, concatenate_audioclips, concatenate_videoclips, vfx
+from vice_studio.config_loader import load_component_config
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -19,8 +20,7 @@ SCENE_CLIP_PATTERN = re.compile(r"^scene_(\d+)\.mp4$", re.IGNORECASE)
 
 def load_config() -> dict[str, Any]:
     """Load video composer configuration."""
-    with CONFIG_PATH.open("r", encoding="utf-8") as file:
-        return json.load(file)
+    return load_component_config(CONFIG_PATH)
 
 
 def find_scene_clips(config: dict[str, Any] | None = None) -> list[Path]:

@@ -12,13 +12,15 @@ import json
 from pathlib import Path
 from typing import Any
 
+from vice_studio.config_loader import load_component_config
+
 
 ROOT_DIR = Path(__file__).resolve().parents[2]
 CONFIG_PATH = Path(__file__).resolve().parent / "config.json"
 
 
 def load_config() -> dict[str, Any]:
-    return json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+    return load_component_config(CONFIG_PATH)
 
 
 def resolve_path(path_value: str) -> Path:
@@ -52,8 +54,27 @@ def sentence(label: str, value: Any) -> str:
     return f"{label}: {text}."
 
 
-def build_media_query(scene: dict[str, Any]) -> str:
+def build_media_query(scene: dict[str, Any], config: dict[str, Any] | None = None) -> str:
     """Build a concise stock-media search query from visual direction."""
+    active_config = config or {}
+    searchable = " ".join(
+        str(scene.get(field, "")).lower()
+        for field in (
+            "script_line",
+            "foreground",
+            "midground",
+            "background",
+            "visual_world",
+        )
+    )
+    for rule in active_config.get("stock_query_rules", []):
+        if not isinstance(rule, dict):
+            continue
+        terms = [str(term).lower() for term in rule.get("match", [])]
+        query = str(rule.get("query", "")).strip()
+        if query and any(term in searchable for term in terms):
+            return query
+
     stop_words = {
         "unmarked",
         "premium",
@@ -101,7 +122,8 @@ def build_media_query(scene: dict[str, Any]) -> str:
     if len(query) > 95:
         query = query[:95].rsplit(" ", 1)[0].strip()
 
-    return query or "city street night rain"
+    fallback_terms = str(active_config.get("stock_query_fallback", "city street night rain"))
+    return query or fallback_terms
 
 
 def build_prompt(scene: dict[str, Any], config: dict[str, Any]) -> dict[str, Any]:
@@ -124,6 +146,7 @@ def build_prompt(scene: dict[str, Any], config: dict[str, Any]) -> dict[str, Any
         sentence("Texture notes", scene.get("texture_notes")),
         "Keep the foreground subject dominant and clearly visible.",
         "Use realistic shadows, believable reflections, imperfect surfaces, and cinematic depth of field.",
+        f"Frame for {config.get('aspect_ratio', 'vertical 9:16')} output.",
         "No readable text, no logos, no UI, no watermark.",
     ]
 
@@ -133,7 +156,7 @@ def build_prompt(scene: dict[str, Any], config: dict[str, Any]) -> dict[str, Any
         "scene_number": int(scene["scene_number"]),
         "script_line": str(scene.get("script_line", "")).strip(),
         "prompt": prompt.strip(),
-        "media_query": build_media_query(scene),
+        "media_query": build_media_query(scene, config),
         "negative_prompt": ", ".join(negative_terms),
         "source_scene": scene,
     }

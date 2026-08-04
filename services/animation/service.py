@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 import json
+import random
 import re
 from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-from moviepy import ColorClip, CompositeVideoClip, ImageClip, VideoFileClip
+from moviepy import ColorClip, CompositeVideoClip, ImageClip, VideoFileClip, vfx
+from vice_studio.config_loader import load_component_config
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -27,8 +29,7 @@ DEFAULT_SCENE_MOTIONS = {
 
 def load_config() -> dict[str, Any]:
     """Load animation service configuration."""
-    with CONFIG_PATH.open("r", encoding="utf-8") as file:
-        return json.load(file)
+    return load_component_config(CONFIG_PATH)
 
 
 def find_visual_assets(config: dict[str, Any] | None = None) -> list[Path]:
@@ -143,8 +144,20 @@ def normalize_video_asset(
     raw_clip = VideoFileClip(str(source_path))
     normalized = None
     try:
-        usable_duration = min(duration, float(raw_clip.duration or duration))
-        clip = raw_clip.subclipped(0, usable_duration).without_audio()
+        source_duration = float(raw_clip.duration or duration)
+        source_segment_duration = min(duration, source_duration)
+        max_start = max(source_duration - source_segment_duration, 0.0)
+        start_time = (
+            random.SystemRandom().uniform(0.0, max_start)
+            if config.get("random_start", False) and max_start > 0
+            else 0.0
+        )
+        clip = raw_clip.subclipped(
+            start_time, start_time + source_segment_duration
+        ).without_audio()
+        if source_segment_duration < duration:
+            clip = clip.with_effects([vfx.Loop(duration=duration)])
+        usable_duration = duration
 
         scale = max(width / clip.w, height / clip.h)
         resized = clip.resized(scale)
@@ -174,6 +187,7 @@ def normalize_video_asset(
         "input_video": str(source_path),
         "output_video": str(video_path),
         "duration": duration,
+        "source_start_time": start_time,
         "scene_number": scene_number,
         "motion_type": "source_video",
     }

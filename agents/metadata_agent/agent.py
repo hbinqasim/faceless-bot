@@ -8,6 +8,8 @@ import re
 from pathlib import Path
 from typing import Any
 
+from vice_studio.config_loader import load_component_config
+
 
 ROOT_DIR = Path(__file__).resolve().parents[2]
 CONFIG_PATH = Path(__file__).resolve().parent / "config.json"
@@ -31,12 +33,11 @@ DEFAULT_CONFIG = {
 def load_config() -> dict[str, Any]:
     config = DEFAULT_CONFIG.copy()
 
-    if CONFIG_PATH.exists():
-        try:
-            user_config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
-            config.update(user_config)
-        except json.JSONDecodeError:
-            print("Warning: metadata config is invalid. Using defaults.")
+    try:
+        user_config = load_component_config(CONFIG_PATH)
+        config.update(user_config)
+    except (json.JSONDecodeError, FileNotFoundError):
+        print("Warning: metadata config is invalid. Using defaults.")
 
     return config
 
@@ -261,6 +262,7 @@ def build_metadata() -> dict[str, Any]:
         "topic_title": topic.get("title", ""),
         "published": topic.get("published", ""),
         "generated_at": datetime.datetime.now().isoformat(),
+        "video_format": config.get("video_format", "short-form"),
     }
 
     return metadata

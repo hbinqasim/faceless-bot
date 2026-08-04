@@ -1,0 +1,11 @@
+{
+  "extends": "../../agents/storyboard_agent/config.json",
+  "channel": "gta6_longform",
+  "video_format": "landscape long-form",
+  "max_tokens": 2400,
+  "scene_count": 20,
+  "script_path": "channels/gta6_longform/scripts/latest_script.txt",
+  "output_path": "channels/gta6_longform/storyboards/latest_storyboard.txt",
+  "output_json_path": "channels/gta6_longform/storyboards/latest_storyboard.json",
+  "cta": "Subscribe for more GTA 6 news and analysis."
+}

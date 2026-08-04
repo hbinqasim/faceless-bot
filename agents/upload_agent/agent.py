@@ -14,6 +14,7 @@ from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 from google_auth_oauthlib.flow import InstalledAppFlow
+from vice_studio.config_loader import load_component_config
 
 
 ROOT_DIR = Path(__file__).resolve().parents[2]
@@ -26,7 +27,7 @@ SCOPES = [
 
 
 def load_config() -> dict[str, Any]:
-    return json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+    return load_component_config(CONFIG_PATH)
 
 
 def resolve_path(path_value: str) -> Path:
@@ -94,10 +95,15 @@ def build_description(metadata: dict[str, Any]) -> str:
         if hashtag_text and hashtag_text not in description:
             description = f"{description}\n\n{hashtag_text}"
 
-    if "#Shorts" not in description and "#shorts" not in description:
+    if config_add_shorts_hashtag(metadata) and "#Shorts" not in description and "#shorts" not in description:
         description = f"{description}\n\n#Shorts"
 
     return description.strip()
+
+
+def config_add_shorts_hashtag(metadata: dict[str, Any]) -> bool:
+    """Keep legacy Shorts behavior unless metadata explicitly marks long-form."""
+    return str(metadata.get("video_format", "short-form")).lower() != "long-form"
 
 
 def build_publish_time(config: dict[str, Any]) -> str | None:

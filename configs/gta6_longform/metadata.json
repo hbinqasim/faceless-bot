@@ -1,0 +1,10 @@
+{
+  "extends": "../../agents/metadata_agent/config.json",
+  "channel": "gta6_longform",
+  "video_format": "long-form",
+  "latest_topic_path": "channels/gta6_longform/research/latest_topic.json",
+  "script_path": "channels/gta6_longform/scripts/latest_script.txt",
+  "output_path": "channels/gta6_longform/metadata/latest_metadata.json",
+  "hashtags": ["#gta6", "#gaming", "#rockstar", "#grandtheftauto"],
+  "tags": ["GTA 6", "Grand Theft Auto VI", "Rockstar Games", "Vice City", "Gaming News", "GTA 6 Analysis"]
+}

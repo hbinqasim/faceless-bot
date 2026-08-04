@@ -18,6 +18,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from services.llm.service import generate as generate_llm
+from vice_studio.config_loader import load_component_config
 
 
 ROOT_DIR = Path(__file__).resolve().parents[2]
@@ -42,11 +43,8 @@ class ArticleCandidate:
 
 
 def load_config() -> dict[str, Any]:
-    if not CONFIG_PATH.exists():
-        raise FileNotFoundError(f"Research config not found: {CONFIG_PATH}")
-
     try:
-        config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+        config = load_component_config(CONFIG_PATH)
     except json.JSONDecodeError as error:
         raise ValueError(f"Invalid research config.json: {error}") from error
 
@@ -616,7 +614,11 @@ def save_outputs(candidate: ArticleCandidate, config: dict[str, Any]) -> None:
     topic_type = classify_topic_type(candidate, config)
     confidence = estimate_confidence(candidate, config)
 
-    structure = build_research_structure(candidate, config)
+    try:
+        structure = build_research_structure(candidate, config)
+    except Exception as error:
+        print(f"Research structuring fallback used: {error}")
+        structure = fallback_research_structure(candidate, candidate.key_facts)
     facts = structure.get("key_facts", [])
 
     topic = {
@@ -653,6 +655,10 @@ def save_outputs(candidate: ArticleCandidate, config: dict[str, Any]) -> None:
         "keywords": extract_keywords(candidate, config),
         "research_generated_at": now_utc().isoformat(),
     }
+
+    if config.get("include_article_text", False):
+        max_chars = int(config.get("article_text_max_chars", 12000))
+        topic["article_text"] = clean_text(candidate.text)[:max_chars]
 
     latest_topic_path.write_text(
         json.dumps(topic, indent=2, ensure_ascii=False) + "\n",

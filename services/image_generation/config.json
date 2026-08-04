@@ -32,5 +32,7 @@
   "pollinations_model": "flux",
   "pollinations_enhance": false,
   "pollinations_nologo": true,
-  "pollinations_timeout_seconds": 180
+  "pollinations_timeout_seconds": 180,
+  "pollinations_max_attempts": 4,
+  "pollinations_retry_backoff_seconds": 2
 }

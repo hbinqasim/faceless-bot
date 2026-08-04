@@ -1,0 +1,478 @@
+((venv) ) hbinqasim@HbinQasims-MacBook-Pro pipelines % clear
+((venv) ) hbinqasim@HbinQasims-MacBook-Pro pipelines % /Users/hbinqasim/Projects/faceless-bot/venv/bin/python gta6_pipeline.py
+Deleted stale generated files: 12
+
+Topic attempt 1/5
+
+[1/14] Research Agent
+Skipping https://news.google.com/rss/articles/CBMikgFBVV95cUxNRG5SdzVrdDZndnA4U0VMTkNOcU1uQVcyWEVrbmRPbXZKLThaeTZURGZHWjF1d19LTDZsQURyUUdiTExxVnhWcldpaDBpLVBpa0NvMlVROXhtWUxkZ0V5dGUwVGt5N3EweXVnUk5ramJneTNseG14RDFWbnM4Q01wRnVVdnlpbXNhSHR6YlMyMGZ3UQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMibkFVX3lxTE9ZUGpQc3VJRFR5a2VlQzFweUJTMnY1aV82eWRuRGJKRE5NT1duanhEclpHdTBEZndYTDdVdzV5TUVnYVRXMC1WSVMtQzVTYk1MWVd4ZlNyam9IdEFEVTVOZ2hILW5EQzdLeWhnSHBn?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiswFBVV95cUxNTW1mZzE2Z21adjlKVDR2YTlad3pBM0ZUNzdBYXFGbERJNmRGZzV3Um5RU2x2NGM0SjZ2RmlJQnk4Um5KVFVicjV2V3JvVG9uWW13RXQxRmlnUmJRbTM2dFdQaVlfamphQlpNRi1Gb2Q4bVRrc05OOVRhLXM5SkVudjl2SVFtM2FweXFfNmdEOVB4WmFEaVNYTW9wRGt2X0xmcHZPMTVqOHNDeGttRlJ0WlNNUQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMijAFBVV95cUxQV1UzT01Rdy1wa2tIVkdaVkRlTWlaRl8xMUNHSC1FbzlEUVRsUFp6NlNzSzNJNDZVUVFJdEFhME5SWEk2OFVGcF8xazJiVWdiRUo1azdzeGlwU2VybGd1bHhTZDB6cFZlNzlIOUhOaEV5NFQtSkxBMGpJMlpWMnN5SWlaek1rZGpaeUhjcg?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMipAFBVV95cUxPRHlGbW51SnM1eElKbElJRVhEYUxWR1gtTXJEbXpPTV9OTEhEQWYtbXN0NUNjMy1SMUNWbEhMUWlUaE1UNkszM0Y1VzliUXhPU0NmellzYkNBNVdJcWpZSGlpTkZfYlZhMmtXR0hTS1JiOVYxVHctLUZsc3VrTlN3cGJ5NUJoZ2hxbEltRksxanhfMjlVbXlRbDE0ZmRzRFFxZktfTg?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiekFVX3lxTE1VbDlMbHNWaHJkbEcxWjAyZHdIM200cVl6WTRZRUlJR3I4RFlzcDY5UzYzVTNlYU1JUVVRYmVwWWtzWk8zODU2WUhvZWNFQi1EWGdXX2t4N2tqWWhGamtDTkhNYW9aWHRJcURqd1N6Ym5uWnVRWktoSGpB?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMikwJBVV95cUxNaEtSVzBZR0Z3VXREaXFoYW1fdjdqTDNvWmMzTFVzeEZyQzFDMUlrV3VqaElPZFhUeXhRY01HSmRfTE5yWEVUcE9talN0TE56cmhsMmxEZm5VNnBUcGlzdUh0QU5uclRheEhodjNEcWVRcVJ0QnFIUmFGblhoZk1xWUo4NVVERnFlODdCbDB3VTNTX2Q0SUdydWZTWElRX1laTmJyMFFieW9BN0FuNVZDTlJQbFE0ZTRxSDExVU84ODcxVWRfeVpreGJGYUU1d1puUjgtZWxjSHJtSnJ2enlsaXdMMml5am5WOW9jWGVOLUxGOVRGQ2tUb0QwOVJibDhWWTlMVzlOVWlrVUF1U0N5Z3B4Zw?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiaEFVX3lxTE5EZ3ZJRDdWU0NpX1B6Q3pvbzBqWmtKZG9kX19tM1BxUFpuMlh1RVZsbXFxOWxfTHBQbjBkb0pDRkx0U1dwWHJDeURFd2h0U0VSY1Z6SEx6U1RjeGdoRUgtWFRoSW83LV9a0gFuQVVfeXFMUC1LVzdnNlUwQVZ5bTFEOHFSS1YzSGoxYkFNdjZuOF9WbnFEWlJiOW5xS2RRRlNFRVZ3UGxlWFFCUGJ5UTdrSGJ2djc0ckhLZk1KY3ZfNkQ0eXlaeXhzaWZDbElzd3FNb0d3SGdrRUE?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMi1wFBVV95cUxNWGRzZ044eDYteHZ4aFBlb0lrVC1RMncwMWJVdHlTazVuVE52UlQ0bnlCNWx5ekxVWDN6OVNwcTZFUE9kYmsyMlVVRzhCb0FNZG9hVkNqbk05WmdURG43UGlEeVYyS1c0bkt6ZzBIaElrbGxBblJOaVhLU015S3I4T0Y2WUNidXpaZWlUWmh1bVctSTd0emREQ2V3Y3FYZVQ3LUJ3Uk9tVWFJSDNYU3JMMTNWM01McWNIenZOQnpoN1UtSGp3MFhvOHpuWnd2TTlmMjY5azQyVQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMi3gFBVV95cUxQU3lCOFJIYkJaR2RnQzdGc0U3VGtfYjFXTzlkTm1LY2xvOGxTV1FIQzBhLTNENnJLcjczdnJqeWM0VGNqXzBBQ3dEc2Q2Y05xM1B2a2cwaUVYTFJOd2QyZU1VRmNodU90SUFDYXBkQjRSUzVFZ01rUEVrVHJNdUVhNHdiMWRZSllqM3d1ZmJqVDFEOWstekdoMS1XUmhOZFRxUHdzODR3NGlPaWxPNUs2WVh2U3Eyd3NSdUlwZGNHeUpjdkx6U3dQcUpaWnoxVnlJUGV0bjFGMEpFdDZaR0E?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMib0FVX3lxTE1DZU8xWmNPeHhTS2hrSEo4QWRWUV9tSm1QdFU2RFIyYzh6YW5yS1RIeFYtZjM0bzduNmpzRTNKMmRBNEdNQ2M3X0trQm9mTTlkOVpUTDJRQnI2YmdueTY2SE9nNWZQSXdYa2c4N09RYw?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMi9AFBVV95cUxNUWwtMENLUGlxQjJoZFM4R1d0ZGw2OUxCcXBScmpzeko3THlMZjUtZ21TSDhEMzZJWFJQcEFXYmctdkNjOG1vTkFfQ3gxR3ZwalFaZVlONDRtWkI0ZkwtLUlGRnVQOWwyY05sZFEwbldiM3BBdW8wTEhsQlp3X1daUnBrenU3N0ZtZVdYV3p0SExVNHVnZ2hNZ1JzQlRWcThsUE9mWFc3azFNekQ0UjdLQk5CUms0S2NxRkVQcE01SHJQM1Zkc3BMTC0wSDdGMXJwSnB6S01HYmh0VTFsdHpsUmFmT2dlLWRRMF9YeHNsaWY1cnZH?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiwgFBVV95cUxQWmlHcTVhTkdOSWdmSjNGZVh1LVRlbkFITkdURWZFYUxJSmR3cVJDNElHRkhUaEttM08zYnVWNWg5RTI1ai1fQkF1UjUzaENlckVlbldzU0hub01jVGk2ZE0xRWFUZnZKUWlXWnlCZzdBNmNidVNfVDlCTGdpUl94VEY4cWg0STBtaXJnT3FMQVE5eGtpT3A2RjJRV1RSWXAzUXVEUndXVkE4bVhYeDZvZE5fRTZaWkt0LTVPbDFBdm5EZw?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMigwFBVV95cUxPcGdRRGRpQk5yekRQaFVnQkFPSnlBdVR1V1ctWmVRVWRLOTNKd3Jfek9rVjl0b2dkZXJmOGRqejhmc1dxWms1b3o4NnhqeEdiS19pVVl6VDctVnR2T3hCRUcwdk5XOVJueTNGMU1aYWpWVF9YX1lOT2hEcHB0dXlubnk0MA?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiqgFBVV95cUxORHpCSi11UVFaeFBsYkZRcDdSMEpEUkRTZklYQmJZektxaVlTNzlPLUV6MTBoLXJsc3pQUmJ6eDE1SzY4eHM0RDJSVDJ3TDlOaXZ3U3VsRFNWcE52S0p1cHFDbUMtQUxGZnBvWVotSENWeXE1Z0lSS3A0VmsyajRxV0xkWkVGTm5wekpzNlQ1UTVLZE5pbnY1U1B5S3lGQXlIZFRFTUpTNUFNUQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiwgFBVV95cUxQdHEtVjF0NGJGdXM2a2JOSk5DN0NxOWQ5bk05RnllbEF0TWVOaHlpRDVtOE1qYzIyb2tFcm1IMlJGcExwZ3NiRk1NQXJRUFNoWjB6ZUh3S21HbENEM0dFVTBWRzNpNC12WXJ5eDBfaUZxOGxsaktCLXVZQWM1b2FGbnhYeXFSMTIyby1kOHF0LXJ2Tm9QMFBLZ3oxeEtQd1V6dUQ3MXJoNV96TUdKbUdtcnFTSGpYZzRaS0pST3NfenAwQQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMitAFBVV95cUxNaF91SWZCUzJrd0JKX1M4WnFUY2hPRnlvSGZjaWZZYjdYWnpkVUVDTTdGLTZUU0tvRDRiN21KRHUwTnBTTElzUGhzdk1ZZExEYU1wZE90dWxOQXk4OWNIUW42aHBNTlhFRTdvUk9hV2hyMFRYRzc0MWUxTGg2WkdoQ3BBUHFqcEJwbHZBeDdHNkpYcEF1ZDBHbFZYZ3VjNENISXhXelloVWlvT1djYUNwQkZHT0E?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMigwFBVV95cUxQUTA2VFlGWVIzdEthaFBaZk5rd2trbk12YmI2NnZUVFdHbGxFWlB4b09GZlhiRURMM0dzRUp4Zm9BWm5ybUR4cE5VOTFVR05QUklQQ1hfODBXWld2Rm5JMnZ2RzJxcW5mTVVpakhmOE5iVHdkcFdZMk8zVEFQcTRjUzItOA?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiYEFVX3lxTE9YczU4SjFHSzZkcVBIbGFhVGtDaVpJUllnZDliWm9Tai1BeFBERUpqVzhKUk9MQXBRT2pyeUIyQWxnMWxCN2ZnbmpBZUhrZnpoczV2cVVVemQ2X2VnbXdoeg?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMimwFBVV95cUxON3djMS1BaklrR2U0LXBYdi0zcGNITGwzVkpVaHgxRDdxYUx1ZzZTQnl6REFUUXR1RDc5dUFfOG5JVEJHR1NRVkJoVU5NdGxRb2U1NHl4WHRNcVNOR1QxZER4TklfNVNlZGlEdGtsc3RVUEU1NXZmeHNZQ0V3aXh1cjlXVUtteDhvN1JYTmREY3BQSmMyVFlBTWJKRQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMia0FVX3lxTFBtc1cwaGFwZDJsLVlxSVJQWWtKTE4zb2NMQmQxRlRkYmk2T2cxYm9NRWJ4Z3ZERENyZzhEQkFwTk9ZNk8temlSZWF5bXlucjlGZEVHdEtPcGJfbTFVS3o3NWpkRWNiOEZzYV9v?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMioAFBVV95cUxQQzdaQXBQOTZYWFA4UTBycHNKazJielk2MDFvcE9SOUwxMnhuYk5RUmpwT0t0N3FlWVVkbUVpUk9yOFNLbC1QYTFwMGxXa2xRaVlsOEVTN1hlQlJrOEJGZVMtcGZLRFZBclFPZ1BDSnRnSlNGSkowODF5UGRaLUdwZ2NvV0RIcjhWb0hlcWs1SGp4cE1vZno0VExhc3dQNVQ0?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMibEFVX3lxTE9aQWdDd0VicElHVnktUzdUazBQeVlMalFJS3FOR3ZlWnc4azhydnF2c0V6VFdjOVNyWkV2ZkRMVklEdGswd2pTdkVTc1VNS21HZms5cmtJb2ZFeEhLazdiSkY0V2tQbXlBcjJ0bg?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMimwFBVV95cUxQZzQ0anRkYnVFcEhwc3JQdGs1Ync0Nlg2OFh0MFVIeHlDWE84XzJtSnQzSGttUW9GWmwwSXdpMVBKZElGMHloYWNZRV8zcmtFYWJURGhtM0l5aGlJUEZ5YWtrNWgxbFV0eDgtaWJvQ3IyTnhaVnRFX3lPRnhKN3dkNDdfUFpyZFY4RHgzVk1IZ25vVjQwUFk4V1laNA?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiqAFBVV95cUxQSVNURFdDTXlfUl9Ycl9NdDlVb3l0aGtrNVFPTTNNR2NGcGhYLXlkZkZZQ1Z1Z0txOGtKdVJ4RDhCVDJWS2hVVlE0UzRGQ1g0TFBYTDFjRTFXd0Zsc2tQSUZIWnJRb2V5RUxNOUZGQnBodWxFRE9KN0RkcFp3MkREeGUtZ0tKcDJBbWUydk80SzFZdHFTVjA0OEdkbmpZVjNHSXFQd0dkTW4?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMi-wFBVV95cUxPTjh2RFBkODhLUlJlQjNNZ0NnVXZvUmd1VGhrc0RxS3hpdHpvWWNDS0VUb1JKaElyclI3N3ZBZVcwWDJtRzFObzNXYWIyYmhsa09laW1yc1dla2V2dFFkb21RU1U2dlFWdS05b3VBeEJRdTdUcHhXeFM3cXdudlVTLTN4SENwd0V5VUppTnpvanlpdTRmSkR2WHh4eTE2ZUlXYmJiR2Jud1N0REJ2NWVzOVNvSWM3RkZQX25oS0NJWkxDZFh0MDAtT0hGbFI5MVVQS204SWNJOUY3SWxyVmlWM0VfUDRLNDE4N3RtcU1pdjc1cXFySXJyNkdYYw?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMixwFBVV95cUxOczR6eEVIMHVKVEpad2F6Y3FrdmFhODRoZmdMNnIwbTNZak5Jb2FCaWthNFBFSjdEaGxLbkNUZUZ1VzRQNU9mcUc3YXRFMlVjUTBVdHRsTmJZTkExeUsyNzVqZzh2TjdudEtjeDNlNmtTYktiQV9SWm1hTm1ka011cFE4OXRUTzFCNUZkYjVyYlg1RERPZW9MUFdBVzhFNWw2Z3p2UDBVSmVTTFloampmYUFSZjNvaU15MkoyS1ZXckhCQWMwRE40?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMilgFBVV95cUxQUmZWN3hjbGdyTi15VVNFYTZ5S1dWemxQUEpQS1NtWEEyMDVQWUd5dlhlVGRpRk55VEJkYUpRQ2FITXJiQ2ZZbjNsV0RxRDhnN1BBVENUMDJnNUt5dUZDaVRuNXNFLVNDNy1uVDZHcU9TTW9BeV9zSUxwRFJhSWlMN29SODZQTURGYi01cEtxdFF3R04yRnc?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiZEFVX3lxTFBWTm9tcWUyc1h5dGtCYjVnNmQxZjc3eWpfNjRmSU9ISGZwcHdMbGxPRGtxMGNtekp4OTh2R1FHcTFCRjlHbzEzdzdXbGxZRnV4b0JWSFQySkJtb1QzNVZVd3FUejI?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiekFVX3lxTE9ybF9QdXJKVXY5TmtGZmszTEJvUkNVQ0JTamdneTNwQ1NkTFdJV3pJR09qWWc4cDctZV9Sd0swSTIwZXhJdnMwQnRFN3N3TzNSZ3lnM3lIWmV5NllBNjExdFBkTlN2Sk03NzVtbGFVdm5XWFNjVnVER0tn?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMi1AFBVV95cUxPcFVQTHRlTTBpbWpyNm5HLWNpOVhWSWhCSU1ENlpNR0Ezb0xsTjgwZWZXQ3Brci1HSmd1T2NfZ0hTOXhseE1CZXViYXUwb2FGNEMxNDdJWUVMcThnT21jcXJQcjkxQXNpUktRdDRYVTJaUmNZRnZnUlNKVExJQU1GYVFOSGxFbWE2OHF1RVZFSDRWMENZaGZadUpmRWdtR2dIZ0Rab0J6TkJWRjFlYVFxQjZhaDZETlRueGtIeWstRGRTWDZVQ2lrTGVKWmxNT3ZtVWExSA?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiowFBVV95cUxPOGxfMklsWUNzRlkwcUZaVW9wUW9WWTV5WHVMRTZZU1hkNDBqTWVsMTFGTEVsck0wRzVPYTVFTXFNVjRkUWN4ZC03cTh2ZVBNQ2pTVGJoZmRkMFlZOFM2Qm91ZHZfbVRXMFNLN3pOS29vQzFmWlNmX1ZMOE5HUHZkeHV5LVYwMG9Vd0Z0NkR6NnlhbkJoQUlJZll2NGttVG9jYmdZ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMi7wFBVV95cUxOamIyZWJIQjVBOTlXYXYzbll0OEttM3ZQbDVrR001WWpHTGVOVWJXVkh1dWpBOWJ1aDczZXZaUXA0UWpubGpfSXBoazZiaW1jWDBSa2dyZDNvZ1JtN1B1dkJTUkFnUzlILTk3WHFIUG1pYm5aVTBVcEh2cW4tNzBDUHRxaFI1SG84Y0VfMDhxeU4tSGZRcEtUQXhad0lIYkZqekdGZnVzZGpucmZtV3hhaDFWQVhKRUM3dmNSeVpDVWJraW5tejA1cVRZVXdBaDAyaEN6NnE5endmaXp5a0xtcmxmbUxTVTVXSDdfaXBqWQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMilwFBVV95cUxNTzNPekdTU2gxUVhLYmMya00xODlWRDFxd0hrVDJ6ay1nR1lzekNTMXdkdXJGSzBxOE90Um5SYVRxZEFYZ1NVR1RBVFR6UndwZFFkcDJ3SkZkNlk4S0VqNjNtY29UcDRMYjVpdFBFRkpLZS1Mb3ozcm8zV3c5RDlFcTkyOU80LUNVX2d2Y0c0R3M3YTktWkpR?oc=5: no publication date found
+Skipping https://www.take2games.com/ir/news/rockstar-games-announces-pre-orders-grand-theft-auto-vi: no publication date found
+Skipping https://www.take2games.com/ir/news/adding-multimedia-rockstar-games-releases-trailer-2-grand-theft: no publication date found
+Skipping https://www.take2games.com/ir/news/rockstar-games-acquire-video-games-deluxe: no publication date found
+Skipping https://www.take2games.com/ir/news/rockstar-games-announces-grand-theft-auto-vi-coming-2025: no publication date found
+Skipping https://insider-gaming.com/gta-6-age-verification-required-in-austrailia-or-rockstar-games-could-be-fined-50-million: older than 7 days
+Skipping https://insider-gaming.com/millie-bobby-brown-gta-6-the-sims: older than 7 days
+Skipping https://insider-gaming.com/rockstar-games-crunch-issues-gta-6: older than 7 days
+Skipping https://insider-gaming.com/rockstar-games-developers-hope-to-unionize-before-gta-6-launches: older than 7 days
+Skipping https://insider-gaming.com/xbox-gamer-uses-microsoft-rewards-to-get-gta-6-for-free: older than 7 days
+Skipping https://insider-gaming.com/gta-6-60-fps-graphics-mode-very-likely-its-claimed: older than 7 days
+Skipping seed https://www.videogameschronicle.com/?s=GTA+6: request failed (403 Client Error: Forbidden for url: https://www.videogameschronicle.com/?s=GTA+6)
+Selected trending topic:
+The Teen Who Leaked GTA 6 Is Back in Court Right as the Game Finally Arrives | GTA BOOM
+Publication date:
+2026-07-16T23:13:11.305000+00:00
+Source:
+GTA BOOM
+Score breakdown:
+freshness_score: 0.9344
+authority_score: 0.6300
+engagement_score: 1.0000
+uniqueness_score: 0.9413
+final_score: 0.8757
+
+[2/14] Script Agent
+He leaked over 90 clips of unfinished game footage online.
+Kurtaj is now out of secure hospital care and facing retrial.
+Retrial set for November, coinciding with GTA 6's release month.
+This timing raises questions about his punishment and consequences.
+Follow for more GTA 6 breakdowns.
+
+[3/14] Storyboard Agent
+Scene 1: hook | leaked over clips unfinished | curiosity | extreme close-up | leaked clips unfinished becoming visible
+Scene 2: context | kurtaj secure hospital care | anticipation | wide establishing shot | kurtaj secure hospital becoming visible
+Scene 3: tension | retrial november coinciding with | uncertainty | medium tracking shot | retrial november coinciding becoming visible
+Scene 4: evidence | this timing raises questions | focus | macro detail shot | timing raises questions becoming visible
+Scene 5: uncertainty | story continues develop | doubt | low angle shot | story continues develop becoming visible
+Scene 6: payoff | story continues develop | momentum | cinematic closing shot | story continues develop becoming visible
+
+[4/14] Visual Director Agent
+Visual plan generated.
+Scenes: 6
+Output: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/storyboards/latest_visual_plan.json
+
+[5/14] Prompt Engineer Agent
+Prompt Engineer complete.
+Prompts: 6
+Scene 1: photorealistic documentary frame, realistic photography, high dynamic range, natural imperfections, detailed real-world materials, atmospheric depth, cinematic vertical 9:16. Shot type: extreme close-up. Foreground subject: leaked over clips unfinished. Midground: story-relevant environment supporting the scene. Background: atmospheric background connected to the topic. Lighting: cinematic lighting with realistic shadows and atmosphere. Visual world: cinematic documentary world matching the story topic. Composition: vertical 9:16, dominant foreground subject, layered midground and background. Camera style: realistic vertical documentary frame, strong depth, natural imperfections. Emotion: curiosity. Texture notes: real surfaces, imperfect details, believable reflections, no clean AI plastic look. Keep the foreground subject dominant and clearly visible. Use realistic shadows, believable reflections, imperfect surfaces, and cinematic depth of field. No readable text, no logos, no UI, no watermark.
+Scene 2: photorealistic documentary frame, realistic photography, high dynamic range, natural imperfections, detailed real-world materials, atmospheric depth, cinematic vertical 9:16. Shot type: wide establishing shot. Foreground subject: kurtaj secure hospital care. Midground: story-relevant environment supporting the scene. Background: atmospheric background connected to the topic. Lighting: cinematic lighting with realistic shadows and atmosphere. Visual world: cinematic documentary world matching the story topic. Composition: vertical 9:16, dominant foreground subject, layered midground and background. Camera style: realistic vertical documentary frame, strong depth, natural imperfections. Emotion: anticipation. Texture notes: real surfaces, imperfect details, believable reflections, no clean AI plastic look. Keep the foreground subject dominant and clearly visible. Use realistic shadows, believable reflections, imperfect surfaces, and cinematic depth of field. No readable text, no logos, no UI, no watermark.
+Scene 3: photorealistic documentary frame, realistic photography, high dynamic range, natural imperfections, detailed real-world materials, atmospheric depth, cinematic vertical 9:16. Shot type: medium tracking shot. Foreground subject: retrial november coinciding with. Midground: story-relevant environment supporting the scene. Background: atmospheric background connected to the topic. Lighting: cinematic lighting with realistic shadows and atmosphere. Visual world: cinematic documentary world matching the story topic. Composition: vertical 9:16, dominant foreground subject, layered midground and background. Camera style: realistic vertical documentary frame, strong depth, natural imperfections. Emotion: uncertainty. Texture notes: real surfaces, imperfect details, believable reflections, no clean AI plastic look. Keep the foreground subject dominant and clearly visible. Use realistic shadows, believable reflections, imperfect surfaces, and cinematic depth of field. No readable text, no logos, no UI, no watermark.
+Scene 4: photorealistic documentary frame, realistic photography, high dynamic range, natural imperfections, detailed real-world materials, atmospheric depth, cinematic vertical 9:16. Shot type: macro detail shot. Foreground subject: this timing raises questions. Midground: story-relevant environment supporting the scene. Background: atmospheric background connected to the topic. Lighting: cinematic lighting with realistic shadows and atmosphere. Visual world: cinematic documentary world matching the story topic. Composition: vertical 9:16, dominant foreground subject, layered midground and background. Camera style: realistic vertical documentary frame, strong depth, natural imperfections. Emotion: focus. Texture notes: real surfaces, imperfect details, believable reflections, no clean AI plastic look. Keep the foreground subject dominant and clearly visible. Use realistic shadows, believable reflections, imperfect surfaces, and cinematic depth of field. No readable text, no logos, no UI, no watermark.
+Scene 5: photorealistic documentary frame, realistic photography, high dynamic range, natural imperfections, detailed real-world materials, atmospheric depth, cinematic vertical 9:16. Shot type: low angle shot. Foreground subject: story continues develop. Midground: story-relevant environment supporting the scene. Background: atmospheric background connected to the topic. Lighting: cinematic lighting with realistic shadows and atmosphere. Visual world: cinematic documentary world matching the story topic. Composition: vertical 9:16, dominant foreground subject, layered midground and background. Camera style: realistic vertical documentary frame, strong depth, natural imperfections. Emotion: doubt. Texture notes: real surfaces, imperfect details, believable reflections, no clean AI plastic look. Keep the foreground subject dominant and clearly visible. Use realistic shadows, believable reflections, imperfect surfaces, and cinematic depth of field. No readable text, no logos, no UI, no watermark.
+Scene 6: photorealistic documentary frame, realistic photography, high dynamic range, natural imperfections, detailed real-world materials, atmospheric depth, cinematic vertical 9:16. Shot type: cinematic closing shot. Foreground subject: story continues develop. Midground: story-relevant environment supporting the scene. Background: atmospheric background connected to the topic. Lighting: cinematic lighting with realistic shadows and atmosphere. Visual world: cinematic documentary world matching the story topic. Composition: vertical 9:16, dominant foreground subject, layered midground and background. Camera style: realistic vertical documentary frame, strong depth, natural imperfections. Emotion: momentum. Texture notes: real surfaces, imperfect details, believable reflections, no clean AI plastic look. Keep the foreground subject dominant and clearly visible. Use realistic shadows, believable reflections, imperfect surfaces, and cinematic depth of field. No readable text, no logos, no UI, no watermark.
+
+[6/14] Image Generation Service
+Prompts loaded: 6
+Prompts prepared: 6
+Output folder: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated
+Manifest path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/generation_manifest.json
+Generated image paths:
+- /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/scene_01.jpg
+- /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/scene_02.jpg
+- /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/scene_03.jpg
+- /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/scene_04.jpg
+- /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/scene_05.jpg
+- /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/scene_06.jpg
+
+[7/14] Animation Service
+Visual assets found: 6
+Clips generated: 6
+Output folder: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/videos/scenes
+Manifest path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/videos/scenes/animation_manifest.json
+
+[8/14] Narration Service
+Script path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/scripts/latest_script.txt
+Script lines: 5
+Voice: en-US-GuyNeural
+Output audio path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/audio/voice.mp3
+Manifest path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/audio/narration_manifest.json
+
+[9/14] Music Service
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/hbinqasim/Projects/faceless-bot/services/music/service.py", line 230, in <module>
+    run()
+  File "/Users/hbinqasim/Projects/faceless-bot/services/music/service.py", line 195, in run
+    hit = search_jamendo_music(query, config)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/hbinqasim/Projects/faceless-bot/services/music/service.py", line 143, in search_jamendo_music
+    raise RuntimeError(f"No Jamendo music found for query: {query}")
+RuntimeError: No Jamendo music found for query: cinematic suspense trailer
+
+Pipeline stopped after failure in step: ['/Users/hbinqasim/Projects/faceless-bot/venv/bin/python', '-m', 'services.music.service']
+Total execution time: 415.60 seconds
+((venv) ) hbinqasim@HbinQasims-MacBook-Pro pipelines % /Users/hbinqasim/Projects/faceless-bot/venv/bin/python gta6_pipeline.py
+Deleted stale generated files: 12
+
+Topic attempt 1/5
+
+[1/14] Research Agent
+Skipping https://news.google.com/rss/articles/CBMikgFBVV95cUxNRG5SdzVrdDZndnA4U0VMTkNOcU1uQVcyWEVrbmRPbXZKLThaeTZURGZHWjF1d19LTDZsQURyUUdiTExxVnhWcldpaDBpLVBpa0NvMlVROXhtWUxkZ0V5dGUwVGt5N3EweXVnUk5ramJneTNseG14RDFWbnM4Q01wRnVVdnlpbXNhSHR6YlMyMGZ3UQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMibkFVX3lxTE9ZUGpQc3VJRFR5a2VlQzFweUJTMnY1aV82eWRuRGJKRE5NT1duanhEclpHdTBEZndYTDdVdzV5TUVnYVRXMC1WSVMtQzVTYk1MWVd4ZlNyam9IdEFEVTVOZ2hILW5EQzdLeWhnSHBn?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiswFBVV95cUxNTW1mZzE2Z21adjlKVDR2YTlad3pBM0ZUNzdBYXFGbERJNmRGZzV3Um5RU2x2NGM0SjZ2RmlJQnk4Um5KVFVicjV2V3JvVG9uWW13RXQxRmlnUmJRbTM2dFdQaVlfamphQlpNRi1Gb2Q4bVRrc05OOVRhLXM5SkVudjl2SVFtM2FweXFfNmdEOVB4WmFEaVNYTW9wRGt2X0xmcHZPMTVqOHNDeGttRlJ0WlNNUQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMijAFBVV95cUxQV1UzT01Rdy1wa2tIVkdaVkRlTWlaRl8xMUNHSC1FbzlEUVRsUFp6NlNzSzNJNDZVUVFJdEFhME5SWEk2OFVGcF8xazJiVWdiRUo1azdzeGlwU2VybGd1bHhTZDB6cFZlNzlIOUhOaEV5NFQtSkxBMGpJMlpWMnN5SWlaek1rZGpaeUhjcg?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMipAFBVV95cUxPRHlGbW51SnM1eElKbElJRVhEYUxWR1gtTXJEbXpPTV9OTEhEQWYtbXN0NUNjMy1SMUNWbEhMUWlUaE1UNkszM0Y1VzliUXhPU0NmellzYkNBNVdJcWpZSGlpTkZfYlZhMmtXR0hTS1JiOVYxVHctLUZsc3VrTlN3cGJ5NUJoZ2hxbEltRksxanhfMjlVbXlRbDE0ZmRzRFFxZktfTg?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiekFVX3lxTE1VbDlMbHNWaHJkbEcxWjAyZHdIM200cVl6WTRZRUlJR3I4RFlzcDY5UzYzVTNlYU1JUVVRYmVwWWtzWk8zODU2WUhvZWNFQi1EWGdXX2t4N2tqWWhGamtDTkhNYW9aWHRJcURqd1N6Ym5uWnVRWktoSGpB?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMikwJBVV95cUxNaEtSVzBZR0Z3VXREaXFoYW1fdjdqTDNvWmMzTFVzeEZyQzFDMUlrV3VqaElPZFhUeXhRY01HSmRfTE5yWEVUcE9talN0TE56cmhsMmxEZm5VNnBUcGlzdUh0QU5uclRheEhodjNEcWVRcVJ0QnFIUmFGblhoZk1xWUo4NVVERnFlODdCbDB3VTNTX2Q0SUdydWZTWElRX1laTmJyMFFieW9BN0FuNVZDTlJQbFE0ZTRxSDExVU84ODcxVWRfeVpreGJGYUU1d1puUjgtZWxjSHJtSnJ2enlsaXdMMml5am5WOW9jWGVOLUxGOVRGQ2tUb0QwOVJibDhWWTlMVzlOVWlrVUF1U0N5Z3B4Zw?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiaEFVX3lxTE5EZ3ZJRDdWU0NpX1B6Q3pvbzBqWmtKZG9kX19tM1BxUFpuMlh1RVZsbXFxOWxfTHBQbjBkb0pDRkx0U1dwWHJDeURFd2h0U0VSY1Z6SEx6U1RjeGdoRUgtWFRoSW83LV9a0gFuQVVfeXFMUC1LVzdnNlUwQVZ5bTFEOHFSS1YzSGoxYkFNdjZuOF9WbnFEWlJiOW5xS2RRRlNFRVZ3UGxlWFFCUGJ5UTdrSGJ2djc0ckhLZk1KY3ZfNkQ0eXlaeXhzaWZDbElzd3FNb0d3SGdrRUE?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMi3gFBVV95cUxQU3lCOFJIYkJaR2RnQzdGc0U3VGtfYjFXTzlkTm1LY2xvOGxTV1FIQzBhLTNENnJLcjczdnJqeWM0VGNqXzBBQ3dEc2Q2Y05xM1B2a2cwaUVYTFJOd2QyZU1VRmNodU90SUFDYXBkQjRSUzVFZ01rUEVrVHJNdUVhNHdiMWRZSllqM3d1ZmJqVDFEOWstekdoMS1XUmhOZFRxUHdzODR3NGlPaWxPNUs2WVh2U3Eyd3NSdUlwZGNHeUpjdkx6U3dQcUpaWnoxVnlJUGV0bjFGMEpFdDZaR0E?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMi1wFBVV95cUxNWGRzZ044eDYteHZ4aFBlb0lrVC1RMncwMWJVdHlTazVuVE52UlQ0bnlCNWx5ekxVWDN6OVNwcTZFUE9kYmsyMlVVRzhCb0FNZG9hVkNqbk05WmdURG43UGlEeVYyS1c0bkt6ZzBIaElrbGxBblJOaVhLU015S3I4T0Y2WUNidXpaZWlUWmh1bVctSTd0emREQ2V3Y3FYZVQ3LUJ3Uk9tVWFJSDNYU3JMMTNWM01McWNIenZOQnpoN1UtSGp3MFhvOHpuWnd2TTlmMjY5azQyVQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMib0FVX3lxTE1DZU8xWmNPeHhTS2hrSEo4QWRWUV9tSm1QdFU2RFIyYzh6YW5yS1RIeFYtZjM0bzduNmpzRTNKMmRBNEdNQ2M3X0trQm9mTTlkOVpUTDJRQnI2YmdueTY2SE9nNWZQSXdYa2c4N09RYw?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMi9AFBVV95cUxNUWwtMENLUGlxQjJoZFM4R1d0ZGw2OUxCcXBScmpzeko3THlMZjUtZ21TSDhEMzZJWFJQcEFXYmctdkNjOG1vTkFfQ3gxR3ZwalFaZVlONDRtWkI0ZkwtLUlGRnVQOWwyY05sZFEwbldiM3BBdW8wTEhsQlp3X1daUnBrenU3N0ZtZVdYV3p0SExVNHVnZ2hNZ1JzQlRWcThsUE9mWFc3azFNekQ0UjdLQk5CUms0S2NxRkVQcE01SHJQM1Zkc3BMTC0wSDdGMXJwSnB6S01HYmh0VTFsdHpsUmFmT2dlLWRRMF9YeHNsaWY1cnZH?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMigwFBVV95cUxPcGdRRGRpQk5yekRQaFVnQkFPSnlBdVR1V1ctWmVRVWRLOTNKd3Jfek9rVjl0b2dkZXJmOGRqejhmc1dxWms1b3o4NnhqeEdiS19pVVl6VDctVnR2T3hCRUcwdk5XOVJueTNGMU1aYWpWVF9YX1lOT2hEcHB0dXlubnk0MA?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiwgFBVV95cUxQWmlHcTVhTkdOSWdmSjNGZVh1LVRlbkFITkdURWZFYUxJSmR3cVJDNElHRkhUaEttM08zYnVWNWg5RTI1ai1fQkF1UjUzaENlckVlbldzU0hub01jVGk2ZE0xRWFUZnZKUWlXWnlCZzdBNmNidVNfVDlCTGdpUl94VEY4cWg0STBtaXJnT3FMQVE5eGtpT3A2RjJRV1RSWXAzUXVEUndXVkE4bVhYeDZvZE5fRTZaWkt0LTVPbDFBdm5EZw?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiqgFBVV95cUxORHpCSi11UVFaeFBsYkZRcDdSMEpEUkRTZklYQmJZektxaVlTNzlPLUV6MTBoLXJsc3pQUmJ6eDE1SzY4eHM0RDJSVDJ3TDlOaXZ3U3VsRFNWcE52S0p1cHFDbUMtQUxGZnBvWVotSENWeXE1Z0lSS3A0VmsyajRxV0xkWkVGTm5wekpzNlQ1UTVLZE5pbnY1U1B5S3lGQXlIZFRFTUpTNUFNUQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiwgFBVV95cUxQdHEtVjF0NGJGdXM2a2JOSk5DN0NxOWQ5bk05RnllbEF0TWVOaHlpRDVtOE1qYzIyb2tFcm1IMlJGcExwZ3NiRk1NQXJRUFNoWjB6ZUh3S21HbENEM0dFVTBWRzNpNC12WXJ5eDBfaUZxOGxsaktCLXVZQWM1b2FGbnhYeXFSMTIyby1kOHF0LXJ2Tm9QMFBLZ3oxeEtQd1V6dUQ3MXJoNV96TUdKbUdtcnFTSGpYZzRaS0pST3NfenAwQQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMitAFBVV95cUxNaF91SWZCUzJrd0JKX1M4WnFUY2hPRnlvSGZjaWZZYjdYWnpkVUVDTTdGLTZUU0tvRDRiN21KRHUwTnBTTElzUGhzdk1ZZExEYU1wZE90dWxOQXk4OWNIUW42aHBNTlhFRTdvUk9hV2hyMFRYRzc0MWUxTGg2WkdoQ3BBUHFqcEJwbHZBeDdHNkpYcEF1ZDBHbFZYZ3VjNENISXhXelloVWlvT1djYUNwQkZHT0E?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMigwFBVV95cUxQUTA2VFlGWVIzdEthaFBaZk5rd2trbk12YmI2NnZUVFdHbGxFWlB4b09GZlhiRURMM0dzRUp4Zm9BWm5ybUR4cE5VOTFVR05QUklQQ1hfODBXWld2Rm5JMnZ2RzJxcW5mTVVpakhmOE5iVHdkcFdZMk8zVEFQcTRjUzItOA?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiYEFVX3lxTE9YczU4SjFHSzZkcVBIbGFhVGtDaVpJUllnZDliWm9Tai1BeFBERUpqVzhKUk9MQXBRT2pyeUIyQWxnMWxCN2ZnbmpBZUhrZnpoczV2cVVVemQ2X2VnbXdoeg?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMia0FVX3lxTFBtc1cwaGFwZDJsLVlxSVJQWWtKTE4zb2NMQmQxRlRkYmk2T2cxYm9NRWJ4Z3ZERENyZzhEQkFwTk9ZNk8temlSZWF5bXlucjlGZEVHdEtPcGJfbTFVS3o3NWpkRWNiOEZzYV9v?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMioAFBVV95cUxQQzdaQXBQOTZYWFA4UTBycHNKazJielk2MDFvcE9SOUwxMnhuYk5RUmpwT0t0N3FlWVVkbUVpUk9yOFNLbC1QYTFwMGxXa2xRaVlsOEVTN1hlQlJrOEJGZVMtcGZLRFZBclFPZ1BDSnRnSlNGSkowODF5UGRaLUdwZ2NvV0RIcjhWb0hlcWs1SGp4cE1vZno0VExhc3dQNVQ0?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMimwFBVV95cUxON3djMS1BaklrR2U0LXBYdi0zcGNITGwzVkpVaHgxRDdxYUx1ZzZTQnl6REFUUXR1RDc5dUFfOG5JVEJHR1NRVkJoVU5NdGxRb2U1NHl4WHRNcVNOR1QxZER4TklfNVNlZGlEdGtsc3RVUEU1NXZmeHNZQ0V3aXh1cjlXVUtteDhvN1JYTmREY3BQSmMyVFlBTWJKRQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMibEFVX3lxTE9aQWdDd0VicElHVnktUzdUazBQeVlMalFJS3FOR3ZlWnc4azhydnF2c0V6VFdjOVNyWkV2ZkRMVklEdGswd2pTdkVTc1VNS21HZms5cmtJb2ZFeEhLazdiSkY0V2tQbXlBcjJ0bg?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMimwFBVV95cUxQZzQ0anRkYnVFcEhwc3JQdGs1Ync0Nlg2OFh0MFVIeHlDWE84XzJtSnQzSGttUW9GWmwwSXdpMVBKZElGMHloYWNZRV8zcmtFYWJURGhtM0l5aGlJUEZ5YWtrNWgxbFV0eDgtaWJvQ3IyTnhaVnRFX3lPRnhKN3dkNDdfUFpyZFY4RHgzVk1IZ25vVjQwUFk4V1laNA?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiqAFBVV95cUxQSVNURFdDTXlfUl9Ycl9NdDlVb3l0aGtrNVFPTTNNR2NGcGhYLXlkZkZZQ1Z1Z0txOGtKdVJ4RDhCVDJWS2hVVlE0UzRGQ1g0TFBYTDFjRTFXd0Zsc2tQSUZIWnJRb2V5RUxNOUZGQnBodWxFRE9KN0RkcFp3MkREeGUtZ0tKcDJBbWUydk80SzFZdHFTVjA0OEdkbmpZVjNHSXFQd0dkTW4?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMi-wFBVV95cUxPTjh2RFBkODhLUlJlQjNNZ0NnVXZvUmd1VGhrc0RxS3hpdHpvWWNDS0VUb1JKaElyclI3N3ZBZVcwWDJtRzFObzNXYWIyYmhsa09laW1yc1dla2V2dFFkb21RU1U2dlFWdS05b3VBeEJRdTdUcHhXeFM3cXdudlVTLTN4SENwd0V5VUppTnpvanlpdTRmSkR2WHh4eTE2ZUlXYmJiR2Jud1N0REJ2NWVzOVNvSWM3RkZQX25oS0NJWkxDZFh0MDAtT0hGbFI5MVVQS204SWNJOUY3SWxyVmlWM0VfUDRLNDE4N3RtcU1pdjc1cXFySXJyNkdYYw?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMixwFBVV95cUxOczR6eEVIMHVKVEpad2F6Y3FrdmFhODRoZmdMNnIwbTNZak5Jb2FCaWthNFBFSjdEaGxLbkNUZUZ1VzRQNU9mcUc3YXRFMlVjUTBVdHRsTmJZTkExeUsyNzVqZzh2TjdudEtjeDNlNmtTYktiQV9SWm1hTm1ka011cFE4OXRUTzFCNUZkYjVyYlg1RERPZW9MUFdBVzhFNWw2Z3p2UDBVSmVTTFloampmYUFSZjNvaU15MkoyS1ZXckhCQWMwRE40?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMilgFBVV95cUxQUmZWN3hjbGdyTi15VVNFYTZ5S1dWemxQUEpQS1NtWEEyMDVQWUd5dlhlVGRpRk55VEJkYUpRQ2FITXJiQ2ZZbjNsV0RxRDhnN1BBVENUMDJnNUt5dUZDaVRuNXNFLVNDNy1uVDZHcU9TTW9BeV9zSUxwRFJhSWlMN29SODZQTURGYi01cEtxdFF3R04yRnc?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiZEFVX3lxTFBWTm9tcWUyc1h5dGtCYjVnNmQxZjc3eWpfNjRmSU9ISGZwcHdMbGxPRGtxMGNtekp4OTh2R1FHcTFCRjlHbzEzdzdXbGxZRnV4b0JWSFQySkJtb1QzNVZVd3FUejI?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiekFVX3lxTE9ybF9QdXJKVXY5TmtGZmszTEJvUkNVQ0JTamdneTNwQ1NkTFdJV3pJR09qWWc4cDctZV9Sd0swSTIwZXhJdnMwQnRFN3N3TzNSZ3lnM3lIWmV5NllBNjExdFBkTlN2Sk03NzVtbGFVdm5XWFNjVnVER0tn?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMi1AFBVV95cUxPcFVQTHRlTTBpbWpyNm5HLWNpOVhWSWhCSU1ENlpNR0Ezb0xsTjgwZWZXQ3Brci1HSmd1T2NfZ0hTOXhseE1CZXViYXUwb2FGNEMxNDdJWUVMcThnT21jcXJQcjkxQXNpUktRdDRYVTJaUmNZRnZnUlNKVExJQU1GYVFOSGxFbWE2OHF1RVZFSDRWMENZaGZadUpmRWdtR2dIZ0Rab0J6TkJWRjFlYVFxQjZhaDZETlRueGtIeWstRGRTWDZVQ2lrTGVKWmxNT3ZtVWExSA?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiowFBVV95cUxPOGxfMklsWUNzRlkwcUZaVW9wUW9WWTV5WHVMRTZZU1hkNDBqTWVsMTFGTEVsck0wRzVPYTVFTXFNVjRkUWN4ZC03cTh2ZVBNQ2pTVGJoZmRkMFlZOFM2Qm91ZHZfbVRXMFNLN3pOS29vQzFmWlNmX1ZMOE5HUHZkeHV5LVYwMG9Vd0Z0NkR6NnlhbkJoQUlJZll2NGttVG9jYmdZ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMi7wFBVV95cUxOamIyZWJIQjVBOTlXYXYzbll0OEttM3ZQbDVrR001WWpHTGVOVWJXVkh1dWpBOWJ1aDczZXZaUXA0UWpubGpfSXBoazZiaW1jWDBSa2dyZDNvZ1JtN1B1dkJTUkFnUzlILTk3WHFIUG1pYm5aVTBVcEh2cW4tNzBDUHRxaFI1SG84Y0VfMDhxeU4tSGZRcEtUQXhad0lIYkZqekdGZnVzZGpucmZtV3hhaDFWQVhKRUM3dmNSeVpDVWJraW5tejA1cVRZVXdBaDAyaEN6NnE5endmaXp5a0xtcmxmbUxTVTVXSDdfaXBqWQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMilwFBVV95cUxNTzNPekdTU2gxUVhLYmMya00xODlWRDFxd0hrVDJ6ay1nR1lzekNTMXdkdXJGSzBxOE90Um5SYVRxZEFYZ1NVR1RBVFR6UndwZFFkcDJ3SkZkNlk4S0VqNjNtY29UcDRMYjVpdFBFRkpLZS1Mb3ozcm8zV3c5RDlFcTkyOU80LUNVX2d2Y0c0R3M3YTktWkpR?oc=5: no publication date found
+Skipping https://www.take2games.com/ir/news/rockstar-games-announces-pre-orders-grand-theft-auto-vi: no publication date found
+Skipping https://www.take2games.com/ir/news/adding-multimedia-rockstar-games-releases-trailer-2-grand-theft: no publication date found
+Skipping https://www.take2games.com/ir/news/rockstar-games-acquire-video-games-deluxe: no publication date found
+Skipping https://www.take2games.com/ir/news/rockstar-games-announces-grand-theft-auto-vi-coming-2025: no publication date found
+Skipping https://insider-gaming.com/gta-6-age-verification-required-in-austrailia-or-rockstar-games-could-be-fined-50-million: older than 7 days
+Skipping https://insider-gaming.com/millie-bobby-brown-gta-6-the-sims: older than 7 days
+Skipping https://insider-gaming.com/rockstar-games-crunch-issues-gta-6: older than 7 days
+Skipping https://insider-gaming.com/rockstar-games-developers-hope-to-unionize-before-gta-6-launches: older than 7 days
+Skipping https://insider-gaming.com/xbox-gamer-uses-microsoft-rewards-to-get-gta-6-for-free: older than 7 days
+Skipping https://insider-gaming.com/gta-6-60-fps-graphics-mode-very-likely-its-claimed: older than 7 days
+Skipping seed https://www.videogameschronicle.com/?s=GTA+6: request failed (403 Client Error: Forbidden for url: https://www.videogameschronicle.com/?s=GTA+6)
+Selected trending topic:
+Newzoo Says Billion Dollar GTA 6 Pre Order Claims Are Simply Not Real | GTA BOOM
+Publication date:
+2026-07-16T22:38:46.436000+00:00
+Source:
+GTA BOOM
+Score breakdown:
+freshness_score: 0.9239
+authority_score: 0.6300
+engagement_score: 1.0000
+uniqueness_score: 0.9334
+final_score: 0.8709
+
+[2/14] Script Agent
+Grand Theft Auto VI has logged the strongest pre-order campaign ever recorded.
+Follow for more GTA 6 breakdowns.
+
+[3/14] Storyboard Agent
+Scene 1: hook | grand theft auto logged | curiosity | extreme close-up | grand theft logged becoming visible
+Scene 2: context | story continues develop | anticipation | wide establishing shot | story continues develop becoming visible
+Scene 3: tension | story continues develop | uncertainty | medium tracking shot | story continues develop becoming visible
+Scene 4: evidence | story continues develop | focus | macro detail shot | story continues develop becoming visible
+Scene 5: uncertainty | story continues develop | doubt | low angle shot | story continues develop becoming visible
+Scene 6: payoff | story continues develop | momentum | cinematic closing shot | story continues develop becoming visible
+
+[4/14] Visual Director Agent
+Visual plan generated.
+Scenes: 6
+Output: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/storyboards/latest_visual_plan.json
+
+[5/14] Prompt Engineer Agent
+Prompt Engineer complete.
+Prompts: 6
+Scene 1: photorealistic documentary frame, realistic photography, high dynamic range, natural imperfections, detailed real-world materials, atmospheric depth, cinematic vertical 9:16. Shot type: extreme close-up. Foreground subject: grand theft auto logged. Midground: story-relevant environment supporting the scene. Background: atmospheric background connected to the topic. Lighting: cinematic lighting with realistic shadows and atmosphere. Visual world: cinematic documentary world matching the story topic. Composition: vertical 9:16, dominant foreground subject, layered midground and background. Camera style: realistic vertical documentary frame, strong depth, natural imperfections. Emotion: curiosity. Texture notes: real surfaces, imperfect details, believable reflections, no clean AI plastic look. Keep the foreground subject dominant and clearly visible. Use realistic shadows, believable reflections, imperfect surfaces, and cinematic depth of field. No readable text, no logos, no UI, no watermark.
+Scene 2: photorealistic documentary frame, realistic photography, high dynamic range, natural imperfections, detailed real-world materials, atmospheric depth, cinematic vertical 9:16. Shot type: wide establishing shot. Foreground subject: story continues develop. Midground: story-relevant environment supporting the scene. Background: atmospheric background connected to the topic. Lighting: cinematic lighting with realistic shadows and atmosphere. Visual world: cinematic documentary world matching the story topic. Composition: vertical 9:16, dominant foreground subject, layered midground and background. Camera style: realistic vertical documentary frame, strong depth, natural imperfections. Emotion: anticipation. Texture notes: real surfaces, imperfect details, believable reflections, no clean AI plastic look. Keep the foreground subject dominant and clearly visible. Use realistic shadows, believable reflections, imperfect surfaces, and cinematic depth of field. No readable text, no logos, no UI, no watermark.
+Scene 3: photorealistic documentary frame, realistic photography, high dynamic range, natural imperfections, detailed real-world materials, atmospheric depth, cinematic vertical 9:16. Shot type: medium tracking shot. Foreground subject: story continues develop. Midground: story-relevant environment supporting the scene. Background: atmospheric background connected to the topic. Lighting: cinematic lighting with realistic shadows and atmosphere. Visual world: cinematic documentary world matching the story topic. Composition: vertical 9:16, dominant foreground subject, layered midground and background. Camera style: realistic vertical documentary frame, strong depth, natural imperfections. Emotion: uncertainty. Texture notes: real surfaces, imperfect details, believable reflections, no clean AI plastic look. Keep the foreground subject dominant and clearly visible. Use realistic shadows, believable reflections, imperfect surfaces, and cinematic depth of field. No readable text, no logos, no UI, no watermark.
+Scene 4: photorealistic documentary frame, realistic photography, high dynamic range, natural imperfections, detailed real-world materials, atmospheric depth, cinematic vertical 9:16. Shot type: macro detail shot. Foreground subject: story continues develop. Midground: story-relevant environment supporting the scene. Background: atmospheric background connected to the topic. Lighting: cinematic lighting with realistic shadows and atmosphere. Visual world: cinematic documentary world matching the story topic. Composition: vertical 9:16, dominant foreground subject, layered midground and background. Camera style: realistic vertical documentary frame, strong depth, natural imperfections. Emotion: focus. Texture notes: real surfaces, imperfect details, believable reflections, no clean AI plastic look. Keep the foreground subject dominant and clearly visible. Use realistic shadows, believable reflections, imperfect surfaces, and cinematic depth of field. No readable text, no logos, no UI, no watermark.
+Scene 5: photorealistic documentary frame, realistic photography, high dynamic range, natural imperfections, detailed real-world materials, atmospheric depth, cinematic vertical 9:16. Shot type: low angle shot. Foreground subject: story continues develop. Midground: story-relevant environment supporting the scene. Background: atmospheric background connected to the topic. Lighting: cinematic lighting with realistic shadows and atmosphere. Visual world: cinematic documentary world matching the story topic. Composition: vertical 9:16, dominant foreground subject, layered midground and background. Camera style: realistic vertical documentary frame, strong depth, natural imperfections. Emotion: doubt. Texture notes: real surfaces, imperfect details, believable reflections, no clean AI plastic look. Keep the foreground subject dominant and clearly visible. Use realistic shadows, believable reflections, imperfect surfaces, and cinematic depth of field. No readable text, no logos, no UI, no watermark.
+Scene 6: photorealistic documentary frame, realistic photography, high dynamic range, natural imperfections, detailed real-world materials, atmospheric depth, cinematic vertical 9:16. Shot type: cinematic closing shot. Foreground subject: story continues develop. Midground: story-relevant environment supporting the scene. Background: atmospheric background connected to the topic. Lighting: cinematic lighting with realistic shadows and atmosphere. Visual world: cinematic documentary world matching the story topic. Composition: vertical 9:16, dominant foreground subject, layered midground and background. Camera style: realistic vertical documentary frame, strong depth, natural imperfections. Emotion: momentum. Texture notes: real surfaces, imperfect details, believable reflections, no clean AI plastic look. Keep the foreground subject dominant and clearly visible. Use realistic shadows, believable reflections, imperfect surfaces, and cinematic depth of field. No readable text, no logos, no UI, no watermark.
+
+[6/14] Image Generation Service
+Prompts loaded: 6
+Prompts prepared: 6
+Output folder: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated
+Manifest path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/generation_manifest.json
+Generated image paths:
+- /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/scene_01.jpg
+- /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/scene_02.jpg
+- /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/scene_03.jpg
+- /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/scene_04.jpg
+- /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/scene_05.jpg
+- /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/scene_06.jpg
+
+[7/14] Animation Service
+Visual assets found: 6
+Clips generated: 6
+Output folder: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/videos/scenes
+Manifest path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/videos/scenes/animation_manifest.json
+
+[8/14] Narration Service
+Script path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/scripts/latest_script.txt
+Script lines: 2
+Voice: en-US-GuyNeural
+Output audio path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/audio/voice.mp3
+Manifest path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/audio/narration_manifest.json
+
+[9/14] Music Service
+Music query: cinematic suspense trailer
+Music path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/music/current_music.mp3
+Manifest path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/music/music_manifest.json
+
+[10/14] Video Composer Service
+Clips found: 6
+Audio used: true
+Audio duration: 8.40 seconds
+Final duration: 8.40 seconds
+Latest output path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/videos/final/latest_video.mp4
+Timestamped output path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/videos/final/2026-07-17_16-31-18_gta6_video.mp4
+Manifest path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/videos/final/composition_manifest.json
+
+[11/14] Graphics Service
+Transcribing voice for exact word timings...
+Graphics video created:
+/Users/hbinqasim/Projects/faceless-bot/channels/gta6/videos/final/latest_video_graphics.mp4
+/Users/hbinqasim/Projects/faceless-bot/channels/gta6/videos/final/2026-07-17_16-31-47_gta6_graphics.mp4
+Words: 19
+Caption groups: 6
+Caption clips: 19
+Manifest: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/videos/final/graphics_manifest.json
+
+[12/14] Thumbnail Service
+Thumbnail prompt: cinematic high-contrast YouTube thumbnail, landscape 16:9, dramatic foreground subject, bold composition, emotional visual tension, premium documentary style, realistic lighting, clean background, visual story inspired by: Xbox Fires Back at GTA 6 PS5 Pre Order Claims, no readable text, no logos, no watermark
+Thumbnail hook: AI CONTROL?
+Thumbnail concept: 
+Central conflict: 
+Dominant subject: 
+Secondary subject: 
+Visual contrast: 
+Emotion: 
+Thumbnail style: viral_gaming
+Thumbnail placement: top
+CTR score: 
+CTR reasoning: Fallback design based on available video topic.
+Thumbnail image: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/thumbnails/latest_thumbnail.jpg
+Manifest path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/thumbnails/thumbnail_manifest.json
+
+[13/14] Metadata Agent
+Metadata generated:
+Newzoo Says Billion Dollar GTA 6 Pre Order Claims Are Simply Not Real
+
+[14/14] Upload Agent
+Upload complete.
+YouTube URL: https://youtu.be/FM-UskAYs5U
+Manifest: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/upload/upload_manifest.json
+
+Pipeline completed successfully.
+Total execution time: 457.87 seconds
+Final video path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/videos/final/latest_video_graphics.mp4
+((venv) ) hbinqasim@HbinQasims-MacBook-Pro pipelines % /Users/hbinqasim/Projects/faceless-bot/venv/bin/python gta6_pipeline.py
+Deleted stale generated files: 12
+
+Topic attempt 1/5
+
+[1/14] Research Agent
+Skipping https://news.google.com/rss/articles/CBMikgFBVV95cUxNRG5SdzVrdDZndnA4U0VMTkNOcU1uQVcyWEVrbmRPbXZKLThaeTZURGZHWjF1d19LTDZsQURyUUdiTExxVnhWcldpaDBpLVBpa0NvMlVROXhtWUxkZ0V5dGUwVGt5N3EweXVnUk5ramJneTNseG14RDFWbnM4Q01wRnVVdnlpbXNhSHR6YlMyMGZ3UQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiswFBVV95cUxNTW1mZzE2Z21adjlKVDR2YTlad3pBM0ZUNzdBYXFGbERJNmRGZzV3Um5RU2x2NGM0SjZ2RmlJQnk4Um5KVFVicjV2V3JvVG9uWW13RXQxRmlnUmJRbTM2dFdQaVlfamphQlpNRi1Gb2Q4bVRrc05OOVRhLXM5SkVudjl2SVFtM2FweXFfNmdEOVB4WmFEaVNYTW9wRGt2X0xmcHZPMTVqOHNDeGttRlJ0WlNNUQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMibkFVX3lxTE9ZUGpQc3VJRFR5a2VlQzFweUJTMnY1aV82eWRuRGJKRE5NT1duanhEclpHdTBEZndYTDdVdzV5TUVnYVRXMC1WSVMtQzVTYk1MWVd4ZlNyam9IdEFEVTVOZ2hILW5EQzdLeWhnSHBn?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMijAFBVV95cUxQV1UzT01Rdy1wa2tIVkdaVkRlTWlaRl8xMUNHSC1FbzlEUVRsUFp6NlNzSzNJNDZVUVFJdEFhME5SWEk2OFVGcF8xazJiVWdiRUo1azdzeGlwU2VybGd1bHhTZDB6cFZlNzlIOUhOaEV5NFQtSkxBMGpJMlpWMnN5SWlaek1rZGpaeUhjcg?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMipAFBVV95cUxPRHlGbW51SnM1eElKbElJRVhEYUxWR1gtTXJEbXpPTV9OTEhEQWYtbXN0NUNjMy1SMUNWbEhMUWlUaE1UNkszM0Y1VzliUXhPU0NmellzYkNBNVdJcWpZSGlpTkZfYlZhMmtXR0hTS1JiOVYxVHctLUZsc3VrTlN3cGJ5NUJoZ2hxbEltRksxanhfMjlVbXlRbDE0ZmRzRFFxZktfTg?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiekFVX3lxTE1VbDlMbHNWaHJkbEcxWjAyZHdIM200cVl6WTRZRUlJR3I4RFlzcDY5UzYzVTNlYU1JUVVRYmVwWWtzWk8zODU2WUhvZWNFQi1EWGdXX2t4N2tqWWhGamtDTkhNYW9aWHRJcURqd1N6Ym5uWnVRWktoSGpB?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMikwJBVV95cUxNaEtSVzBZR0Z3VXREaXFoYW1fdjdqTDNvWmMzTFVzeEZyQzFDMUlrV3VqaElPZFhUeXhRY01HSmRfTE5yWEVUcE9talN0TE56cmhsMmxEZm5VNnBUcGlzdUh0QU5uclRheEhodjNEcWVRcVJ0QnFIUmFGblhoZk1xWUo4NVVERnFlODdCbDB3VTNTX2Q0SUdydWZTWElRX1laTmJyMFFieW9BN0FuNVZDTlJQbFE0ZTRxSDExVU84ODcxVWRfeVpreGJGYUU1d1puUjgtZWxjSHJtSnJ2enlsaXdMMml5am5WOW9jWGVOLUxGOVRGQ2tUb0QwOVJibDhWWTlMVzlOVWlrVUF1U0N5Z3B4Zw?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiaEFVX3lxTE5EZ3ZJRDdWU0NpX1B6Q3pvbzBqWmtKZG9kX19tM1BxUFpuMlh1RVZsbXFxOWxfTHBQbjBkb0pDRkx0U1dwWHJDeURFd2h0U0VSY1Z6SEx6U1RjeGdoRUgtWFRoSW83LV9a0gFuQVVfeXFMUC1LVzdnNlUwQVZ5bTFEOHFSS1YzSGoxYkFNdjZuOF9WbnFEWlJiOW5xS2RRRlNFRVZ3UGxlWFFCUGJ5UTdrSGJ2djc0ckhLZk1KY3ZfNkQ0eXlaeXhzaWZDbElzd3FNb0d3SGdrRUE?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMi3gFBVV95cUxQU3lCOFJIYkJaR2RnQzdGc0U3VGtfYjFXTzlkTm1LY2xvOGxTV1FIQzBhLTNENnJLcjczdnJqeWM0VGNqXzBBQ3dEc2Q2Y05xM1B2a2cwaUVYTFJOd2QyZU1VRmNodU90SUFDYXBkQjRSUzVFZ01rUEVrVHJNdUVhNHdiMWRZSllqM3d1ZmJqVDFEOWstekdoMS1XUmhOZFRxUHdzODR3NGlPaWxPNUs2WVh2U3Eyd3NSdUlwZGNHeUpjdkx6U3dQcUpaWnoxVnlJUGV0bjFGMEpFdDZaR0E?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMi1wFBVV95cUxNWGRzZ044eDYteHZ4aFBlb0lrVC1RMncwMWJVdHlTazVuVE52UlQ0bnlCNWx5ekxVWDN6OVNwcTZFUE9kYmsyMlVVRzhCb0FNZG9hVkNqbk05WmdURG43UGlEeVYyS1c0bkt6ZzBIaElrbGxBblJOaVhLU015S3I4T0Y2WUNidXpaZWlUWmh1bVctSTd0emREQ2V3Y3FYZVQ3LUJ3Uk9tVWFJSDNYU3JMMTNWM01McWNIenZOQnpoN1UtSGp3MFhvOHpuWnd2TTlmMjY5azQyVQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMib0FVX3lxTE1DZU8xWmNPeHhTS2hrSEo4QWRWUV9tSm1QdFU2RFIyYzh6YW5yS1RIeFYtZjM0bzduNmpzRTNKMmRBNEdNQ2M3X0trQm9mTTlkOVpUTDJRQnI2YmdueTY2SE9nNWZQSXdYa2c4N09RYw?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMi9AFBVV95cUxNUWwtMENLUGlxQjJoZFM4R1d0ZGw2OUxCcXBScmpzeko3THlMZjUtZ21TSDhEMzZJWFJQcEFXYmctdkNjOG1vTkFfQ3gxR3ZwalFaZVlONDRtWkI0ZkwtLUlGRnVQOWwyY05sZFEwbldiM3BBdW8wTEhsQlp3X1daUnBrenU3N0ZtZVdYV3p0SExVNHVnZ2hNZ1JzQlRWcThsUE9mWFc3azFNekQ0UjdLQk5CUms0S2NxRkVQcE01SHJQM1Zkc3BMTC0wSDdGMXJwSnB6S01HYmh0VTFsdHpsUmFmT2dlLWRRMF9YeHNsaWY1cnZH?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMigwFBVV95cUxPcGdRRGRpQk5yekRQaFVnQkFPSnlBdVR1V1ctWmVRVWRLOTNKd3Jfek9rVjl0b2dkZXJmOGRqejhmc1dxWms1b3o4NnhqeEdiS19pVVl6VDctVnR2T3hCRUcwdk5XOVJueTNGMU1aYWpWVF9YX1lOT2hEcHB0dXlubnk0MA?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiwgFBVV95cUxQWmlHcTVhTkdOSWdmSjNGZVh1LVRlbkFITkdURWZFYUxJSmR3cVJDNElHRkhUaEttM08zYnVWNWg5RTI1ai1fQkF1UjUzaENlckVlbldzU0hub01jVGk2ZE0xRWFUZnZKUWlXWnlCZzdBNmNidVNfVDlCTGdpUl94VEY4cWg0STBtaXJnT3FMQVE5eGtpT3A2RjJRV1RSWXAzUXVEUndXVkE4bVhYeDZvZE5fRTZaWkt0LTVPbDFBdm5EZw?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiqgFBVV95cUxORHpCSi11UVFaeFBsYkZRcDdSMEpEUkRTZklYQmJZektxaVlTNzlPLUV6MTBoLXJsc3pQUmJ6eDE1SzY4eHM0RDJSVDJ3TDlOaXZ3U3VsRFNWcE52S0p1cHFDbUMtQUxGZnBvWVotSENWeXE1Z0lSS3A0VmsyajRxV0xkWkVGTm5wekpzNlQ1UTVLZE5pbnY1U1B5S3lGQXlIZFRFTUpTNUFNUQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiwgFBVV95cUxQdHEtVjF0NGJGdXM2a2JOSk5DN0NxOWQ5bk05RnllbEF0TWVOaHlpRDVtOE1qYzIyb2tFcm1IMlJGcExwZ3NiRk1NQXJRUFNoWjB6ZUh3S21HbENEM0dFVTBWRzNpNC12WXJ5eDBfaUZxOGxsaktCLXVZQWM1b2FGbnhYeXFSMTIyby1kOHF0LXJ2Tm9QMFBLZ3oxeEtQd1V6dUQ3MXJoNV96TUdKbUdtcnFTSGpYZzRaS0pST3NfenAwQQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMitAFBVV95cUxNaF91SWZCUzJrd0JKX1M4WnFUY2hPRnlvSGZjaWZZYjdYWnpkVUVDTTdGLTZUU0tvRDRiN21KRHUwTnBTTElzUGhzdk1ZZExEYU1wZE90dWxOQXk4OWNIUW42aHBNTlhFRTdvUk9hV2hyMFRYRzc0MWUxTGg2WkdoQ3BBUHFqcEJwbHZBeDdHNkpYcEF1ZDBHbFZYZ3VjNENISXhXelloVWlvT1djYUNwQkZHT0E?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMigwFBVV95cUxQUTA2VFlGWVIzdEthaFBaZk5rd2trbk12YmI2NnZUVFdHbGxFWlB4b09GZlhiRURMM0dzRUp4Zm9BWm5ybUR4cE5VOTFVR05QUklQQ1hfODBXWld2Rm5JMnZ2RzJxcW5mTVVpakhmOE5iVHdkcFdZMk8zVEFQcTRjUzItOA?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiYEFVX3lxTE9YczU4SjFHSzZkcVBIbGFhVGtDaVpJUllnZDliWm9Tai1BeFBERUpqVzhKUk9MQXBRT2pyeUIyQWxnMWxCN2ZnbmpBZUhrZnpoczV2cVVVemQ2X2VnbXdoeg?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMia0FVX3lxTFBtc1cwaGFwZDJsLVlxSVJQWWtKTE4zb2NMQmQxRlRkYmk2T2cxYm9NRWJ4Z3ZERENyZzhEQkFwTk9ZNk8temlSZWF5bXlucjlGZEVHdEtPcGJfbTFVS3o3NWpkRWNiOEZzYV9v?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMioAFBVV95cUxQQzdaQXBQOTZYWFA4UTBycHNKazJielk2MDFvcE9SOUwxMnhuYk5RUmpwT0t0N3FlWVVkbUVpUk9yOFNLbC1QYTFwMGxXa2xRaVlsOEVTN1hlQlJrOEJGZVMtcGZLRFZBclFPZ1BDSnRnSlNGSkowODF5UGRaLUdwZ2NvV0RIcjhWb0hlcWs1SGp4cE1vZno0VExhc3dQNVQ0?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMimwFBVV95cUxON3djMS1BaklrR2U0LXBYdi0zcGNITGwzVkpVaHgxRDdxYUx1ZzZTQnl6REFUUXR1RDc5dUFfOG5JVEJHR1NRVkJoVU5NdGxRb2U1NHl4WHRNcVNOR1QxZER4TklfNVNlZGlEdGtsc3RVUEU1NXZmeHNZQ0V3aXh1cjlXVUtteDhvN1JYTmREY3BQSmMyVFlBTWJKRQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMibEFVX3lxTE9aQWdDd0VicElHVnktUzdUazBQeVlMalFJS3FOR3ZlWnc4azhydnF2c0V6VFdjOVNyWkV2ZkRMVklEdGswd2pTdkVTc1VNS21HZms5cmtJb2ZFeEhLazdiSkY0V2tQbXlBcjJ0bg?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMimwFBVV95cUxQZzQ0anRkYnVFcEhwc3JQdGs1Ync0Nlg2OFh0MFVIeHlDWE84XzJtSnQzSGttUW9GWmwwSXdpMVBKZElGMHloYWNZRV8zcmtFYWJURGhtM0l5aGlJUEZ5YWtrNWgxbFV0eDgtaWJvQ3IyTnhaVnRFX3lPRnhKN3dkNDdfUFpyZFY4RHgzVk1IZ25vVjQwUFk4V1laNA?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiqAFBVV95cUxQSVNURFdDTXlfUl9Ycl9NdDlVb3l0aGtrNVFPTTNNR2NGcGhYLXlkZkZZQ1Z1Z0txOGtKdVJ4RDhCVDJWS2hVVlE0UzRGQ1g0TFBYTDFjRTFXd0Zsc2tQSUZIWnJRb2V5RUxNOUZGQnBodWxFRE9KN0RkcFp3MkREeGUtZ0tKcDJBbWUydk80SzFZdHFTVjA0OEdkbmpZVjNHSXFQd0dkTW4?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMi-wFBVV95cUxPTjh2RFBkODhLUlJlQjNNZ0NnVXZvUmd1VGhrc0RxS3hpdHpvWWNDS0VUb1JKaElyclI3N3ZBZVcwWDJtRzFObzNXYWIyYmhsa09laW1yc1dla2V2dFFkb21RU1U2dlFWdS05b3VBeEJRdTdUcHhXeFM3cXdudlVTLTN4SENwd0V5VUppTnpvanlpdTRmSkR2WHh4eTE2ZUlXYmJiR2Jud1N0REJ2NWVzOVNvSWM3RkZQX25oS0NJWkxDZFh0MDAtT0hGbFI5MVVQS204SWNJOUY3SWxyVmlWM0VfUDRLNDE4N3RtcU1pdjc1cXFySXJyNkdYYw?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMixwFBVV95cUxOczR6eEVIMHVKVEpad2F6Y3FrdmFhODRoZmdMNnIwbTNZak5Jb2FCaWthNFBFSjdEaGxLbkNUZUZ1VzRQNU9mcUc3YXRFMlVjUTBVdHRsTmJZTkExeUsyNzVqZzh2TjdudEtjeDNlNmtTYktiQV9SWm1hTm1ka011cFE4OXRUTzFCNUZkYjVyYlg1RERPZW9MUFdBVzhFNWw2Z3p2UDBVSmVTTFloampmYUFSZjNvaU15MkoyS1ZXckhCQWMwRE40?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMilgFBVV95cUxQUmZWN3hjbGdyTi15VVNFYTZ5S1dWemxQUEpQS1NtWEEyMDVQWUd5dlhlVGRpRk55VEJkYUpRQ2FITXJiQ2ZZbjNsV0RxRDhnN1BBVENUMDJnNUt5dUZDaVRuNXNFLVNDNy1uVDZHcU9TTW9BeV9zSUxwRFJhSWlMN29SODZQTURGYi01cEtxdFF3R04yRnc?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiZEFVX3lxTFBWTm9tcWUyc1h5dGtCYjVnNmQxZjc3eWpfNjRmSU9ISGZwcHdMbGxPRGtxMGNtekp4OTh2R1FHcTFCRjlHbzEzdzdXbGxZRnV4b0JWSFQySkJtb1QzNVZVd3FUejI?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiekFVX3lxTE9ybF9QdXJKVXY5TmtGZmszTEJvUkNVQ0JTamdneTNwQ1NkTFdJV3pJR09qWWc4cDctZV9Sd0swSTIwZXhJdnMwQnRFN3N3TzNSZ3lnM3lIWmV5NllBNjExdFBkTlN2Sk03NzVtbGFVdm5XWFNjVnVER0tn?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMi1AFBVV95cUxPcFVQTHRlTTBpbWpyNm5HLWNpOVhWSWhCSU1ENlpNR0Ezb0xsTjgwZWZXQ3Brci1HSmd1T2NfZ0hTOXhseE1CZXViYXUwb2FGNEMxNDdJWUVMcThnT21jcXJQcjkxQXNpUktRdDRYVTJaUmNZRnZnUlNKVExJQU1GYVFOSGxFbWE2OHF1RVZFSDRWMENZaGZadUpmRWdtR2dIZ0Rab0J6TkJWRjFlYVFxQjZhaDZETlRueGtIeWstRGRTWDZVQ2lrTGVKWmxNT3ZtVWExSA?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMiowFBVV95cUxPOGxfMklsWUNzRlkwcUZaVW9wUW9WWTV5WHVMRTZZU1hkNDBqTWVsMTFGTEVsck0wRzVPYTVFTXFNVjRkUWN4ZC03cTh2ZVBNQ2pTVGJoZmRkMFlZOFM2Qm91ZHZfbVRXMFNLN3pOS29vQzFmWlNmX1ZMOE5HUHZkeHV5LVYwMG9Vd0Z0NkR6NnlhbkJoQUlJZll2NGttVG9jYmdZ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMi7wFBVV95cUxOamIyZWJIQjVBOTlXYXYzbll0OEttM3ZQbDVrR001WWpHTGVOVWJXVkh1dWpBOWJ1aDczZXZaUXA0UWpubGpfSXBoazZiaW1jWDBSa2dyZDNvZ1JtN1B1dkJTUkFnUzlILTk3WHFIUG1pYm5aVTBVcEh2cW4tNzBDUHRxaFI1SG84Y0VfMDhxeU4tSGZRcEtUQXhad0lIYkZqekdGZnVzZGpucmZtV3hhaDFWQVhKRUM3dmNSeVpDVWJraW5tejA1cVRZVXdBaDAyaEN6NnE5endmaXp5a0xtcmxmbUxTVTVXSDdfaXBqWQ?oc=5: no publication date found
+Skipping https://news.google.com/rss/articles/CBMilwFBVV95cUxNTzNPekdTU2gxUVhLYmMya00xODlWRDFxd0hrVDJ6ay1nR1lzekNTMXdkdXJGSzBxOE90Um5SYVRxZEFYZ1NVR1RBVFR6UndwZFFkcDJ3SkZkNlk4S0VqNjNtY29UcDRMYjVpdFBFRkpLZS1Mb3ozcm8zV3c5RDlFcTkyOU80LUNVX2d2Y0c0R3M3YTktWkpR?oc=5: no publication date found
+Skipping https://www.take2games.com/ir/news/rockstar-games-announces-pre-orders-grand-theft-auto-vi: no publication date found
+Skipping https://www.take2games.com/ir/news/adding-multimedia-rockstar-games-releases-trailer-2-grand-theft: no publication date found
+Skipping https://www.take2games.com/ir/news/rockstar-games-acquire-video-games-deluxe: no publication date found
+Skipping https://www.take2games.com/ir/news/rockstar-games-announces-grand-theft-auto-vi-coming-2025: no publication date found
+Skipping https://insider-gaming.com/gta-6-age-verification-required-in-austrailia-or-rockstar-games-could-be-fined-50-million: older than 7 days
+Skipping https://insider-gaming.com/millie-bobby-brown-gta-6-the-sims: older than 7 days
+Skipping https://insider-gaming.com/rockstar-games-crunch-issues-gta-6: older than 7 days
+Skipping https://insider-gaming.com/rockstar-games-developers-hope-to-unionize-before-gta-6-launches: older than 7 days
+Skipping https://insider-gaming.com/xbox-gamer-uses-microsoft-rewards-to-get-gta-6-for-free: older than 7 days
+Skipping https://insider-gaming.com/gta-6-60-fps-graphics-mode-very-likely-its-claimed: older than 7 days
+Skipping seed https://www.videogameschronicle.com/?s=GTA+6: request failed (403 Client Error: Forbidden for url: https://www.videogameschronicle.com/?s=GTA+6)
+Selected trending topic:
+FiveM For GTA V Enhanced Releases Next Week - RockstarINTEL
+Publication date:
+2026-07-16T14:26:34+00:00
+Source:
+RockstarINTEL
+Score breakdown:
+freshness_score: 0.8741
+authority_score: 0.7000
+engagement_score: 0.7143
+uniqueness_score: 0.9763
+final_score: 0.8060
+
+[2/14] Script Agent
+The Cfx.re team has finally revealed the release date of Five M.
+GTA V Enhanced players have been eagerly anticipating this update.
+Rockstar Games is behind the enhanced version of GTA V.
+Five M promises improved graphics and gameplay features.
+Follow for more GTA 6 breakdowns.
+
+[3/14] Storyboard Agent
+Scene 1: hook | team finally revealed release | curiosity | extreme close-up | cfxre finally revealed becoming visible
+Scene 2: context | enhanced players have been | anticipation | wide establishing shot | enhanced players eagerly becoming visible
+Scene 3: tension | rockstar games behind enhanced | uncertainty | medium tracking shot | rockstar games behind becoming visible
+Scene 4: evidence | five promises improved graphics | focus | macro detail shot | promises improved graphics becoming visible
+Scene 5: uncertainty | story continues develop | doubt | low angle shot | story continues develop becoming visible
+Scene 6: payoff | story continues develop | momentum | cinematic closing shot | story continues develop becoming visible
+
+[4/14] Visual Director Agent
+Visual plan generated.
+Scenes: 6
+Output: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/storyboards/latest_visual_plan.json
+
+[5/14] Prompt Engineer Agent
+Prompt Engineer complete.
+Prompts: 6
+Scene 1: photorealistic documentary frame, realistic photography, high dynamic range, natural imperfections, detailed real-world materials, atmospheric depth, cinematic vertical 9:16. Shot type: extreme close-up. Foreground subject: team finally revealed release. Midground: story-relevant environment supporting the scene. Background: atmospheric background connected to the topic. Lighting: cinematic lighting with realistic shadows and atmosphere. Visual world: cinematic documentary world matching the story topic. Composition: vertical 9:16, dominant foreground subject, layered midground and background. Camera style: realistic vertical documentary frame, strong depth, natural imperfections. Emotion: curiosity. Texture notes: real surfaces, imperfect details, believable reflections, no clean AI plastic look. Keep the foreground subject dominant and clearly visible. Use realistic shadows, believable reflections, imperfect surfaces, and cinematic depth of field. No readable text, no logos, no UI, no watermark.
+Scene 2: photorealistic documentary frame, realistic photography, high dynamic range, natural imperfections, detailed real-world materials, atmospheric depth, cinematic vertical 9:16. Shot type: wide establishing shot. Foreground subject: enhanced players have been. Midground: story-relevant environment supporting the scene. Background: atmospheric background connected to the topic. Lighting: cinematic lighting with realistic shadows and atmosphere. Visual world: cinematic documentary world matching the story topic. Composition: vertical 9:16, dominant foreground subject, layered midground and background. Camera style: realistic vertical documentary frame, strong depth, natural imperfections. Emotion: anticipation. Texture notes: real surfaces, imperfect details, believable reflections, no clean AI plastic look. Keep the foreground subject dominant and clearly visible. Use realistic shadows, believable reflections, imperfect surfaces, and cinematic depth of field. No readable text, no logos, no UI, no watermark.
+Scene 3: photorealistic documentary frame, realistic photography, high dynamic range, natural imperfections, detailed real-world materials, atmospheric depth, cinematic vertical 9:16. Shot type: medium tracking shot. Foreground subject: rockstar games behind enhanced. Midground: story-relevant environment supporting the scene. Background: atmospheric background connected to the topic. Lighting: cinematic lighting with realistic shadows and atmosphere. Visual world: cinematic documentary world matching the story topic. Composition: vertical 9:16, dominant foreground subject, layered midground and background. Camera style: realistic vertical documentary frame, strong depth, natural imperfections. Emotion: uncertainty. Texture notes: real surfaces, imperfect details, believable reflections, no clean AI plastic look. Keep the foreground subject dominant and clearly visible. Use realistic shadows, believable reflections, imperfect surfaces, and cinematic depth of field. No readable text, no logos, no UI, no watermark.
+Scene 4: photorealistic documentary frame, realistic photography, high dynamic range, natural imperfections, detailed real-world materials, atmospheric depth, cinematic vertical 9:16. Shot type: macro detail shot. Foreground subject: five promises improved graphics. Midground: story-relevant environment supporting the scene. Background: atmospheric background connected to the topic. Lighting: cinematic lighting with realistic shadows and atmosphere. Visual world: cinematic documentary world matching the story topic. Composition: vertical 9:16, dominant foreground subject, layered midground and background. Camera style: realistic vertical documentary frame, strong depth, natural imperfections. Emotion: focus. Texture notes: real surfaces, imperfect details, believable reflections, no clean AI plastic look. Keep the foreground subject dominant and clearly visible. Use realistic shadows, believable reflections, imperfect surfaces, and cinematic depth of field. No readable text, no logos, no UI, no watermark.
+Scene 5: photorealistic documentary frame, realistic photography, high dynamic range, natural imperfections, detailed real-world materials, atmospheric depth, cinematic vertical 9:16. Shot type: low angle shot. Foreground subject: story continues develop. Midground: story-relevant environment supporting the scene. Background: atmospheric background connected to the topic. Lighting: cinematic lighting with realistic shadows and atmosphere. Visual world: cinematic documentary world matching the story topic. Composition: vertical 9:16, dominant foreground subject, layered midground and background. Camera style: realistic vertical documentary frame, strong depth, natural imperfections. Emotion: doubt. Texture notes: real surfaces, imperfect details, believable reflections, no clean AI plastic look. Keep the foreground subject dominant and clearly visible. Use realistic shadows, believable reflections, imperfect surfaces, and cinematic depth of field. No readable text, no logos, no UI, no watermark.
+Scene 6: photorealistic documentary frame, realistic photography, high dynamic range, natural imperfections, detailed real-world materials, atmospheric depth, cinematic vertical 9:16. Shot type: cinematic closing shot. Foreground subject: story continues develop. Midground: story-relevant environment supporting the scene. Background: atmospheric background connected to the topic. Lighting: cinematic lighting with realistic shadows and atmosphere. Visual world: cinematic documentary world matching the story topic. Composition: vertical 9:16, dominant foreground subject, layered midground and background. Camera style: realistic vertical documentary frame, strong depth, natural imperfections. Emotion: momentum. Texture notes: real surfaces, imperfect details, believable reflections, no clean AI plastic look. Keep the foreground subject dominant and clearly visible. Use realistic shadows, believable reflections, imperfect surfaces, and cinematic depth of field. No readable text, no logos, no UI, no watermark.
+
+[6/14] Image Generation Service
+Prompts loaded: 6
+Prompts prepared: 6
+Output folder: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated
+Manifest path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/generation_manifest.json
+Generated image paths:
+- /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/scene_01.jpg
+- /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/scene_02.jpg
+- /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/scene_03.jpg
+- /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/scene_04.jpg
+- /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/scene_05.jpg
+- /Users/hbinqasim/Projects/faceless-bot/channels/gta6/images/generated/scene_06.jpg
+
+[7/14] Animation Service
+Visual assets found: 6
+Clips generated: 6
+Output folder: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/videos/scenes
+Manifest path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/videos/scenes/animation_manifest.json
+
+[8/14] Narration Service
+Script path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/scripts/latest_script.txt
+Script lines: 5
+Voice: en-US-GuyNeural
+Output audio path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/audio/voice.mp3
+Manifest path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/audio/narration_manifest.json
+
+[9/14] Music Service
+Music query: cinematic suspense trailer
+Music path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/music/current_music.mp3
+Manifest path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/music/music_manifest.json
+
+[10/14] Video Composer Service
+Clips found: 6
+Audio used: true
+Audio duration: 21.22 seconds
+Final duration: 21.22 seconds
+Latest output path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/videos/final/latest_video.mp4
+Timestamped output path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/videos/final/2026-07-17_16-40-15_gta6_video.mp4
+Manifest path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/videos/final/composition_manifest.json
+
+[11/14] Graphics Service
+Transcribing voice for exact word timings...
+Graphics video created:
+/Users/hbinqasim/Projects/faceless-bot/channels/gta6/videos/final/latest_video_graphics.mp4
+/Users/hbinqasim/Projects/faceless-bot/channels/gta6/videos/final/2026-07-17_16-41-47_gta6_graphics.mp4
+Words: 45
+Caption groups: 13
+Caption clips: 45
+Manifest: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/videos/final/graphics_manifest.json
+
+[12/14] Thumbnail Service
+Thumbnail prompt: cinematic high-contrast YouTube thumbnail, landscape 16:9, dramatic foreground subject, bold composition, emotional visual tension, premium documentary style, realistic lighting, clean background, visual story inspired by: Xbox Fires Back at GTA 6 PS5 Pre Order Claims, no readable text, no logos, no watermark
+Thumbnail hook: AI CONTROL?
+Thumbnail concept: 
+Central conflict: 
+Dominant subject: 
+Secondary subject: 
+Visual contrast: 
+Emotion: 
+Thumbnail style: viral_gaming
+Thumbnail placement: top
+CTR score: 
+CTR reasoning: Fallback design based on available video topic.
+Thumbnail image: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/thumbnails/latest_thumbnail.jpg
+Manifest path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/thumbnails/thumbnail_manifest.json
+
+[13/14] Metadata Agent
+Metadata generated:
+GTA 6: Five M For GTA V Enhanced Releases Next Week
+
+[14/14] Upload Agent
+Upload complete.
+YouTube URL: https://youtu.be/OSndiUBx4Lg
+Manifest: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/upload/upload_manifest.json
+
+Pipeline completed successfully.
+Total execution time: 516.38 seconds
+Final video path: /Users/hbinqasim/Projects/faceless-bot/channels/gta6/videos/final/latest_video_graphics.mp4
+((venv) ) hbinqasim@HbinQasims-MacBook-Pro pipelines % 

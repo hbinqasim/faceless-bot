@@ -1,0 +1,14 @@
+{
+  "extends": "../../services/graphics/config.json",
+  "channel": "gta6_longform",
+  "input_video": "channels/gta6_longform/videos/final/latest_video.mp4",
+  "script_path": "channels/gta6_longform/scripts/latest_script.txt",
+  "output_video": "channels/gta6_longform/videos/final/latest_video_graphics.mp4",
+  "audio_path": "channels/gta6_longform/audio/voice.mp3",
+  "font_size": 72,
+  "stroke_width": 7,
+  "shadow_offset": 5,
+  "y_position_ratio": 0.78,
+  "max_box_width": 1500,
+  "max_words_per_caption": 6
+}

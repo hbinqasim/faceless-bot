@@ -1,0 +1,9 @@
+{
+  "extends": "../../agents/research_agent/config.json",
+  "channel": "gta6_longform",
+  "output_dir": "channels/gta6_longform/research",
+  "used_topics_path": "channels/gta6_longform/research/used_topics.json",
+  "max_facts": 12,
+  "include_article_text": true,
+  "article_text_max_chars": 12000
+}

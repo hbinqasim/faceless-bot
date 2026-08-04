@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from services.llm.service import generate as generate_text
+from vice_studio.config_loader import load_component_config
 
 
 
@@ -18,7 +19,7 @@ OLLAMA_URL = "http://localhost:11434/api/generate"
 
 
 def load_config() -> dict[str, Any]:
-    return json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+    return load_component_config(CONFIG_PATH)
 
 
 def resolve_path(path_value: str) -> Path:
@@ -38,7 +39,7 @@ def build_prompt(script: str, config: dict[str, Any]) -> str:
     return f"""
 You are a structure-only storyboard planner.
 
-Create exactly {scene_count} scenes for a vertical short video.
+Create exactly {scene_count} scenes for a {config.get("video_format", "vertical short")} video.
 
 Return ONLY valid JSON.
 No markdown.
@@ -173,7 +174,12 @@ def is_valid_scene(scene: dict[str, str]) -> bool:
 
 def fallback_storyboard(script: str, config: dict[str, Any]) -> dict[str, Any]:
     lines = [line.strip() for line in script.splitlines() if line.strip()]
-    lines = [line for line in lines if not line.lower().startswith("follow for more")]
+    cta = str(config.get("cta", "")).strip().lower()
+    lines = [
+        line for line in lines
+        if not line.lower().startswith("follow for more")
+        and (not cta or line.lower() != cta)
+    ]
 
     scene_count = int(config.get("scene_count", 6))
     while len(lines) < scene_count:

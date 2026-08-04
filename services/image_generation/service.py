@@ -8,6 +8,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
+from vice_studio.config_loader import load_component_config
+
 try:
     from .comfy_provider import ComfyProvider
     from .manual_provider import ManualProvider
@@ -40,10 +42,12 @@ def resolve_project_path(path: str | Path) -> Path:
     return PROJECT_ROOT / candidate
 
 
-def load_config(config_path: str | Path = CONFIG_PATH) -> dict[str, Any]:
+def load_config(config_path: str | Path | None = None) -> dict[str, Any]:
     """Load service configuration."""
-    with Path(config_path).open("r", encoding="utf-8") as file:
-        return json.load(file)
+    if config_path is not None:
+        with Path(config_path).open("r", encoding="utf-8") as file:
+            return json.load(file)
+    return load_component_config(CONFIG_PATH)
 
 
 def load_prompts(config: dict[str, Any] | None = None) -> str:
