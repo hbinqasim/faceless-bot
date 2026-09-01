@@ -265,6 +265,7 @@ def parse_article(
     text = extract_article_body_text(soup)
     if not text:
         text = normalize_spaces(soup.get_text(" ", strip=True))
+    text = trim_article_boilerplate(text)
 
     summary = extract_summary(soup, text)
     key_facts = extract_key_facts(text, config)
@@ -362,6 +363,30 @@ def is_article_noise(text: str) -> bool:
     ]
 
     return any(fragment in lower for fragment in noise_fragments)
+
+
+def trim_article_boilerplate(text: str) -> str:
+    """Stop before reader prompts, author boxes, and appended related stories."""
+    normalized = normalize_spaces(text)
+    boundary_patterns = [
+        r"\bwhat do you think (?:of|about)\b",
+        r"\bwill you be (?:watching|playing|buying)\b",
+        r"\blet us know (?:down )?in the comment",
+        r"\bleave your thoughts (?:down )?in the comments\b",
+        r"\byou can pre-order .{0,80}\bwith this link\b",
+        r"\busing the link to pre-order\b",
+        r"\bdrop a comment\b",
+        r"\bcancel reply\b",
+        r"\bjoin (?:the|our) (?:discussion|discord)\b",
+        r"\blevel up your gaming news\b",
+        r"\bmore from [a-z0-9 .'-]+\b",
+    ]
+    earliest = len(normalized)
+    for pattern in boundary_patterns:
+        match = re.search(pattern, normalized, flags=re.IGNORECASE)
+        if match:
+            earliest = min(earliest, match.start())
+    return normalized[:earliest].strip()
 
 
 def score_candidates(candidates: list[ArticleCandidate], config: dict[str, Any]) -> None:

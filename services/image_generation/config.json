@@ -2,7 +2,7 @@
   "enabled": true,
   "service_name": "image_generation",
   "channel": "gta6",
-  "provider": "pollinations",
+  "provider": "pixabay",
   "input_path": "channels/gta6/images/latest_final_prompts.txt",
   "output_folder": "channels/gta6/images/generated",
   "image_width": 768,
@@ -22,11 +22,17 @@
   "pixabay_per_page": 10,
   "pixabay_timeout_seconds": 60,
   "input_json_path": "channels/gta6/images/latest_final_prompts.json",
+  "media_queries_path": "channels/gta6/images/latest_media_queries.json",
   "pixabay_query_fields": [
     "background",
     "visual_world",
     "midground",
     "emotion"
+  ],
+  "pixabay_fallback_queries": [
+    "city at night",
+    "computer technology",
+    "gaming controller"
   ],
   "gemini_image_model": "gemini-2.5-flash-image",
   "pollinations_model": "flux",

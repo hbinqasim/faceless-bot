@@ -217,18 +217,34 @@ def run() -> dict[str, Any]:
     script = read_text_file(str(config["script_path"]))
     knowledge = read_json_file(str(config["knowledge_path"]))
     query = build_music_query(script, knowledge, config)
-    hit = search_jamendo_music(query, config)
-    query = str(hit.pop("_selected_query", query))
-
     output_path = resolve_path(config["output_audio_path"])
-    download_track(hit, output_path, config)
+    hit: dict[str, Any] = {}
+    status = "downloaded"
+    failure_reason = ""
+
+    try:
+        hit = search_jamendo_music(query, config)
+        query = str(hit.pop("_selected_query", query))
+        download_track(hit, output_path, config)
+    except (RuntimeError, requests.RequestException) as error:
+        failure_reason = str(error)
+        if output_path.exists() and config.get("reuse_existing_on_failure", True):
+            status = "reused_existing"
+            print(f"Warning: {failure_reason}; reusing existing music track.")
+        elif config.get("allow_no_music_on_failure", False):
+            status = "skipped"
+            print(f"Warning: {failure_reason}; continuing without background music.")
+        else:
+            raise
 
     manifest = {
         "service_name": config.get("service_name"),
         "channel": config.get("channel"),
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "query": query,
-        "output_audio_path": str(output_path),
+        "status": status,
+        "failure_reason": failure_reason or None,
+        "output_audio_path": str(output_path) if output_path.exists() else None,
         "music_hit": {
             "id": hit.get("id"),
             "name": hit.get("name") or hit.get("title"),
@@ -242,12 +258,14 @@ def run() -> dict[str, Any]:
     manifest_path = save_manifest(manifest, config)
 
     print(f"Music query: {query}")
-    print(f"Music path: {output_path}")
+    print(f"Music status: {status}")
+    print(f"Music path: {output_path if output_path.exists() else 'none'}")
     print(f"Manifest path: {manifest_path}")
 
     return {
         "query": query,
-        "music_path": str(output_path),
+        "music_path": str(output_path) if output_path.exists() else None,
+        "status": status,
         "manifest_path": str(manifest_path),
     }
 

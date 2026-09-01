@@ -4,11 +4,14 @@ import sqlite3
 import sys
 import time
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
 from google.auth.transport.requests import Request
+from google.auth.exceptions import RefreshError
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
-from google_auth_oauthlib.flow import InstalledAppFlow
+
+from agents.upload_agent.agent import authorize_with_browser
 
 
 SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
@@ -41,13 +44,17 @@ def get_youtube_service():
 
     if not credentials or not credentials.valid:
         if credentials and credentials.expired and credentials.refresh_token:
-            credentials.refresh(Request())
+            try:
+                credentials.refresh(Request())
+            except RefreshError:
+                print(
+                    "Stored YouTube authorization is no longer valid; "
+                    "starting browser reauthorization.",
+                    flush=True,
+                )
+                credentials = authorize_with_browser(Path(CLIENT_SECRET_FILE), SCOPES)
         else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                CLIENT_SECRET_FILE,
-                SCOPES,
-            )
-            credentials = flow.run_local_server(port=0)
+            credentials = authorize_with_browser(Path(CLIENT_SECRET_FILE), SCOPES)
 
         with open(TOKEN_FILE, "wb") as token:
             pickle.dump(credentials, token)

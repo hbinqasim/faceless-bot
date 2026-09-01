@@ -11,7 +11,7 @@ from typing import Any
 from urllib.parse import quote
 
 import requests
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont, ImageStat
 from moviepy import VideoFileClip
 
 from services.llm.service import generate as generate_text
@@ -241,7 +241,7 @@ def normalize_thumbnail_design(data: dict[str, Any], script: str, knowledge: dic
 def fallback_thumbnail_design(script: str, knowledge: dict[str, Any]) -> dict[str, Any]:
     return {
         "background_prompt": fallback_prompt(script, knowledge),
-        "hook": fallback_hook_text(knowledge),
+        "hook": derive_topic_hook(knowledge),
         "placement": "top",
         "font_color": "#FFD400",
         "stroke_color": "#000000",
@@ -259,11 +259,19 @@ def clean_hook_text(text: str) -> str:
 
 
 def fallback_hook_text(knowledge: dict[str, Any]) -> str:
+    """Backward-compatible alias for the topic-aware deterministic hook."""
+    return derive_topic_hook(knowledge)
+
+
+def derive_topic_hook(knowledge: dict[str, Any]) -> str:
+    """Create a short, truthful curiosity hook when the design LLM is unavailable."""
     title = str(knowledge.get("title", "")).upper()
     summary = str(knowledge.get("summary", "")).upper()
 
     combined = f"{title} {summary}"
 
+    if any(term in combined for term in ("MONETIZ", "MICROTRANSACTION", "SPENDING", "SHARK CARD")):
+        return "PLAYERS PAY MORE?"
     if "$100" in combined:
         return "THE $100 EDITION?!"
     if "$80" in combined:
@@ -272,11 +280,28 @@ def fallback_hook_text(knowledge: dict[str, Any]) -> str:
         return "AI CONTROL?"
     if "HEIST" in combined or "PATCH" in combined:
         return "HEIST FIXED?"
-    if "TRAILER" in combined:
-        return "NEW TRAILER?"
-    if "RELEASE" in combined:
-        return "RELEASE UPDATE"
-    return "BIG UPDATE"
+    if any(term in combined for term in ("TRAILER", "REVEAL", "FOOTAGE", "APPETIZER")):
+        return "MORE REVEALS COMING"
+    if any(term in combined for term in ("DELAY", "DELAYED", "ON TRACK")):
+        return "DELAY OR ON TRACK?"
+    if "RELEASE" in combined or "LAUNCH" in combined:
+        return "LAUNCH PLANS CHANGED?"
+    if any(term in combined for term in ("QUIET", "SILENCE", "SILENT")):
+        return "WHY SO QUIET?"
+    if "GTA ONLINE" in combined:
+        return "ONLINE IS CHANGING"
+
+    ignored = {
+        "GTA", "ONLINE", "SHOWS", "WHY", "WHAT", "WHEN", "WITH", "FROM",
+        "TAKE", "TWO", "ROCKSTAR", "GAMES", "GRAND", "THEFT", "AUTO",
+        "THIS", "THAT", "THE", "AND", "FOR", "MORE", "NEWS", "UPDATE",
+    }
+    words = [
+        word
+        for word in re.findall(r"[A-Z0-9$]+", title)
+        if len(word) > 2 and word not in ignored
+    ]
+    return " ".join(words[:4]) or "THE REAL STORY"
 
 
 def normalize_hex_color(value: str, fallback: str) -> str:
@@ -426,19 +451,44 @@ def generate_image(prompt: str, config: dict[str, Any]) -> Path:
 
 
 def generate_video_frame_thumbnail(output_path: Path, config: dict[str, Any]) -> Path:
-    """Create a thumbnail background from the current video's own stock footage."""
+    """Select the strongest thumbnail frame from the current video's footage."""
     source_path = resolve_path(str(config["source_video_path"]))
     if not source_path.exists():
         raise FileNotFoundError(f"Thumbnail source video not found: {source_path}")
 
     width = int(config.get("width", 1280))
     height = int(config.get("height", 720))
+    configured_ratios = config.get("frame_candidate_ratios")
+    if isinstance(configured_ratios, list) and configured_ratios:
+        ratios = [min(max(float(value), 0.0), 1.0) for value in configured_ratios]
+    else:
+        ratios = [min(max(float(config.get("frame_position_ratio", 0.2)), 0.0), 1.0)]
+
+    candidates: list[tuple[float, float, Image.Image]] = []
     with VideoFileClip(str(source_path)) as video:
         duration = float(video.duration or 0)
-        frame_ratio = min(max(float(config.get("frame_position_ratio", 0.2)), 0.0), 1.0)
-        frame_time = max(0.0, min(duration * frame_ratio, max(duration - 0.05, 0.0)))
-        image = Image.fromarray(video.get_frame(frame_time)).convert("RGB")
+        for ratio in ratios:
+            frame_time = max(0.0, min(duration * ratio, max(duration - 0.05, 0.0)))
+            frame = Image.fromarray(video.get_frame(frame_time)).convert("RGB")
+            prepared = crop_to_size(frame, width, height)
+            candidates.append((score_thumbnail_frame(prepared), frame_time, prepared))
 
+    score, frame_time, image = max(candidates, key=lambda item: item[0])
+    image = ImageEnhance.Contrast(image).enhance(1.18)
+    image = ImageEnhance.Color(image).enhance(1.12)
+    image = ImageEnhance.Sharpness(image).enhance(1.15)
+    image.save(output_path, quality=95)
+
+    global _LAST_FRAME_SELECTION
+    _LAST_FRAME_SELECTION = {
+        "candidate_count": len(candidates),
+        "selected_time_seconds": round(frame_time, 3),
+        "selected_score": round(score, 4),
+    }
+    return output_path
+
+
+def crop_to_size(image: Image.Image, width: int, height: int) -> Image.Image:
     source_ratio = image.width / image.height
     target_ratio = width / height
     if source_ratio > target_ratio:
@@ -449,9 +499,116 @@ def generate_video_frame_thumbnail(output_path: Path, config: dict[str, Any]) ->
         crop_height = int(image.width / target_ratio)
         top = (image.height - crop_height) // 2
         image = image.crop((0, top, image.width, top + crop_height))
+    return image.resize((width, height), Image.Resampling.LANCZOS)
 
-    image.resize((width, height), Image.Resampling.LANCZOS).save(output_path, quality=95)
-    return output_path
+
+def score_thumbnail_frame(image: Image.Image) -> float:
+    """Favor sharp, colorful, well-exposed frames with usable left-side text space."""
+    sample = image.resize((320, 180), Image.Resampling.BILINEAR)
+    grayscale = sample.convert("L")
+    stats = ImageStat.Stat(grayscale)
+    brightness = float(stats.mean[0])
+    contrast = float(stats.stddev[0])
+    edges = grayscale.filter(ImageFilter.FIND_EDGES)
+    edge_strength = float(ImageStat.Stat(edges).mean[0])
+    color_stats = ImageStat.Stat(sample)
+    colorfulness = sum(color_stats.stddev) / 3
+    left = grayscale.crop((0, 0, int(grayscale.width * 0.58), grayscale.height))
+    left_detail = float(ImageStat.Stat(left.filter(ImageFilter.FIND_EDGES)).mean[0])
+
+    exposure = max(0.0, 1.0 - abs(brightness - 128.0) / 128.0)
+    return (
+        exposure * 2.0
+        + min(contrast / 45.0, 2.0)
+        + min(edge_strength / 18.0, 2.0)
+        + min(colorfulness / 55.0, 1.5)
+        + max(0.0, 1.2 - left_detail / 24.0)
+    )
+
+
+def add_high_ctr_longform_layout(
+    image_path: Path,
+    design: dict[str, Any],
+    knowledge: dict[str, Any],
+    config: dict[str, Any],
+) -> None:
+    """Apply a bold, readable gaming-news layout to a selected clean frame."""
+    image = Image.open(image_path).convert("RGB")
+    width, height = image.size
+    overlay = Image.new("RGBA", image.size, (0, 0, 0, 0))
+    overlay_draw = ImageDraw.Draw(overlay)
+
+    # Strong left-to-right readability gradient plus cinematic edge vignette.
+    for x in range(width):
+        progress = x / max(width - 1, 1)
+        alpha = int(225 * max(0.0, 1.0 - progress / 0.72))
+        overlay_draw.line((x, 0, x, height), fill=(2, 4, 12, alpha))
+    overlay_draw.rectangle((0, 0, width - 1, height - 1), outline=(255, 204, 0, 255), width=10)
+    image = Image.alpha_composite(image.convert("RGBA"), overlay).convert("RGB")
+    draw = ImageDraw.Draw(image)
+
+    accent = hex_to_rgb(str(design.get("accent_color", "#FF2E38")))
+    badge = clean_hook_text(str(config.get("thumbnail_badge", "GTA 6 EXPLAINED")))
+    badge_font = load_font(max(24, int(height * 0.047)), bold=True)
+    badge_box = draw.textbbox((0, 0), badge, font=badge_font)
+    badge_width = badge_box[2] - badge_box[0]
+    badge_height = badge_box[3] - badge_box[1]
+    badge_x, badge_y = int(width * 0.055), int(height * 0.075)
+    draw.rounded_rectangle(
+        (badge_x - 16, badge_y - 10, badge_x + badge_width + 16, badge_y + badge_height + 12),
+        radius=10,
+        fill=accent,
+    )
+    draw.text((badge_x, badge_y), badge, font=badge_font, fill=(255, 255, 255))
+
+    hook = derive_topic_hook(knowledge)
+    lines = split_hook_lines(hook)
+    font_size = int(height * 0.16)
+    hook_font = load_font(font_size, bold=True)
+    max_width = int(width * 0.59)
+    while font_size > 54 and any(
+        draw.textbbox((0, 0), line, font=hook_font, stroke_width=8)[2] > max_width
+        for line in lines
+    ):
+        font_size -= 5
+        hook_font = load_font(font_size, bold=True)
+
+    line_height = max(draw.textbbox((0, 0), line, font=hook_font, stroke_width=8)[3] for line in lines)
+    start_y = int(height * 0.29)
+    for index, line in enumerate(lines):
+        y = start_y + index * int(line_height * 1.05)
+        fill = (255, 216, 0) if index == len(lines) - 1 else (255, 255, 255)
+        draw.text(
+            (int(width * 0.055) + 7, y + 9),
+            line,
+            font=hook_font,
+            fill=(0, 0, 0),
+            stroke_width=10,
+            stroke_fill=(0, 0, 0),
+        )
+        draw.text(
+            (int(width * 0.055), y),
+            line,
+            font=hook_font,
+            fill=fill,
+            stroke_width=7,
+            stroke_fill=(0, 0, 0),
+        )
+
+    draw.rounded_rectangle(
+        (int(width * 0.055), int(height * 0.79), int(width * 0.43), int(height * 0.815)),
+        radius=8,
+        fill=accent,
+    )
+    image.save(image_path, quality=96)
+
+
+def split_hook_lines(hook: str) -> list[str]:
+    words = clean_hook_text(hook).split()
+    if len(words) <= 2:
+        return [" ".join(words)]
+    split_at = (len(words) + 1) // 2
+    return [" ".join(words[:split_at]), " ".join(words[split_at:])]
 
 
 def save_manifest(prompt: str, image_path: Path, config: dict[str, Any]) -> Path:
@@ -474,6 +631,7 @@ def save_manifest(prompt: str, image_path: Path, config: dict[str, Any]) -> Path
         "provider": config.get("provider", "pollinations"),
         "model": config.get("pollinations_model"),
         "design": globals().get("_LAST_THUMBNAIL_DESIGN", {}),
+        "frame_selection": globals().get("_LAST_FRAME_SELECTION", {}),
     }
     manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return manifest_path
@@ -489,12 +647,22 @@ def run() -> dict[str, Any]:
     knowledge = read_json(str(config["knowledge_path"]))
     storyboard = read_json(str(config["storyboard_path"]))
 
-    try:
-        design = build_thumbnail_design(script, knowledge, config)
-    except Exception:
+    # Video-frame thumbnails use a deterministic topic hook and do not need a
+    # paid/remote design call whose background prompt would be ignored anyway.
+    if config.get("high_ctr_layout", False) and config.get("provider") == "video_frame":
         design = fallback_thumbnail_design(script, knowledge)
+        design["ctr_reasoning"] = "Topic-specific hook with automatic multi-frame visual selection."
+    else:
+        try:
+            design = build_thumbnail_design(script, knowledge, config)
+        except Exception:
+            design = fallback_thumbnail_design(script, knowledge)
 
     global _LAST_THUMBNAIL_DESIGN
+    if config.get("high_ctr_layout", False):
+        design["hook"] = derive_topic_hook(knowledge)
+        design["placement"] = "left"
+        design["style"] = "high_ctr_longform"
     _LAST_THUMBNAIL_DESIGN = design
 
     prompt = design["background_prompt"]
@@ -503,7 +671,10 @@ def run() -> dict[str, Any]:
     hook_text = ""
     if config.get("enable_hook_text", True):
         hook_text = design.get("hook", "")
-        add_hook_text(image_path, design, config)
+        if config.get("high_ctr_layout", False):
+            add_high_ctr_longform_layout(image_path, design, knowledge, config)
+        else:
+            add_hook_text(image_path, design, config)
 
     manifest_path = save_manifest(prompt, image_path, config)
 

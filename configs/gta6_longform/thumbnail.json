@@ -9,5 +9,8 @@
   "output_folder": "channels/gta6_longform/thumbnails",
   "output_prompt_path": "channels/gta6_longform/thumbnails/latest_thumbnail_prompt.txt",
   "output_image_path": "channels/gta6_longform/thumbnails/latest_thumbnail.jpg",
-  "frame_position_ratio": 0.2
+  "high_ctr_layout": true,
+  "thumbnail_badge": "GTA 6 EXPLAINED",
+  "hook_text_max_words": 4,
+  "frame_candidate_ratios": [0.08, 0.18, 0.3, 0.44, 0.58, 0.72, 0.86]
 }

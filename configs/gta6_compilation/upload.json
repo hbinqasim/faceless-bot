@@ -1,0 +1,10 @@
+{
+  "extends": "../../agents/upload_agent/config.json",
+  "channel": "gta6_compilation",
+  "video_path": "channels/gta6_compilation/videos/gta6_complete_compilation.mp4",
+  "thumbnail_path": "channels/gta6_compilation/thumbnails/latest_thumbnail.jpg",
+  "metadata_path": "channels/gta6_compilation/metadata/latest_metadata.json",
+  "upload_manifest_path": "channels/gta6_compilation/upload/upload_manifest.json",
+  "schedule_upload": false,
+  "privacy_status": "private"
+}

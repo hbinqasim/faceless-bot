@@ -8,7 +8,6 @@ import random
 import time
 from pathlib import Path
 from typing import Any
-from urllib.parse import urlencode
 
 import requests
 from dotenv import load_dotenv
@@ -164,11 +163,10 @@ class PixabayProvider(ProviderBase):
         return any(term in tags for term in self.required_tag_terms)
 
     def _get_json(self, url: str, params: dict[str, Any]) -> dict[str, Any]:
-        request_url = f"{url}?{urlencode(params)}"
         errors: list[str] = []
         for attempt in range(1, self.max_request_attempts + 1):
             try:
-                response = requests.get(request_url, timeout=self.timeout)
+                response = requests.get(url, params=params, timeout=self.timeout)
                 if response.ok:
                     return response.json()
                 errors.append(f"HTTP {response.status_code}: {response.text[:300]}")
@@ -176,7 +174,7 @@ class PixabayProvider(ProviderBase):
                     break
                 retry_after = self._retry_after_seconds(response)
             except (requests.RequestException, ValueError) as error:
-                errors.append(str(error))
+                errors.append(self._redact_api_key(str(error)))
                 retry_after = None
 
             if attempt < self.max_request_attempts:
@@ -185,6 +183,10 @@ class PixabayProvider(ProviderBase):
         raise RuntimeError(
             f"Pixabay request failed after {len(errors)} attempt(s): {errors[-1]}"
         )
+
+    def _redact_api_key(self, message: str) -> str:
+        """Keep credentials out of request errors and pipeline logs."""
+        return message.replace(self.api_key, "[REDACTED]")
 
     def _download(self, url: str, output_path: Path) -> None:
         errors: list[str] = []

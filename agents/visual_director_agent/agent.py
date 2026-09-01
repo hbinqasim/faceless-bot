@@ -117,9 +117,28 @@ def clean_text(value: Any) -> str:
     return re.sub(r"\s+", " ", str(value or "")).strip()
 
 
+def safe_visual_text(value: Any, fallback: str) -> str:
+    """Reject visual directions that would render brands or readable text."""
+    text = clean_text(value)
+    forbidden = [
+        r"\blogos?\b",
+        r"\bbrand marks?\b",
+        r"\bwatermarks?\b",
+        r"\breadable (?:text|words?|letters?)\b",
+        r"\bsign (?:that )?(?:reads|says|showing)\b",
+        r"\b(?:netflix|take[- ]?two|rockstar|gta)\b",
+    ]
+    if not text or any(re.search(pattern, text, flags=re.IGNORECASE) for pattern in forbidden):
+        return fallback
+    return text
+
+
 def normalize_scene(scene: dict[str, Any], fallback: dict[str, Any], index: int, config: dict[str, Any] | None = None) -> dict[str, Any]:
     script_line = clean_text(scene.get("script_line") or fallback.get("script_line"))
-    subject = clean_text(scene.get("visual_subject") or scene.get("foreground") or fallback.get("subject") or script_line)
+    subject = safe_visual_text(
+        scene.get("visual_subject") or scene.get("foreground") or fallback.get("subject"),
+        "story-relevant real-world object",
+    )
 
     return {
         "scene_number": int(scene.get("scene_number") or fallback.get("scene_number") or index),
@@ -128,13 +147,13 @@ def normalize_scene(scene: dict[str, Any], fallback: dict[str, Any], index: int,
         "emotion": clean_text(scene.get("emotion") or fallback.get("emotion")),
         "shot_type": clean_text(scene.get("shot_type") or fallback.get("shot_type")),
         "visual_subject": subject,
-        "visual_world": clean_text(scene.get("visual_world") or "cinematic real-world documentary scene"),
+        "visual_world": safe_visual_text(scene.get("visual_world"), "cinematic real-world documentary scene"),
         "camera_style": clean_text(scene.get("camera_style") or "realistic vertical documentary camera, shallow depth of field"),
         "lighting_style": clean_text(scene.get("lighting_style") or "cinematic natural lighting with realistic shadows"),
         "composition_style": clean_text(scene.get("composition_style") or f"{(config or {}).get('aspect_ratio', 'vertical 9:16')}, clear foreground, layered depth"),
-        "foreground": clean_text(scene.get("foreground") or subject),
-        "midground": clean_text(scene.get("midground") or "story-relevant supporting environment"),
-        "background": clean_text(scene.get("background") or "atmospheric cinematic background"),
+        "foreground": safe_visual_text(scene.get("foreground"), subject),
+        "midground": safe_visual_text(scene.get("midground"), "story-relevant supporting environment"),
+        "background": safe_visual_text(scene.get("background"), "atmospheric cinematic background"),
         "texture_notes": clean_text(scene.get("texture_notes") or "real surfaces, natural imperfections, believable reflections, no clean AI plastic look"),
     }
 

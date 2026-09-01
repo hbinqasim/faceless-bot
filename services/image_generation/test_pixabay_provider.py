@@ -7,6 +7,8 @@ from tempfile import TemporaryDirectory
 from unittest import TestCase
 from unittest.mock import Mock, patch
 
+import requests
+
 from services.image_generation.pixabay_provider import PixabayProvider
 
 
@@ -80,6 +82,23 @@ class PixabayProviderTests(TestCase):
             self.assertEqual(output.read_bytes(), b"video")
             self.assertEqual(mock_get.call_count, 2)
             mock_sleep.assert_not_called()
+
+    @patch.dict(os.environ, {"PIXABAY_API_KEY": "test-secret-key"})
+    @patch("services.image_generation.pixabay_provider.requests.get")
+    def test_redacts_api_key_from_request_errors(self, mock_get: Mock) -> None:
+        mock_get.side_effect = requests.ConnectionError(
+            "failed URL https://pixabay.test/?key=test-secret-key"
+        )
+        provider = PixabayProvider({"pixabay_max_request_attempts": 1})
+
+        with self.assertRaises(RuntimeError) as raised:
+            provider._get_json(
+                "https://pixabay.test/api/",
+                {"key": "test-secret-key", "q": "gaming"},
+            )
+
+        self.assertNotIn("test-secret-key", str(raised.exception))
+        self.assertIn("[REDACTED]", str(raised.exception))
 
     @staticmethod
     def video_hit(hit_id: int, url: str) -> dict:

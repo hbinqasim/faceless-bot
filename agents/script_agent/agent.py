@@ -160,7 +160,7 @@ def clean_script(raw: str, config: dict[str, Any], knowledge: dict[str, Any]) ->
     lines: list[str] = []
 
     for raw_line in raw.splitlines():
-        cleaned_line = clean_text(raw_line)
+        cleaned_line = repair_extracted_text(clean_text(raw_line))
         cleaned_line = re.sub(r"^[\s\*\-•\d\.\)]+", "", cleaned_line).strip()
         if not cleaned_line:
             continue
@@ -170,7 +170,7 @@ def clean_script(raw: str, config: dict[str, Any], knowledge: dict[str, Any]) ->
         candidates = sentence_matches or [cleaned_line]
 
         for candidate in candidates:
-            line = clean_text(candidate.replace("<DECIMAL>", "."))
+            line = repair_extracted_text(clean_text(candidate.replace("<DECIMAL>", ".")))
             if line.lower().startswith("follow for more"):
                 line = cta
 
@@ -235,28 +235,16 @@ def is_valid_script_line(line: str, max_words: int) -> bool:
 
 def has_spacing_damage(line: str) -> bool:
     """Detect broken tokenization without topic-specific hardcoding."""
-    words = line.split()
-    if len(words) < 2:
-        return False
-
-    alpha_lengths = [
-        len(re.sub(r"[^A-Za-z]", "", word))
-        for word in words
-    ]
-
-    short_alpha_tokens = sum(1 for length in alpha_lengths if length == 1)
-    if short_alpha_tokens >= 2:
-        return True
-
-    for index in range(1, len(words) - 1):
-        previous_word = re.sub(r"[^A-Za-z]", "", words[index - 1])
-        current_word = re.sub(r"[^A-Za-z]", "", words[index])
-        next_word = re.sub(r"[^A-Za-z]", "", words[index + 1])
-
-        if len(previous_word) >= 4 and len(current_word) <= 2 and len(next_word) <= 2:
-            return True
-
-    return False
+    # Broad short-token heuristics reject legitimate phrases such as GTA VI,
+    # 3pm ET, and character initials. Extractor-specific splits are repaired
+    # before this validator, so only retain the characteristic residual shape.
+    return bool(
+        re.search(
+            r"\b(?:cus|his|s|vic|domina|oc)\s+to\s+[a-z]{1,4}\b",
+            line,
+            flags=re.IGNORECASE,
+        )
+    )
 
 
 def looks_truncated(line: str) -> bool:
@@ -353,6 +341,7 @@ def fallback_script(knowledge: dict[str, Any], config: dict[str, Any]) -> str:
     lines: list[str] = []
     for candidate in candidates:
         line = clean_text(candidate)
+        line = re.sub(r"^[\"'“”]+", "", line).strip()
         line = re.sub(r"\s+\|\s+[^|]+$", "", line).strip()
         if is_source_promotion(line, config, knowledge):
             continue
@@ -360,7 +349,12 @@ def fallback_script(knowledge: dict[str, Any], config: dict[str, Any]) -> str:
             line = ""
         elif line and not line.endswith((".", "?", "!")):
             line += "."
-        if line and line not in lines and is_valid_script_line(line, max_words):
+        existing_keys = {
+            re.sub(r"[^a-z0-9]+", " ", item.lower()).strip()
+            for item in lines
+        }
+        line_key = re.sub(r"[^a-z0-9]+", " ", line.lower()).strip()
+        if line and line_key not in existing_keys and is_valid_script_line(line, max_words):
             lines.append(line)
         current_words = sum(len(item.split()) for item in lines) + len(cta.split())
         if target_min_words and current_words >= target_min_words:
@@ -377,7 +371,12 @@ def fallback_script(knowledge: dict[str, Any], config: dict[str, Any]) -> str:
             if is_source_promotion(candidate, config, knowledge):
                 continue
             line = summarize_to_line(candidate, max_words)
-            if line and line not in lines and is_valid_script_line(line, max_words):
+            existing_keys = {
+                re.sub(r"[^a-z0-9]+", " ", item.lower()).strip()
+                for item in lines
+            }
+            line_key = re.sub(r"[^a-z0-9]+", " ", line.lower()).strip()
+            if line and line_key not in existing_keys and is_valid_script_line(line, max_words):
                 lines.append(line)
             current_words = sum(len(item.split()) for item in lines) + len(cta.split())
             if current_words >= target_min_words or len(lines) >= max_lines - 1:
@@ -402,22 +401,43 @@ def source_material_sentences(knowledge: dict[str, Any]) -> list[str]:
     if not article_text:
         return []
 
-    # Some article extractors append comment widgets and related-story cards.
-    # They are not part of the verified report and must not enter narration.
-    article_text = re.split(
-        r"\bPer\s+\d+\s+established\s+Helpful\s+marks\b",
-        article_text,
-        maxsplit=1,
-        flags=re.IGNORECASE,
-    )[0]
+    article_text = trim_source_boilerplate(article_text)
 
     protected = re.sub(r"(?<=\d)\.(?=\d)", "<DECIMAL>", article_text)
     matches = re.findall(r"[^.!?]+[.!?](?:[\"']|$)?", protected)
-    return [clean_text(match.replace("<DECIMAL>", ".")) for match in matches]
+    return [
+        repair_extracted_text(clean_text(match.replace("<DECIMAL>", ".")))
+        for match in matches
+    ]
+
+
+def trim_source_boilerplate(text: str) -> str:
+    """Remove reader prompts, affiliate copy, comments, and related-story cards."""
+    boundary_patterns = [
+        r"\bPer\s+\d+\s+established\s+Helpful\s+marks\b",
+        r"\bwhat do you think (?:of|about)\b",
+        r"\bwill you be (?:watching|playing|buying)\b",
+        r"\blet us know (?:down )?in the comment",
+        r"\bleave your thoughts (?:down )?in the comments\b",
+        r"\byou can pre-order .{0,80}\bwith this link\b",
+        r"\busing the link to pre-order\b",
+        r"\bdrop a comment\b",
+        r"\bcancel reply\b",
+        r"\blevel up your gaming news\b",
+    ]
+    earliest = len(text)
+    for pattern in boundary_patterns:
+        match = re.search(pattern, text, flags=re.IGNORECASE)
+        if match:
+            earliest = min(earliest, match.start())
+    return text[:earliest].strip()
 
 
 def structured_knowledge_sentences(knowledge: dict[str, Any]) -> list[str]:
-    """Turn research claims and approved angles into attributed narration lines."""
+    """Turn factual research claims into attributed narration lines.
+
+    Script angles are editor instructions, not verified facts or spoken copy.
+    """
     sentences: list[str] = []
     for item in knowledge.get("claims", []):
         if not isinstance(item, dict):
@@ -425,11 +445,6 @@ def structured_knowledge_sentences(knowledge: dict[str, Any]) -> list[str]:
         claim = repair_extracted_text(clean_text(str(item.get("claim", ""))))
         if claim:
             sentences.append(f"The available reporting says {claim[0].lower() + claim[1:]}")
-
-    for angle in knowledge.get("script_angles", []):
-        cleaned = repair_extracted_text(clean_text(str(angle)))
-        if cleaned:
-            sentences.append(cleaned)
     return sentences
 
 
@@ -439,6 +454,11 @@ def repair_extracted_text(text: str) -> str:
         r"\bcus\s+to\s+mers\b": "customers",
         r"\bhis\s+to\s+ry\b": "history",
         r"\bs\s+to\s+ry\b": "story",
+        r"\bs\s+to\s+rytelling\b": "storytelling",
+        r"\bvic\s+to\s+ry\b": "victory",
+        r"\bdomina\s+to\s+r\b": "dominator",
+        r"\bYou\s+Tube\b": "YouTube",
+        r"\bPlay\s+Station\b": "PlayStation",
         r"\boc\s+to\s+ber\b": "October",
     }
     for pattern, replacement in repairs.items():
@@ -469,10 +489,16 @@ def is_source_promotion(
         "click the link",
         "read the full",
         "stay tuned",
+        "updated regularly",
+        "release date, map, characters, gameplay",
+        "the way people are talking about",
     ]
     blocked.extend(str(item).lower() for item in config.get("excluded_script_fragments", []))
     blocked.extend(str(item).lower() for item in knowledge.get("avoid", []))
-    return any(fragment and fragment in lowered for fragment in blocked)
+    if any(fragment and fragment in lowered for fragment in blocked):
+        return True
+
+    return lowered.startswith(("are you ", "do you ", "what do you "))
 
 
 def summarize_to_line(text: str, max_words: int) -> str:

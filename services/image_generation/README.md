@@ -43,6 +43,14 @@ scene_01.png
 scene_01_metadata.json
 ```
 
+The Gemini image provider also writes generated PNG frames. It reads
+`GEMINI_API_KEY` (or `GOOGLE_API_KEY`) from the project `.env` file.
+
+The default provider for this project is Pixabay stock video. It reads
+`PIXABAY_API_KEY` from `.env` and uses the scene-specific search queries written
+by the prompt engineer. This keeps the pipeline operational without image-model
+credits; the animation service accepts the downloaded MP4 scenes directly.
+
 The service also writes:
 
 ```text

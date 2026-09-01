@@ -10,5 +10,5 @@
   "model": "gemini-2.5-flash",
   "temperature": 0.45,
   "max_tokens": 1600,
-  "knowledge_path": "channels/gta6/research/knowledge.json"
+  "knowledge_path": "channels/gta6/research/latest_topic.json"
 }

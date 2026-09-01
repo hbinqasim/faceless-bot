@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import subprocess
 import sys
@@ -82,6 +83,34 @@ def validate_audio_duration() -> float:
     return duration
 
 
+def validate_script_word_budget(
+    script_path: Path | None = None,
+    config_path: Path | None = None,
+) -> int:
+    """Reject stale short scripts before narration synthesis or scene work."""
+    active_script_path = script_path or CHANNEL_ROOT / "scripts" / "latest_script.txt"
+    active_config_path = config_path or CONFIG_ROOT / "script.json"
+    config = json.loads(active_config_path.read_text(encoding="utf-8"))
+    script = active_script_path.read_text(encoding="utf-8")
+    word_count = len(script.split())
+    minimum = int(config.get("target_min_words", 0))
+    maximum = int(config.get("target_max_words", 0))
+
+    if minimum and word_count < minimum:
+        raise RuntimeError(
+            f"Long-form script has {word_count} words; at least {minimum} are required "
+            "for a 2-3 minute narration. Resume from step 2 to regenerate it."
+        )
+    if maximum and word_count > maximum:
+        raise RuntimeError(
+            f"Long-form script has {word_count} words; the maximum is {maximum}. "
+            "Resume from step 2 to regenerate it."
+        )
+
+    print(f"Long-form script word budget validated: {word_count} words")
+    return word_count
+
+
 def validate_final_duration() -> float:
     with VideoFileClip(str(FINAL_VIDEO_PATH)) as video:
         duration = float(video.duration or 0)
@@ -118,6 +147,11 @@ def run(
     if stop_after is not None and not start_at <= stop_after <= total:
         raise ValueError(f"--stop-after must be between {start_at} and {total}")
 
+    # Starting after the script step means the pipeline will consume an
+    # existing script. Validate it before expensive storyboard/media/audio work.
+    if start_at >= 3:
+        validate_script_word_budget()
+
     try:
         if start_at == 1:
             topic_ready = False
@@ -126,6 +160,8 @@ def run(
                 try:
                     for index, (name, module, config) in enumerate(topic_steps, start=1):
                         run_step(name, module, config, index, total)
+                        if module == "agents.script_agent.agent":
+                            validate_script_word_budget()
                     topic_ready = True
                     break
                 except subprocess.CalledProcessError:
@@ -143,6 +179,8 @@ def run(
         for index, (name, module, config) in enumerate(remaining_steps, start=remaining_start):
             args = [str(video_number)] if module == "agents.upload_agent.agent" else None
             run_step(name, module, config, index, total, args)
+            if module == "agents.script_agent.agent":
+                validate_script_word_budget()
             if module == "services.narration.service":
                 validate_audio_duration()
             if module == "services.graphics.service":

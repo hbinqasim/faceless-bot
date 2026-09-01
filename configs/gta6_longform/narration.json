@@ -4,5 +4,10 @@
   "input_script_path": "channels/gta6_longform/scripts/latest_script.txt",
   "output_folder": "channels/gta6_longform/audio",
   "output_file": "voice.mp3",
-  "rate": "-30%"
+  "rate": "+5%",
+  "target_min_duration_seconds": 120,
+  "duration_safety_margin_seconds": 2,
+  "minimum_adaptive_rate_percent": -5,
+  "maximum_adaptive_rate_percent": 15,
+  "max_rate_adjustments": 2
 }

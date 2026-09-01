@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from google.auth.transport.requests import Request
+from google.auth.exceptions import RefreshError
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -62,18 +63,40 @@ def get_youtube_service(config: dict[str, Any]):
 
     if not credentials or not credentials.valid:
         if credentials and credentials.expired and credentials.refresh_token:
-            credentials.refresh(Request())
+            try:
+                credentials.refresh(Request())
+            except RefreshError:
+                print(
+                    "Stored YouTube authorization is no longer valid; "
+                    "starting browser reauthorization.",
+                    flush=True,
+                )
+                credentials = authorize_with_browser(client_secret_path)
         else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                str(client_secret_path),
-                SCOPES,
-            )
-            credentials = flow.run_local_server(port=0)
+            credentials = authorize_with_browser(client_secret_path)
 
+        token_path.parent.mkdir(parents=True, exist_ok=True)
         with token_path.open("wb") as file:
             pickle.dump(credentials, file)
 
     return build("youtube", "v3", credentials=credentials)
+
+
+def authorize_with_browser(client_secret_path: Path, scopes: list[str] | None = None):
+    """Obtain fresh user authorization after a missing or revoked token."""
+    if not client_secret_path.exists():
+        raise FileNotFoundError(
+            f"YouTube OAuth client secret not found: {client_secret_path}"
+        )
+    flow = InstalledAppFlow.from_client_secrets_file(
+        str(client_secret_path),
+        scopes or SCOPES,
+    )
+    return flow.run_local_server(
+        port=0,
+        access_type="offline",
+        prompt="consent",
+    )
 
 
 def load_metadata(config: dict[str, Any]) -> dict[str, Any]:

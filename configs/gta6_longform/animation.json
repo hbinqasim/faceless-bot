@@ -3,7 +3,7 @@
   "channel": "gta6_longform",
   "input_folder": "channels/gta6_longform/media/downloaded",
   "output_folder": "channels/gta6_longform/videos/scenes",
-  "duration_seconds": 9,
+  "duration_seconds": 6,
   "random_start": true,
   "width": 1920,
   "height": 1080

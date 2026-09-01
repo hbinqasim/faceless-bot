@@ -2,7 +2,7 @@
   "extends": "../../agents/visual_director_agent/config.json",
   "channel": "gta6_longform",
   "aspect_ratio": "landscape 16:9",
-  "max_scenes": 20,
+  "max_scenes": 24,
   "max_tokens": 4200,
   "storyboard_prompt_max_chars": 16000,
   "storyboard_json_path": "channels/gta6_longform/storyboards/latest_storyboard.json",

@@ -182,8 +182,7 @@ def fallback_storyboard(script: str, config: dict[str, Any]) -> dict[str, Any]:
     ]
 
     scene_count = int(config.get("scene_count", 6))
-    while len(lines) < scene_count:
-        lines.append("The story continues to develop.")
+    lines = distribute_script_lines(lines, scene_count)
 
     purposes = ["hook", "context", "tension", "evidence", "uncertainty", "payoff"]
 
@@ -207,6 +206,24 @@ def fallback_storyboard(script: str, config: dict[str, Any]) -> dict[str, Any]:
         "format": "structure_only_storyboard",
         "scenes": scenes,
     }
+
+
+def distribute_script_lines(lines: list[str], scene_count: int) -> list[str]:
+    """Map available narration across scenes without inventing filler claims."""
+    if scene_count <= 0:
+        return []
+    if not lines:
+        return ["A verified update is developing."] * scene_count
+    if len(lines) >= scene_count:
+        return lines[:scene_count]
+    if len(lines) == 1:
+        return lines * scene_count
+
+    last_index = len(lines) - 1
+    return [
+        lines[round(index * last_index / (scene_count - 1))]
+        for index in range(scene_count)
+    ]
 
 
 

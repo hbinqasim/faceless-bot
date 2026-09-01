@@ -2,7 +2,7 @@
   "extends": "../../agents/prompt_engineer_agent/config.json",
   "channel": "gta6_longform",
   "aspect_ratio": "landscape 16:9",
-  "max_scenes": 20,
+  "max_scenes": 24,
   "visual_plan_path": "channels/gta6_longform/storyboards/latest_visual_plan.json",
   "output_path": "channels/gta6_longform/media/latest_stock_prompts.txt",
   "output_json_path": "channels/gta6_longform/media/latest_stock_prompts.json",

@@ -8,6 +8,7 @@
   "download_max_attempts": 3,
   "download_retry_backoff_seconds": 2,
   "reuse_existing_on_failure": true,
+  "allow_no_music_on_failure": true,
   "fallback_queries": [
     "cinematic suspense",
     "gaming electronic",
